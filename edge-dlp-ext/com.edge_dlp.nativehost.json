@@ -1,0 +1,9 @@
+{
+  "name": "com.edge_dlp.nativehost",
+  "description": "Edge DLP native messaging host",
+  "path": "/absolute/path/to/native_host.py",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://<YOUR_EXTENSION_ID>/"
+  ]
+}

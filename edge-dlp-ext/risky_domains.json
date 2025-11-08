@@ -1,0 +1,25 @@
+{
+  "high_risk_domains": [
+    "pastebin.com",
+    "paste.ee",
+    "dpaste.com",
+    "hastebin.com",
+    "github.com",
+    "gist.github.com",
+    "stackoverflow.com",
+    "discord.com",
+    "slack.com",
+    "reddit.com",
+    "twitter.com",
+    "x.com",
+    "facebook.com",
+    "linkedin.com",
+    "medium.com",
+    "notion.so"
+  ],
+  "always_monitor": true,
+  "policies": {
+    "high_risk": "auto_redact",
+    "default": "warn"
+  }
+}

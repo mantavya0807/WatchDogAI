@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+import sys
+import struct
+import json
+import re
+import logging
+
+# Setup logging
+logging.basicConfig(
+    filename='/tmp/native_host.log',
+    level=logging.DEBUG,
+    format='%(asctime)s - %(message)s'
+)
+
+logging.info("="*50)
+logging.info("Native host starting...")
+
+# Patterns for detection
+PATTERNS = [
+    ('API_KEY', re.compile(r'(?:api[_-]?key|secret|sk_live)[\s:=]*[A-Za-z0-9\-_]{20,}', re.I)),
+    ('EMAIL', re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}')),
+    ('SSN', re.compile(r'\b\d{3}-\d{2}-\d{4}\b')),
+    ('JWT', re.compile(r'\beyJ[0-9A-Za-z\-_]+\.[0-9A-Za-z\-_]+\.[0-9A-Za-z\-_]+\b'))
+]
+
+def detect(text):
+    findings = []
+    for t, pat in PATTERNS:
+        for m in pat.finditer(text):
+            findings.append({'type': t, 'match': m.group(0), 'start': m.start(), 'end': m.end()})
+    return findings
+
+def send_message(message_obj):
+    try:
+        message_json = json.dumps(message_obj)
+        message_bytes = message_json.encode('utf-8')
+        
+        # Write length as 4-byte little-endian integer
+        sys.stdout.buffer.write(struct.pack('I', len(message_bytes)))
+        # Write the message
+        sys.stdout.buffer.write(message_bytes)
+        sys.stdout.buffer.flush()
+        
+        logging.info(f"Sent: {message_json}")
+    except Exception as e:
+        logging.error(f"Error sending message: {e}", exc_info=True)
+
+def read_message():
+    try:
+        # Read the message length (4 bytes)
+        raw_length = sys.stdin.buffer.read(4)
+        
+        if len(raw_length) == 0:
+            logging.info("No input received (EOF)")
+            return None
+        
+        message_length = struct.unpack('I', raw_length)[0]
+        logging.info(f"Expecting message of length: {message_length}")
+        
+        # Read the message
+        message_bytes = sys.stdin.buffer.read(message_length)
+        message_json = message_bytes.decode('utf-8')
+        logging.info(f"Received: {message_json}")
+        
+        return json.loads(message_json)
+    except Exception as e:
+        logging.error(f"Error reading message: {e}", exc_info=True)
+        return None
+
+def handle_message(msg):
+    try:
+        text = msg.get('text', '')
+        tab_id = msg.get('tabId')
+        
+        logging.info(f"Processing text for tab {tab_id}: {text[:50]}...")
+        
+        findings = detect(text)
+        
+        if not findings:
+            return {'tabId': tab_id, 'action': 'allow'}
+        
+        # Determine action based on findings
+        types = {f['type'] for f in findings}
+        
+        if 'API_KEY' in types or 'JWT' in types:
+            # Create replacement
+            replacement = text
+            for f in sorted(findings, key=lambda x: x['start'], reverse=True):
+                replacement = replacement[:f['start']] + f'[REDACTED:{f["type"]}]' + replacement[f['end']:]
+            
+            return {
+                'tabId': tab_id,
+                'action': 'replace',
+                'replacement': replacement,
+                'findings': findings
+            }
+        else:
+            return {
+                'tabId': tab_id,
+                'action': 'warn',
+                'findings': findings
+            }
+    except Exception as e:
+        logging.error(f"Error handling message: {e}", exc_info=True)
+        return {'tabId': msg.get('tabId'), 'action': 'allow'}
+
+def main():
+    try:
+        logging.info("Entering main loop...")
+        
+        while True:
+            message = read_message()
+            
+            if message is None:
+                logging.info("No more messages, exiting")
+                break
+            
+            response = handle_message(message)
+            send_message(response)
+            
+    except KeyboardInterrupt:
+        logging.info("Interrupted by user")
+    except Exception as e:
+        logging.error(f"Fatal error in main loop: {e}", exc_info=True)
+    finally:
+        logging.info("Native host shutting down")
+
+if __name__ == '__main__':
+    main()

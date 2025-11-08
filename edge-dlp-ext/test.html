@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DLP Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            font-size: 14px;
+            padding: 10px;
+        }
+        .editable {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 100px;
+            margin-top: 20px;
+            background: #f9f9f9;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>EdgeDLP Extension Test Page</h1>
+    
+    <h2>Test 1: Textarea</h2>
+    <p>Type or paste sensitive data, then press <strong>Enter</strong></p>
+    <textarea id="test" rows="5" placeholder="Type: my api_key is sk_live_abc123def456789012345"></textarea>
+    
+    <h2>Test 2: ContentEditable Div</h2>
+    <p>Type or paste sensitive data here, then press <strong>Enter</strong></p>
+    <div class="editable" contenteditable="true">Type here...</div>
+    
+    <h2>Quick Test Buttons</h2>
+    <button onclick="document.getElementById('test').value='my api_key is sk_live_abc123def456789012345'">
+        Fill textarea with API key
+    </button>
+    <button onclick="document.querySelector('.editable').innerText='my secret token is eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test.signature'">
+        Fill div with JWT
+    </button>
+</body>
+</html>
