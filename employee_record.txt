@@ -1,0 +1,145 @@
+# Create a test document
+@"
+CONFIDENTIAL - Employee Record
+
+================================
+PERSONAL INFORMATION
+================================
+Full Name: Michael Chen
+Date of Birth: March 15, 1990
+SSN: 987-65-4321
+Driver's License: WA-CHEN-901-3456
+Passport Number: 542187693
+Citizenship: United States
+
+Contact Information:
+Email: mchen@company.com
+Personal Email: michael.chen1990@gmail.com
+Phone: (206) 555-8901
+Mobile: +1-206-555-8903
+Address: 1234 Elm Street, Apt 5B, Seattle, WA 98101
+
+================================
+EMPLOYMENT DETAILS
+================================
+Employee ID: EMP-2023-00147
+Department: Engineering
+Position: Senior Software Engineer
+Team: Cloud Infrastructure
+Start Date: 01/15/2023
+Employment Type: Full-Time
+Work Location: Seattle Office - Building 3, Floor 7
+Badge Number: A-7651
+
+Compensation:
+Base Salary: $145,000 annually
+Bonus Target: 15% of base
+Stock Options: 5,000 shares
+401(k): Contributing 6% (Company matches 4%)
+
+Manager: Jennifer Smith (jsmith@company.com)
+Manager Phone: (206) 555-7700
+
+================================
+EMERGENCY CONTACTS
+================================
+Primary Contact:
+Name: Lisa Chen
+Relationship: Spouse
+Phone: (206) 555-8902
+Email: lisa.chen@email.com
+Address: 1234 Elm Street, Apt 5B, Seattle, WA 98101
+
+Secondary Contact:
+Name: Robert Chen
+Relationship: Father
+Phone: (415) 555-2341
+Email: rchen@oldmail.com
+Address: 789 Oak Avenue, San Francisco, CA 94102
+
+================================
+FINANCIAL INFORMATION
+================================
+Bank Account (Direct Deposit):
+Bank: First National Bank
+Account Number: 1234567890123456
+Routing Number: 021000021
+Account Type: Checking
+
+Credit Card on File (for business expenses):
+Card Number: 4532-1234-5678-9010
+Expiration: 12/2026
+CVV: 123
+Cardholder: Michael Chen
+
+================================
+MEDICAL INFORMATION
+================================
+Health Insurance Provider: BlueCross BlueShield
+Policy Number: BCB-987654321-01
+Group Number: GRP-COMP-2023
+Primary Care Physician: Dr. Sarah Johnson
+PCP Phone: (206) 555-4200
+Medical Conditions: None disclosed
+Allergies: Penicillin
+
+================================
+SECURITY CLEARANCE
+================================
+Clearance Level: Secret
+Clearance Date: 02/01/2023
+Investigation Type: NACLC
+Next Review: 02/01/2028
+Cleared By: Department of Defense
+Case Number: DOD-2023-8765432
+
+================================
+IT & ACCESS INFORMATION
+================================
+Network Username: mchen
+Employee Portal: mchen@company.internal
+VPN Token Serial: VPN-8901-2345-6789
+Building Access Code: *9876#
+Laptop Serial Number: LT-2023-4567
+IP Address: 192.168.1.105
+MAC Address: 00:1B:44:11:3A:B7
+
+================================
+EDUCATION & CERTIFICATIONS
+================================
+University: Massachusetts Institute of Technology
+Degree: MS Computer Science
+Graduation: 2015
+Student ID: MIT-2013-54321
+
+Certifications:
+- AWS Solutions Architect (Cert ID: AWS-SA-2022-98765)
+- Certified Information Systems Security Professional (CISSP #654321)
+- PMP Certification (PMI ID: 1234567)
+
+================================
+NOTES
+================================
+- Security training completed: 01/20/2023
+- Background check completed: 01/10/2023
+- Drug screening: Passed (01/12/2023)
+- I-9 Form verified: 01/15/2023
+- W-4 Form on file
+- Non-disclosure agreement signed: 01/15/2023
+- Intellectual property agreement signed: 01/15/2023
+
+This document contains sensitive personal information and must be handled in accordance
+with company privacy policies and applicable data protection regulations (GDPR, CCPA).
+
+Last Updated: November 8, 2025
+Authorized Personnel Only
+"@ | Out-File -FilePath "employee_record.txt" -Encoding utf8
+
+# Obfuscate it
+python cli.py text --file employee_record.txt --output employee_record_safe.txt --deobfuscate
+
+# View the results
+cat employee_record_safe.txt
+
+# Check what's in the database
+python cli.py stats --show-entries --limit 20

@@ -1,0 +1,29 @@
+[
+  {
+    "placeholder_id": "PERSON_1",
+    "original_value": "John Smith",
+    "entity_type": "PERSON",
+    "salt": "b5a752aef0397698",
+    "timestamp": "2025-11-08T02:23:21.028345",
+    "source": "test_cli",
+    "context": null
+  },
+  {
+    "placeholder_id": "EMAIL_1",
+    "original_value": "john@email.com",
+    "entity_type": "EMAIL",
+    "salt": "d3008a7a0d427583",
+    "timestamp": "2025-11-08T02:23:21.030676",
+    "source": "test_cli",
+    "context": null
+  },
+  {
+    "placeholder_id": "PHONE_1",
+    "original_value": "555-123-4567",
+    "entity_type": "PHONE",
+    "salt": "1310e48f8f1ee772",
+    "timestamp": "2025-11-08T02:23:21.031795",
+    "source": "test_cli",
+    "context": null
+  }
+]

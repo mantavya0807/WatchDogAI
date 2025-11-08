@@ -1,0 +1,143 @@
+# Create a test document
+@"
+CONFIDENTIAL - Employee Record
+
+================================
+PERSONAL INFORMATION
+================================
+Full Name: {PATIENT_1} Chen
+Date of Birth: {DATE_20}
+SSN: {SSN_4}
+Driver's License: {LICENSE_PLATE_1}{PHONE_9}-CHEN-901-3456
+{PASSPORT_1}
+Citizenship: United States
+
+Contact Information:
+Email: {EMAIL_4}
+Personal Email: {EMAIL_16}
+Phone:{PHONE_10}
+Mobile:{PHONE_11}
+Address: {LOC_1}34 Elm Street, {LOCATION_13}, {LOCATION_2}, WA {ZIP_CODE_1}
+
+================================
+EMPLOYMENT DETAILS
+================================
+Employee ID: {ID_NUMBER_1}-{ZIP_CODE_2}
+Department: Engineering
+Position: Senior Software Engineer
+Team: Cloud Infrastructure
+Start Date: {DATE_3}
+Employment Type: Full-Time
+Work Location: Seattle Office - Building 3, Floor 7
+Badge Number: {BADGE_NUMBER_1}
+
+Compensation:
+Base Salary: $145,000 annually
+Bonus Target: 15% of base
+Stock Options: 5,000 shares
+401(k): Contributing 6% (Company matches 4%)
+
+Manager: {STAFF_1} Smith ({EMAIL_5}{EMAIL_14}smith@company.com)
+Manager Phone:{PHONE_12}
+================================
+EMERGENCY CONTACTS
+================================
+Primary Contact:
+Name: {PATIENT_2} {PATIENT_3}
+Relationship: Spouse
+Phone:{PHONE_13}
+Email: {EMAIL_17}
+Address: {LOC_1}34 Elm Street, {LOCATION_13}, {LOCATION_2}, WA {ZIP_CODE_1}
+
+Secondary Contact:
+Name: {PATIENT_4} Chen
+Relationship: Father
+Phone:{PHONE_14}
+Email: {EMAIL_18}
+Address: 7{LOCATION_16}, {LOCATION_15}{LOC_2} Francisco, {ZIP_CODE_4}
+
+================================
+FINANCIAL INFORMATION
+================================
+Bank Account (Direct Deposit):
+Bank: First National Bank
+Account Number: {DATE_25}
+Routing Number: {ROUTING_NUMBER_1}
+Account Type: Checking
+
+Credit Card on File (for business expenses):{PHONE_15}Card Number: {DATE_26}{ID_1}32-1234-5678-9010
+Expiration: 12/2026
+CVV: 123
+Cardholder: {PATIENT_1} {PATIENT_3}
+
+================================
+MEDICAL INFORMATION
+================================
+Health Insurance Provider: BlueCross BlueShield
+Policy Number: {POLICY_NUMBER_1}
+Group Number: GRP-COMP-2023
+Primary Care Physician: Dr. Sarah Johnson
+PCP Phone: ({PHONE_8}
+Medical Conditions: None disclosed
+Allergies: Penicillin
+
+================================
+SECURITY CLEARANCE
+================================
+Clearance Level: Secret
+Clearance Date: {DATE_37}
+Investigation Type: NACLC
+Next Review: {DATE_28}
+Cleared By: Department of Defense
+Case Number: {CASE_NUMBER_1}
+
+================================
+IT & ACCESS INFORMATION
+================================
+Network Username: mchen
+Employee Portal: {EMAIL_19}
+VPN Token Serial: {VPN_TOKEN_1}
+Building Access Code: *9876#
+Laptop Serial Number: LT-2023-4567
+IP Address: {IP_ADDRESS_1}
+MAC Address: {MAC_ADDRESS_1}
+
+================================
+EDUCATION & CERTIFICATIONS
+================================
+University: Massachusetts Institute of Technology
+Degree: MS Computer Science
+Graduation: 2015
+Student ID: {CERT_ID_2}-{ZIP_CODE_5}
+
+Certifications:
+- AWS Solutions Architect (Cert ID: {CERT_ID_1}-{ZIP_CODE_3})
+- Certified Information Systems Security Professional (CISSP #654321)
+- PMP Certification (PMI ID: 1234567)
+
+================================
+NOTES
+================================
+- Security training completed: {DATE_32}
+- Background check completed: {DATE_33}
+- Drug screening: Passed ({DATE_34})
+- I-9 Form verified: {DATE_3}
+- W-4 Form on file
+- Non-disclosure agreement signed: {DATE_3}
+- Intellectual property agreement signed: {DATE_3}
+
+This document contains sensitive personal information and must be handled in accordance
+with company privacy policies and applicable data protection regulations (GDPR, CCPA).
+
+Last Updated: November 8, 2025
+Authorized Personnel Only
+"@ | Out-File -FilePath "employee_record.txt" -Encoding utf8
+
+# Obfuscate it
+python cli.py text --file employee_record.txt --output employee_record_safe.txt --deobfuscate
+
+# View the results
+cat employee_record_safe.txt
+
+# Check what's in the database
+python cli.py stats --show-entries --limit 20
