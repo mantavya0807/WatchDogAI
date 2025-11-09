@@ -36,6 +36,15 @@ from image_obfuscator import ImagePIIObfuscator
 from notification_system import show_pii_notification
 from preference_gui import PreferencesManager
 
+# Amplitude tracking integration
+try:
+    sys.path.insert(0, str(Path(__file__).parent / 'amplitude_integration'))
+    from integration_helper import get_amplitude_tracker, track_pii_detection_from_result, track_user_undo
+    AMPLITUDE_TRACKING_AVAILABLE = True
+except Exception as e:
+    AMPLITUDE_TRACKING_AVAILABLE = False
+    print(f"⚠ Amplitude tracking not available: {e}")
+
 
 class FocusBasedClipboardMonitor:
     """
@@ -90,6 +99,10 @@ class FocusBasedClipboardMonitor:
         self.last_clipboard_seq = 0
         self.processing = False
         
+        # Track processed images to avoid reprocessing loop
+        self.processed_image_hashes = set()
+        self.last_processed_time = 0
+        
         # Temporary directory for image processing
         self.temp_dir = tempfile.mkdtemp(prefix="pii_guard_")
         
@@ -128,6 +141,16 @@ class FocusBasedClipboardMonitor:
             'images_processed': 0,
             'texts_processed': 0,
         }
+        
+        # Initialize Amplitude tracker
+        self.amplitude_tracker = None
+        if AMPLITUDE_TRACKING_AVAILABLE:
+            try:
+                self.amplitude_tracker = get_amplitude_tracker()
+                if self.amplitude_tracker:
+                    print("✓ Amplitude tracking enabled")
+            except:
+                pass
         
         print("✓ Monitor initialized")
         print("=" * 60)
@@ -412,6 +435,21 @@ class FocusBasedClipboardMonitor:
                 print(f"   Clipboard will auto-adjust based on active app")
                 print(f"[DEBUG] Clipboard cache updated: has_pii=True, content_type=text, is_obfuscated={self.clipboard_is_obfuscated}")
                 print(f"[DEBUG] Original length: {len(text)}, Obfuscated length: {len(result.obfuscated_text)}")
+                
+                # Track to Amplitude
+                if self.amplitude_tracker:
+                    try:
+                        window_info = self._get_active_window_info()
+                        app_name = window_info['process'] if window_info else "unknown"
+                        track_pii_detection_from_result(
+                            self.amplitude_tracker,
+                            result,
+                            source="clipboard",
+                            app_name=app_name,
+                            detection_time_ms=detection_time
+                        )
+                    except Exception as e:
+                        pass  # Don't break main app if tracking fails
             else:
                 print(f"[DEBUG] No PII detected in copied text")
         
@@ -422,11 +460,29 @@ class FocusBasedClipboardMonitor:
     def _process_image_clipboard(self, image):
         """Process image clipboard content with OCR"""
         try:
+            # Check if we just processed this image (prevent loop)
+            import hashlib
+            image_bytes = image.tobytes()
+            image_hash = hashlib.md5(image_bytes).hexdigest()
+            
+            current_time = time.time()
+            if image_hash in self.processed_image_hashes and (current_time - self.last_processed_time) < 2:
+                print(f"⏭️  Skipping recently processed image (preventing loop)")
+                return
+            
             print(f"\n🖼️  IMAGE COPY: Processing image ({image.size[0]}x{image.size[1]})...")
             
             # Save original image to temp file
             original_path = os.path.join(self.temp_dir, f"original_{time.time()}.png")
             image.save(original_path)
+            
+            # Remember this image hash
+            self.processed_image_hashes.add(image_hash)
+            self.last_processed_time = current_time
+            
+            # Clean old hashes (keep last 10)
+            if len(self.processed_image_hashes) > 10:
+                self.processed_image_hashes.clear()
             
             # Extract text using OCR
             print("   Running OCR to extract text...")
@@ -494,6 +550,28 @@ class FocusBasedClipboardMonitor:
             
             print(f"   ✓ Image processed: {obfuscation_result['num_redactions']} regions obfuscated ({total_time:.0f}ms)")
             print(f"   Clipboard will auto-adjust based on active app")
+            
+            # Track to Amplitude
+            if self.amplitude_tracker:
+                try:
+                    window_info = self._get_active_window_info()
+                    app_name = window_info['process'] if window_info else "unknown"
+                    # Create a mock result object for tracking
+                    class MockResult:
+                        def __init__(self):
+                            self.num_redactions = obfuscation_result['num_redactions']
+                            self.replacements = result.replacements
+                            self.detection_time_ms = total_time
+                    mock_result = MockResult()
+                    track_pii_detection_from_result(
+                        self.amplitude_tracker,
+                        mock_result,
+                        source="clipboard_image",
+                        app_name=app_name,
+                        detection_time_ms=total_time
+                    )
+                except Exception as e:
+                    pass  # Don't break main app if tracking fails
         
         except Exception as e:
             print(f"Error processing image: {e}")

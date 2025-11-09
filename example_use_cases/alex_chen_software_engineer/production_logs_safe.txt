@@ -1,0 +1,17 @@
+[2025-11-08 14:32:15] ERROR: Payment API request failed
+Endpoint: https://[INTERNAL_DOMAIN]/v2/process
+API Key: sk_live_[REDACTED]
+User ID: user_[REDACTED]
+Email: [EMAIL_REDACTED]
+Credit Card: [REDACTED]
+Error: Connection timeout to [INTERNAL_DB]:5432
+Request ID: req_2025110814321501
+Session Token: sess_[REDACTED]
+
+[2025-11-08 14:32:16] INFO: Retry attempt 1/3
+Endpoint: https://[INTERNAL_DOMAIN]/v2/process
+AWS Key: AKIAI[REDACTED]
+Database Password: [REDACTED]
+
+[2025-11-08 14:32:17] ERROR: Retry failed
+Connection string: postgresql://[CREDENTIALS_REDACTED]@[INTERNAL_DB]:5432/[DATABASE_NAME]

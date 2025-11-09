@@ -19,6 +19,15 @@ import re
 from notification_system import show_pii_notification
 from preference_gui import PreferencesManager
 
+# Amplitude tracking integration
+try:
+    sys.path.insert(0, str(Path(__file__).parent / 'amplitude_integration'))
+    from integration_helper import get_amplitude_tracker, track_pii_detection_from_result, track_user_undo
+    AMPLITUDE_TRACKING_AVAILABLE = True
+except Exception as e:
+    AMPLITUDE_TRACKING_AVAILABLE = False
+    print(f"⚠ Amplitude tracking not available: {e}")
+
 
 class DesktopAppMonitorV2:
     """
@@ -70,6 +79,16 @@ class DesktopAppMonitorV2:
             'replacements': 0,
             'pii_items': 0
         }
+        
+        # Initialize Amplitude tracker
+        self.amplitude_tracker = None
+        if AMPLITUDE_TRACKING_AVAILABLE:
+            try:
+                self.amplitude_tracker = get_amplitude_tracker()
+                if self.amplitude_tracker:
+                    print("✓ Amplitude tracking enabled")
+            except:
+                pass
         
         print("✓ Initialized")
         print("=" * 60)
@@ -260,7 +279,9 @@ class DesktopAppMonitorV2:
             print(f"   Text: {text[:80]}...")
             
             # Detect PII
+            start_time = time.time()
             result = self.obfuscator.obfuscate(text, source="desktop_app")
+            detection_time = (time.time() - start_time) * 1000
             
             # Filter out very short/single character detections (false positives)
             valid_replacements = {
@@ -289,12 +310,30 @@ class DesktopAppMonitorV2:
                     self.stats['replacements'] += 1
                     print(f"✓ Protected!\n")
                     
+                    # Track to Amplitude
+                    if self.amplitude_tracker:
+                        try:
+                            app_name = self.get_active_app() or "unknown"
+                            # Update result with valid replacements
+                            result.replacements = valid_replacements
+                            result.num_redactions = len(valid_replacements)
+                            track_pii_detection_from_result(
+                                self.amplitude_tracker,
+                                result,
+                                source="typing",
+                                app_name=app_name,
+                                detection_time_ms=detection_time
+                            )
+                        except Exception as e:
+                            pass  # Don't break main app if tracking fails
+                    
                     # Show notification with undo
                     if self.prefs_manager.get('notifications.enabled', True):
                         # Create undo callback
                         original_text = text  # Capture in closure
                         stored_element = element
                         
+                        undo_start_time = time.time()
                         def undo_replacement():
                             try:
                                 # Replace text back to original
@@ -304,6 +343,14 @@ class DesktopAppMonitorV2:
                                 self.stats['replacements'] -= 1
                                 self.stats['pii_items'] -= len(valid_replacements)
                                 print("✓ Undo: Original text restored")
+                                
+                                # Track undo to Amplitude
+                                if self.amplitude_tracker:
+                                    try:
+                                        time_to_undo = time.time() - undo_start_time
+                                        track_user_undo(self.amplitude_tracker, "typing", time_to_undo)
+                                    except:
+                                        pass
                             except Exception as e:
                                 print(f"Error in undo: {e}")
                         

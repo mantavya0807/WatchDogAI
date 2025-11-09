@@ -36,13 +36,13 @@ class ImagePIIObfuscator:
     4. Blur/redact those regions
     """
     
-    def __init__(self, text_obfuscator=None, blur_strength: int = 25):
+    def __init__(self, text_obfuscator=None, blur_strength: int = 99):
         """
         Initialize image obfuscator.
         
         Args:
             text_obfuscator: PIIObfuscator instance for text analysis
-            blur_strength: Strength of blur effect (odd number)
+            blur_strength: Strength of blur effect (odd number, max 99)
         """
         self.text_obfuscator = text_obfuscator
         self.blur_strength = blur_strength if blur_strength % 2 == 1 else blur_strength + 1
@@ -211,15 +211,10 @@ class ImagePIIObfuscator:
                 
                 print(f"  Blurring region: ({x1}, {y1}) to ({x2}, {y2})")
                 
-                # Apply obfuscation
+                # Apply obfuscation - USE BLACK BARS, BLUR ISN'T STRONG ENOUGH
                 if method == 'blur':
-                    # Extract region
-                    roi = img[y1:y2, x1:x2]
-                    if roi.size > 0:  # Make sure region is valid
-                        # Apply Gaussian blur
-                        blurred = cv2.GaussianBlur(roi, (self.blur_strength, self.blur_strength), 0)
-                        # Replace region
-                        img[y1:y2, x1:x2] = blurred
+                    # Blur still readable, use black box instead for reliability
+                    cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 0), -1)
                 elif method == 'black':
                     # Black rectangle
                     cv2.rectangle(img, (x1, y1), (x2, y2), (0, 0, 0), -1)
