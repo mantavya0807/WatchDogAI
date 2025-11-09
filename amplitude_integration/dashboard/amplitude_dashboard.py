@@ -99,7 +99,16 @@ def get_mock_stats():
             'teams.exe': random.randint(8, 15),
             'chrome.exe': random.randint(6, 12)
         },
-        'risk_score': 73
+        'risk_score': 73,
+        'risk_trend': {
+            'days': [f'Day {i+1}' for i in range(30)],
+            'scores': [random.randint(65, 85) for _ in range(30)]
+        },
+        'users_data': {
+            'user1': random.randint(20, 30),
+            'user2': random.randint(15, 25),
+            'user3': random.randint(10, 20)
+        }
     }
 
 
@@ -129,6 +138,7 @@ def fetch_amplitude_stats():
                     _data_cache = stats
                     _cache_timestamp = datetime.now()
                     print(f"✓ Aggregated stats: {stats['total']} detections, {stats['protected']}% protected")
+                    print(f"📊 Stats breakdown: entities={len(stats.get('entities', {}))}, sources={len(stats.get('sources', {}))}, apps={len(stats.get('apps_data', {}))}")
                     return stats
                 else:
                     print("⚠ No events found in Amplitude (using mock data)")
