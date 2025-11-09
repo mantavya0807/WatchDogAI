@@ -52,6 +52,7 @@ class DesktopAppMonitorV2:
         # Track typing activity
         self.last_keystroke_time = time.time()
         self.is_typing = False
+        self.check_scheduled = False  # NEW: Track if check is already scheduled
         
         # Obfuscator (initialized in monitor thread)
         self.obfuscator = None
@@ -212,7 +213,7 @@ class DesktopAppMonitorV2:
                 use_transformer = self.prefs_manager.get('detectors.transformer', True)
                 spacy_model = self.prefs_manager.get('advanced.spacy_model', 'en_core_web_sm')
                 transformer_model = self.prefs_manager.get('advanced.transformer_model', 'lakshyakh93/deberta_finetuned_pii')
-                confidence_threshold = self.prefs_manager.get('advanced.confidence_threshold', 0.5)
+                confidence_threshold = self.prefs_manager.get('advanced.confidence_threshold', 0.85)  # Higher threshold to avoid false positives
                 
                 print(f"  Regex: {'✓' if use_regex else '✗'}")
                 print(f"  spaCy: {'✓' if use_spacy else '✗'}")
@@ -261,9 +262,15 @@ class DesktopAppMonitorV2:
             # Detect PII
             result = self.obfuscator.obfuscate(text, source="desktop_app")
             
-            if result.num_redactions > 0:
-                print(f"✓ Found {result.num_redactions} PII items:")
-                for placeholder, original in list(result.replacements.items())[:5]:
+            # Filter out very short/single character detections (false positives)
+            valid_replacements = {
+                k: v for k, v in result.replacements.items()
+                if len(str(v).strip()) >= 3  # Must be at least 3 characters
+            }
+            
+            if len(valid_replacements) > 0:
+                print(f"✓ Found {len(valid_replacements)} PII items:")
+                for placeholder, original in list(valid_replacements.items())[:5]:
                     entity_type = placeholder.split('_')[0].replace('{', '')
                     print(f"   • {entity_type}: {original[:40]}")
                 
@@ -271,7 +278,7 @@ class DesktopAppMonitorV2:
                 self.last_original_text = text
                 self.last_element = element
                 
-                self.stats['pii_items'] += result.num_redactions
+                self.stats['pii_items'] += len(valid_replacements)
                 
                 # Replace text in element
                 print(f"→ Replacing text...")
@@ -295,7 +302,7 @@ class DesktopAppMonitorV2:
                                 self.last_processed_text = original_text
                                 # Update stats
                                 self.stats['replacements'] -= 1
-                                self.stats['pii_items'] -= result.num_redactions
+                                self.stats['pii_items'] -= len(valid_replacements)
                                 print("✓ Undo: Original text restored")
                             except Exception as e:
                                 print(f"Error in undo: {e}")
@@ -303,11 +310,11 @@ class DesktopAppMonitorV2:
                         # Get preview text
                         items_preview = ""
                         if self.prefs_manager.get('notifications.show_preview', True):
-                            preview_items = list(result.replacements.values())[:3]
+                            preview_items = list(valid_replacements.values())[:3]
                             items_preview = ", ".join(str(item)[:30] for item in preview_items)
                         
                         show_pii_notification(
-                            num_items=result.num_redactions,
+                            num_items=len(valid_replacements),
                             items_preview=items_preview,
                             source="typing",
                             undo_callback=undo_replacement
@@ -335,14 +342,20 @@ class DesktopAppMonitorV2:
                     
                     idle_time = time.time() - self.last_keystroke_time
                     
+                    # Only check once after 1.5s pause
                     if self.is_typing and idle_time >= self.pause_threshold:
-                        self.is_typing = False
-                        
-                        app = self.get_active_app()
-                        
-                        if app and self.is_monitored_app(app):
-                            print(f"[Typing paused in {self.MONITORED_APPS[app]}]", end=" ")
-                            self.check_and_replace()
+                        # Only run if not already scheduled/running
+                        if not self.check_scheduled and not self.processing:
+                            self.is_typing = False
+                            self.check_scheduled = True
+                            
+                            app = self.get_active_app()
+                            
+                            if app and self.is_monitored_app(app):
+                                print(f"[Typing paused in {self.MONITORED_APPS[app]}]", end=" ")
+                                self.check_and_replace()
+                            
+                            self.check_scheduled = False
                 
                 except Exception as e:
                     pass
