@@ -1,5 +1,11 @@
 {
   "high_risk_domains": [
+    "chat.openai.com",
+    "chatgpt.com",
+    "claude.ai",
+    "gemini.google.com",
+    "copilot.microsoft.com",
+    "bard.google.com",
     "pastebin.com",
     "paste.ee",
     "dpaste.com",
@@ -17,7 +23,7 @@
     "medium.com",
     "notion.so"
   ],
-  "always_monitor": true,
+  "always_monitor": false,
   "policies": {
     "high_risk": "auto_redact",
     "default": "warn"

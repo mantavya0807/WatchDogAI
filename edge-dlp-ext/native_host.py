@@ -5,10 +5,26 @@ import json
 import re
 import logging
 import traceback
+import os
+import time
+from pathlib import Path
 
-# Setup logging
+# Setup logging - cross-platform
+script_dir = Path(__file__).parent
+if sys.platform == 'win32':
+    log_path = script_dir / 'native_host.log'
+    # IPC file for communicating with system clipboard monitor
+    ipc_file = Path.home() / 'AppData' / 'Local' / 'EdgeDLP' / 'extension_status.json'
+else:
+    log_path = Path('/tmp/native_host.log')
+    ipc_file = Path('/tmp/edgedlp_extension_status.json')
+
+# Create directory if needed
+if sys.platform == 'win32':
+    ipc_file.parent.mkdir(parents=True, exist_ok=True)
+
 logging.basicConfig(
-    filename='/tmp/native_host.log',
+    filename=str(log_path),
     level=logging.DEBUG,
     format='%(asctime)s - %(message)s'
 )
@@ -37,8 +53,8 @@ def send_message(message_obj):
         message_json = json.dumps(message_obj)
         message_bytes = message_json.encode('utf-8')
         
-        # Write length as 4-byte little-endian integer
-        sys.stdout.buffer.write(struct.pack('I', len(message_bytes)))
+        # Write length as 4-byte little-endian integer (explicit little-endian)
+        sys.stdout.buffer.write(struct.pack('<I', len(message_bytes)))
         # Write the message
         sys.stdout.buffer.write(message_bytes)
         sys.stdout.buffer.flush()
@@ -64,7 +80,8 @@ def read_message():
             logging.error(f"Incomplete length header: {len(raw_length)} bytes")
             return None
         
-        message_length = struct.unpack('I', raw_length)[0]
+        # Native messaging uses little-endian format
+        message_length = struct.unpack('<I', raw_length)[0]
         logging.info(f"Expecting message of length: {message_length}")
         
         # Sanity check
@@ -88,9 +105,46 @@ def read_message():
         logging.error(traceback.format_exc())
         return None
 
+def notify_clipboard_monitor(is_risky, hostname):
+    """Write extension status to IPC file for system clipboard monitor"""
+    try:
+        # Ensure directory exists
+        ipc_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        status = {
+            'is_risky_domain': is_risky,
+            'hostname': hostname,
+            'timestamp': int(time.time())
+        }
+        
+        with open(ipc_file, 'w') as f:
+            json.dump(status, f)
+        
+        logging.info(f"Notified clipboard monitor: risky={is_risky}, hostname={hostname}")
+        logging.info(f"IPC file written to: {ipc_file}")
+        return True
+    except Exception as e:
+        logging.error(f"Error notifying clipboard monitor: {e}")
+        logging.error(traceback.format_exc())
+        return False
+
 def handle_message(msg):
     """Process a message and return a response"""
     try:
+        msg_type = msg.get('type', '')
+        
+        # Handle clipboard monitor notification
+        if msg_type == 'notify-clipboard-monitor':
+            is_risky = msg.get('isRiskyDomain', False)
+            hostname = msg.get('hostname', '')
+            logging.info(f"Handling notify-clipboard-monitor: risky={is_risky}, hostname={hostname}")
+            success = notify_clipboard_monitor(is_risky, hostname)
+            if success:
+                return {'status': 'ok', 'notified': True}
+            else:
+                return {'status': 'error', 'notified': False, 'error': 'Failed to write IPC file'}
+        
+        # Handle text obfuscation (existing functionality)
         text = msg.get('text', '')
         tab_id = msg.get('tabId')
         
@@ -150,6 +204,8 @@ def main():
         
         # Handle the message
         response = handle_message(message)
+        
+        logging.info(f"Response to send: {response}")
         
         # Send response
         if send_message(response):

@@ -1,0 +1,1256 @@
+2025-11-08 19:14:10,159 - ==================================================
+2025-11-08 19:14:10,159 - Native host starting...
+2025-11-08 19:14:10,170 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:14:10,171 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 40, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:14:10,171 - Entering main - reading one message...
+2025-11-08 19:14:10,171 - Expecting message of length: 1702109819
+2025-11-08 19:14:10,171 - Message too large: 1702109819 bytes
+2025-11-08 19:14:10,172 - Failed to read message
+2025-11-08 19:14:10,172 - Sent: {"action": "allow", "error": "Failed to read message"}
+2025-11-08 19:20:08,088 - ==================================================
+2025-11-08 19:20:08,089 - Native host starting...
+2025-11-08 19:20:08,089 - Project root: d:\Projects\HackPrinceton
+2025-11-08 19:20:08,089 - Python path: ['d:\\Projects\\HackPrinceton', 'd:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:20:08,099 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:20:08,099 - Traceback (most recent call last):
+  File "d:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "d:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:20:08,099 - Entering main - reading one message...
+2025-11-08 19:20:47,603 - Interrupted by user
+2025-11-08 19:20:47,795 - ==================================================
+2025-11-08 19:20:47,795 - Native host starting...
+2025-11-08 19:20:47,795 - Project root: d:\Projects\HackPrinceton
+2025-11-08 19:20:47,795 - Python path: ['d:\\Projects\\HackPrinceton', 'd:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:20:47,806 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:20:47,807 - Traceback (most recent call last):
+  File "d:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "d:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:20:47,807 - Entering main - reading one message...
+2025-11-08 19:24:00,769 - ==================================================
+2025-11-08 19:24:00,769 - Native host starting...
+2025-11-08 19:24:00,770 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:24:00,770 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:24:00,781 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:24:00,781 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:24:00,781 - Entering main - reading one message...
+2025-11-08 19:24:00,781 - Expecting message of length: 57
+2025-11-08 19:24:00,781 - Received: {"text": "test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:24:00,782 - Processing message: {'text': 'test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:24:00,782 - Processing text for tab 123: test@example.com...
+2025-11-08 19:24:00,782 - Found 1 potential issues via regex
+2025-11-08 19:24:00,782 - Sent: {"tabId": 123, "action": "replace", "replacement": "[REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 0, "end": 16}]}
+2025-11-08 19:24:00,782 - Response sent successfully
+2025-11-08 19:24:46,606 - ==================================================
+2025-11-08 19:24:46,606 - Native host starting...
+2025-11-08 19:24:46,606 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:24:46,606 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:24:46,616 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:24:46,617 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:24:46,617 - Entering main - reading one message...
+2025-11-08 19:24:46,617 - Expecting message of length: 57
+2025-11-08 19:24:46,617 - Received: {"text": "test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:24:46,617 - Processing message: {'text': 'test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:24:46,617 - Processing text for tab 123: test@example.com...
+2025-11-08 19:24:46,617 - Found 1 potential issues via regex
+2025-11-08 19:24:46,617 - Sent: {"tabId": 123, "action": "replace", "replacement": "[REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 0, "end": 16}]}
+2025-11-08 19:24:46,617 - Response sent successfully
+2025-11-08 19:35:02,067 - ==================================================
+2025-11-08 19:35:02,068 - Native host starting...
+2025-11-08 19:35:02,068 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:02,068 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:02,090 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:02,091 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:02,091 - Entering main - reading one message...
+2025-11-08 19:35:02,091 - Expecting message of length: 64
+2025-11-08 19:35:02,091 - Received: {"tabId":294538398,"text":"testexample@gmail..com","context":{}}...
+2025-11-08 19:35:02,091 - Processing message: {'tabId': 294538398, 'text': 'testexample@gmail..com', 'context': {}}
+2025-11-08 19:35:02,091 - Processing text for tab 294538398: testexample@gmail..com...
+2025-11-08 19:35:02,091 - Found 1 potential issues via regex
+2025-11-08 19:35:02,091 - Sent: {"tabId": 294538398, "action": "replace", "replacement": "[REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "testexample@gmail..com", "start": 0, "end": 22}]}
+2025-11-08 19:35:02,091 - Response sent successfully
+2025-11-08 19:35:04,008 - ==================================================
+2025-11-08 19:35:04,008 - Native host starting...
+2025-11-08 19:35:04,008 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:04,008 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:04,022 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:04,023 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:04,023 - Entering main - reading one message...
+2025-11-08 19:35:04,023 - Expecting message of length: 63
+2025-11-08 19:35:04,023 - Received: {"tabId":294538398,"text":"testexample@gmail.com","context":{}}...
+2025-11-08 19:35:04,023 - Processing message: {'tabId': 294538398, 'text': 'testexample@gmail.com', 'context': {}}
+2025-11-08 19:35:04,023 - Processing text for tab 294538398: testexample@gmail.com...
+2025-11-08 19:35:04,023 - Found 1 potential issues via regex
+2025-11-08 19:35:04,023 - Sent: {"tabId": 294538398, "action": "replace", "replacement": "[REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "testexample@gmail.com", "start": 0, "end": 21}]}
+2025-11-08 19:35:04,023 - Response sent successfully
+2025-11-08 19:35:32,453 - ==================================================
+2025-11-08 19:35:32,453 - Native host starting...
+2025-11-08 19:35:32,454 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:32,454 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:32,463 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:32,464 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:32,464 - Entering main - reading one message...
+2025-11-08 19:35:32,464 - Expecting message of length: 96
+2025-11-08 19:35:32,464 - Received: {"tabId":294538398,"text":"hello my name is mantavya and my contact is 5645444219","context":{}}...
+2025-11-08 19:35:32,464 - Processing message: {'tabId': 294538398, 'text': 'hello my name is mantavya and my contact is 5645444219', 'context': {}}
+2025-11-08 19:35:32,464 - Processing text for tab 294538398: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:35:32,464 - Sent: {"tabId": 294538398, "action": "allow"}
+2025-11-08 19:35:32,464 - Response sent successfully
+2025-11-08 19:35:44,104 - ==================================================
+2025-11-08 19:35:44,104 - Native host starting...
+2025-11-08 19:35:44,104 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:44,104 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:44,115 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:44,115 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:44,115 - Entering main - reading one message...
+2025-11-08 19:35:44,115 - Expecting message of length: 117
+2025-11-08 19:35:44,115 - Received: {"tabId":294538398,"text":"hello my name is mantavya and my contact is 5645444219 and my email is text","context":{}}...
+2025-11-08 19:35:44,115 - Processing message: {'tabId': 294538398, 'text': 'hello my name is mantavya and my contact is 5645444219 and my email is text', 'context': {}}
+2025-11-08 19:35:44,115 - Processing text for tab 294538398: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:35:44,116 - Sent: {"tabId": 294538398, "action": "allow"}
+2025-11-08 19:35:44,116 - Response sent successfully
+2025-11-08 19:35:44,781 - ==================================================
+2025-11-08 19:35:44,781 - Native host starting...
+2025-11-08 19:35:44,781 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:44,781 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:44,796 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:44,797 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:44,797 - Entering main - reading one message...
+2025-11-08 19:35:44,797 - Expecting message of length: 118
+2025-11-08 19:35:44,797 - Received: {"tabId":294538398,"text":"hello my name is mantavya and my contact is 5645444219 and my email is text@","context":{}}...
+2025-11-08 19:35:44,797 - Processing message: {'tabId': 294538398, 'text': 'hello my name is mantavya and my contact is 5645444219 and my email is text@', 'context': {}}
+2025-11-08 19:35:44,797 - Processing text for tab 294538398: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:35:44,797 - Sent: {"tabId": 294538398, "action": "allow"}
+2025-11-08 19:35:44,797 - Response sent successfully
+2025-11-08 19:35:46,828 - ==================================================
+2025-11-08 19:35:46,828 - Native host starting...
+2025-11-08 19:35:46,829 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:46,829 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:46,839 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:46,840 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:46,840 - Entering main - reading one message...
+2025-11-08 19:35:46,840 - Expecting message of length: 125
+2025-11-08 19:35:46,840 - Received: {"tabId":294538398,"text":"hello my name is mantavya and my contact is 5645444219 and my email is text@exampl.","context":{}}...
+2025-11-08 19:35:46,840 - Processing message: {'tabId': 294538398, 'text': 'hello my name is mantavya and my contact is 5645444219 and my email is text@exampl.', 'context': {}}
+2025-11-08 19:35:46,840 - Processing text for tab 294538398: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:35:46,840 - Sent: {"tabId": 294538398, "action": "allow"}
+2025-11-08 19:35:46,840 - Response sent successfully
+2025-11-08 19:35:47,627 - ==================================================
+2025-11-08 19:35:47,627 - Native host starting...
+2025-11-08 19:35:47,627 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:47,628 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:47,638 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:47,639 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:47,639 - Entering main - reading one message...
+2025-11-08 19:35:47,639 - Expecting message of length: 123
+2025-11-08 19:35:47,639 - Received: {"tabId":294538398,"text":"hello my name is mantavya and my contact is 5645444219 and my email is text@examp","context":{}}...
+2025-11-08 19:35:47,639 - Processing message: {'tabId': 294538398, 'text': 'hello my name is mantavya and my contact is 5645444219 and my email is text@examp', 'context': {}}
+2025-11-08 19:35:47,639 - Processing text for tab 294538398: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:35:47,639 - Sent: {"tabId": 294538398, "action": "allow"}
+2025-11-08 19:35:47,639 - Response sent successfully
+2025-11-08 19:35:48,388 - ==================================================
+2025-11-08 19:35:48,388 - Native host starting...
+2025-11-08 19:35:48,388 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:48,388 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:48,399 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:48,399 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:48,399 - Entering main - reading one message...
+2025-11-08 19:35:48,399 - Expecting message of length: 124
+2025-11-08 19:35:48,399 - Received: {"tabId":294538398,"text":"hello my name is mantavya and my contact is 5645444219 and my email is text@exampe","context":{}}...
+2025-11-08 19:35:48,399 - Processing message: {'tabId': 294538398, 'text': 'hello my name is mantavya and my contact is 5645444219 and my email is text@exampe', 'context': {}}
+2025-11-08 19:35:48,400 - Processing text for tab 294538398: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:35:48,400 - Sent: {"tabId": 294538398, "action": "allow"}
+2025-11-08 19:35:48,400 - Response sent successfully
+2025-11-08 19:35:50,018 - ==================================================
+2025-11-08 19:35:50,018 - Native host starting...
+2025-11-08 19:35:50,019 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:35:50,019 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:35:50,029 - Failed to import main obfuscator: No module named 'detectors'
+2025-11-08 19:35:50,029 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 48, in <module>
+    from src.obfuscator import PIIObfuscator
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 14, in <module>
+    from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+ModuleNotFoundError: No module named 'detectors'
+
+2025-11-08 19:35:50,029 - Entering main - reading one message...
+2025-11-08 19:35:50,029 - Expecting message of length: 129
+2025-11-08 19:35:50,029 - Received: {"tabId":294538398,"text":"hello my name is mantavya and my contact is 5645444219 and my email is text@example.com","context":{}}...
+2025-11-08 19:35:50,029 - Processing message: {'tabId': 294538398, 'text': 'hello my name is mantavya and my contact is 5645444219 and my email is text@example.com', 'context': {}}
+2025-11-08 19:35:50,029 - Processing text for tab 294538398: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:35:50,029 - Found 1 potential issues via regex
+2025-11-08 19:35:50,029 - Sent: {"tabId": 294538398, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "text@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:35:50,029 - Response sent successfully
+2025-11-08 19:38:02,451 - ==================================================
+2025-11-08 19:38:02,451 - Native host starting...
+2025-11-08 19:38:02,451 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:38:02,451 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:38:08,187 - Main obfuscator imported successfully
+2025-11-08 19:38:08,187 - Entering main - reading one message...
+2025-11-08 19:38:08,187 - Expecting message of length: 57
+2025-11-08 19:38:08,187 - Received: {"text": "test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:38:08,188 - Processing message: {'text': 'test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:38:08,188 - Processing text for tab 123: test@example.com...
+2025-11-08 19:38:08,188 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-11-08 19:38:08,188 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 117, in __init__
+    print("\U0001f680 MULTI-LAYER DETECTION MODE")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+2025-11-08 19:38:08,188 - Found 1 potential issues via regex
+2025-11-08 19:38:08,188 - Sent: {"tabId": 123, "action": "replace", "replacement": "[REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 0, "end": 16}]}
+2025-11-08 19:38:08,188 - Response sent successfully
+2025-11-08 19:38:26,498 - ==================================================
+2025-11-08 19:38:26,498 - Native host starting...
+2025-11-08 19:38:26,499 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:38:26,499 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:38:31,185 - Main obfuscator imported successfully
+2025-11-08 19:38:31,186 - Entering main - reading one message...
+2025-11-08 19:38:31,186 - Expecting message of length: 128
+2025-11-08 19:38:31,186 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:38:31,186 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:38:31,186 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:38:31,186 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-11-08 19:38:31,186 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 117, in __init__
+    print("\U0001f680 MULTI-LAYER DETECTION MODE")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+2025-11-08 19:38:31,186 - Found 1 potential issues via regex
+2025-11-08 19:38:31,186 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:38:31,186 - Response sent successfully
+2025-11-08 19:39:19,231 - ==================================================
+2025-11-08 19:39:19,231 - Native host starting...
+2025-11-08 19:39:19,232 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:39:19,232 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:39:25,043 - Main obfuscator imported successfully
+2025-11-08 19:39:25,044 - Entering main - reading one message...
+2025-11-08 19:39:25,044 - Expecting message of length: 128
+2025-11-08 19:39:25,044 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:39:25,044 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:39:25,044 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:39:25,044 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-11-08 19:39:25,044 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 117, in __init__
+    print("\U0001f680 MULTI-LAYER DETECTION MODE")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+2025-11-08 19:39:25,044 - Found 1 potential issues via regex
+2025-11-08 19:39:25,044 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:39:25,044 - Response sent successfully
+2025-11-08 19:39:53,251 - ==================================================
+2025-11-08 19:39:53,251 - Native host starting...
+2025-11-08 19:39:53,251 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:39:53,251 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:39:57,742 - Main obfuscator imported successfully
+2025-11-08 19:39:57,742 - Entering main - reading one message...
+2025-11-08 19:39:57,742 - Expecting message of length: 128
+2025-11-08 19:39:57,742 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:39:57,742 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:39:57,742 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:39:57,742 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-11-08 19:39:57,743 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 117, in __init__
+    print("\U0001f680 MULTI-LAYER DETECTION MODE")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+2025-11-08 19:39:57,743 - Found 1 potential issues via regex
+2025-11-08 19:39:57,743 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:39:57,743 - Response sent successfully
+2025-11-08 19:40:15,972 - ==================================================
+2025-11-08 19:40:15,972 - Native host starting...
+2025-11-08 19:40:15,972 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:40:15,972 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:40:20,663 - Main obfuscator imported successfully
+2025-11-08 19:40:20,663 - Entering main - reading one message...
+2025-11-08 19:40:20,663 - Expecting message of length: 128
+2025-11-08 19:40:20,663 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:40:20,663 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:40:20,663 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:40:20,663 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-11-08 19:40:20,664 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 117, in __init__
+    print("\U0001f680 MULTI-LAYER DETECTION MODE")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+2025-11-08 19:40:20,664 - Found 1 potential issues via regex
+2025-11-08 19:40:20,664 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:40:20,664 - Response sent successfully
+2025-11-08 19:40:45,271 - ==================================================
+2025-11-08 19:40:45,271 - Native host starting...
+2025-11-08 19:40:45,271 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:40:45,271 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:40:51,386 - Main obfuscator imported successfully
+2025-11-08 19:40:51,386 - Entering main - reading one message...
+2025-11-08 19:40:51,387 - Expecting message of length: 128
+2025-11-08 19:40:51,387 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:40:51,387 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:40:51,387 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:40:51,387 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+2025-11-08 19:40:51,387 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 117, in __init__
+    print("\U0001f680 MULTI-LAYER DETECTION MODE")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f680' in position 0: character maps to <undefined>
+
+2025-11-08 19:40:51,387 - Found 1 potential issues via regex
+2025-11-08 19:40:51,387 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:40:51,387 - Response sent successfully
+2025-11-08 19:41:15,202 - ==================================================
+2025-11-08 19:41:15,202 - Native host starting...
+2025-11-08 19:41:15,203 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:41:15,203 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:41:19,872 - Main obfuscator imported successfully
+2025-11-08 19:41:19,872 - Entering main - reading one message...
+2025-11-08 19:41:19,872 - Expecting message of length: 128
+2025-11-08 19:41:19,872 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:41:19,872 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:41:19,872 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:41:19,872 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+2025-11-08 19:41:19,873 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 166, in __init__
+    print(f"\u2713 Loading spaCy detector: {spacy_model}")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+
+2025-11-08 19:41:19,873 - Found 1 potential issues via regex
+2025-11-08 19:41:19,873 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:41:19,873 - Response sent successfully
+2025-11-08 19:42:00,148 - ==================================================
+2025-11-08 19:42:00,148 - Native host starting...
+2025-11-08 19:42:00,149 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:42:00,149 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:42:05,870 - Main obfuscator imported successfully
+2025-11-08 19:42:05,871 - Entering main - reading one message...
+2025-11-08 19:42:05,871 - Expecting message of length: 128
+2025-11-08 19:42:05,871 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:42:05,871 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:42:05,871 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:42:05,871 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+2025-11-08 19:42:05,871 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 166, in __init__
+    print(f"\u2713 Loading spaCy detector: {spacy_model}")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+
+2025-11-08 19:42:05,871 - Found 1 potential issues via regex
+2025-11-08 19:42:05,871 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:42:05,871 - Response sent successfully
+2025-11-08 19:42:47,218 - ==================================================
+2025-11-08 19:42:47,219 - Native host starting...
+2025-11-08 19:42:47,219 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:42:47,219 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:42:52,334 - Main obfuscator imported successfully
+2025-11-08 19:42:52,334 - Entering main - reading one message...
+2025-11-08 19:42:52,334 - Expecting message of length: 128
+2025-11-08 19:42:52,334 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:42:52,334 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:42:52,334 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:42:53,301 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+2025-11-08 19:42:53,302 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 167, in __init__
+    self.spacy_detector = SpacyDetector(model_name=spacy_model)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\detectors\spacy_detector.py", line 54, in __init__
+    print("\u2713 spaCy model loaded successfully")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+
+2025-11-08 19:42:53,304 - Found 1 potential issues via regex
+2025-11-08 19:42:53,304 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:42:53,304 - Response sent successfully
+2025-11-08 19:43:52,651 - ==================================================
+2025-11-08 19:43:52,651 - Native host starting...
+2025-11-08 19:43:52,651 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:43:52,651 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:43:58,571 - Main obfuscator imported successfully
+2025-11-08 19:43:58,571 - Entering main - reading one message...
+2025-11-08 19:43:58,571 - Expecting message of length: 128
+2025-11-08 19:43:58,571 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:43:58,571 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:43:58,571 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:43:59,559 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+2025-11-08 19:43:59,560 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 167, in __init__
+    self.spacy_detector = SpacyDetector(model_name=spacy_model)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\detectors\spacy_detector.py", line 54, in __init__
+    print("\u2713 spaCy model loaded successfully")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+
+2025-11-08 19:43:59,562 - Found 1 potential issues via regex
+2025-11-08 19:43:59,562 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:43:59,562 - Response sent successfully
+2025-11-08 19:44:17,200 - ==================================================
+2025-11-08 19:44:17,201 - Native host starting...
+2025-11-08 19:44:17,201 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:44:17,201 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:44:23,385 - Main obfuscator imported successfully
+2025-11-08 19:44:23,385 - Entering main - reading one message...
+2025-11-08 19:44:23,385 - Expecting message of length: 128
+2025-11-08 19:44:23,385 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:44:23,385 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:44:23,385 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:44:24,415 - Failed to initialize obfuscator: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+2025-11-08 19:44:24,416 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 67, in get_obfuscator
+    _obfuscator = PIIObfuscator(
+                  ^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\obfuscator.py", line 167, in __init__
+    self.spacy_detector = SpacyDetector(model_name=spacy_model)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\HackPrinceton\src\detectors\spacy_detector.py", line 54, in __init__
+    print("\u2713 spaCy model loaded successfully")
+  File "C:\Users\manta\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 0: character maps to <undefined>
+
+2025-11-08 19:44:24,418 - Found 1 potential issues via regex
+2025-11-08 19:44:24,419 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is 5645444219 and my email is [REDACTED:EMAIL]", "findings": [{"type": "EMAIL", "match": "test@example.com", "start": 71, "end": 87}]}
+2025-11-08 19:44:24,419 - Response sent successfully
+2025-11-08 19:44:48,424 - ==================================================
+2025-11-08 19:44:48,424 - Native host starting...
+2025-11-08 19:44:48,424 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:44:48,424 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:44:54,062 - Main obfuscator imported successfully
+2025-11-08 19:44:54,063 - Entering main - reading one message...
+2025-11-08 19:44:54,063 - Expecting message of length: 128
+2025-11-08 19:44:54,063 - Received: {"text": "hello my name is mantavya and my contact is 5645444219 and my email is test@example.com", "tabId": 123, "context": {}}...
+2025-11-08 19:44:54,063 - Processing message: {'text': 'hello my name is mantavya and my contact is 5645444219 and my email is test@example.com', 'tabId': 123, 'context': {}}
+2025-11-08 19:44:54,063 - Processing text for tab 123: hello my name is mantavya and my contact is 564544...
+2025-11-08 19:44:54,989 - Obfuscator initialized
+2025-11-08 19:44:55,004 - PII detected via obfuscator: 2 items
+2025-11-08 19:44:55,004 - Sent: {"tabId": 123, "action": "replace", "replacement": "hello my name is mantavya and my contact is {PHONE_4} and my email is {EMAIL_33}", "num_redactions": 2}
+2025-11-08 19:44:55,004 - Response sent successfully
+2025-11-08 19:46:16,209 - ==================================================
+2025-11-08 19:46:16,209 - Native host starting...
+2025-11-08 19:46:16,209 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:46:16,209 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:46:18,744 - ==================================================
+2025-11-08 19:46:18,744 - Native host starting...
+2025-11-08 19:46:18,744 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:46:18,745 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:46:20,614 - Main obfuscator imported successfully
+2025-11-08 19:46:20,614 - Entering main - reading one message...
+2025-11-08 19:46:20,614 - Expecting message of length: 118
+2025-11-08 19:46:20,615 - Received: {"tabId":294538559,"text":"hello my name is Mnatavya, my no. is 5645444219 and my mail is mantavyamahaa","context":{}}...
+2025-11-08 19:46:20,615 - Processing message: {'tabId': 294538559, 'text': 'hello my name is Mnatavya, my no. is 5645444219 and my mail is mantavyamahaa', 'context': {}}
+2025-11-08 19:46:20,615 - Processing text for tab 294538559: hello my name is Mnatavya, my no. is 5645444219 an...
+2025-11-08 19:46:21,620 - Obfuscator initialized
+2025-11-08 19:46:21,628 - PII detected via obfuscator: 2 items
+2025-11-08 19:46:21,628 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "hello my name is {LOCATION_17}, my no. is {PHONE_4} and my mail is mantavyamahaa", "num_redactions": 2}
+2025-11-08 19:46:21,628 - Response sent successfully
+2025-11-08 19:46:23,032 - Main obfuscator imported successfully
+2025-11-08 19:46:23,032 - Entering main - reading one message...
+2025-11-08 19:46:23,032 - Expecting message of length: 128
+2025-11-08 19:46:23,032 - Received: {"tabId":294538559,"text":"hello my name is Mnatavya, my no. is 5645444219 and my mail is mantavyamahaa@gmail.com","context":{}}...
+2025-11-08 19:46:23,032 - Processing message: {'tabId': 294538559, 'text': 'hello my name is Mnatavya, my no. is 5645444219 and my mail is mantavyamahaa@gmail.com', 'context': {}}
+2025-11-08 19:46:23,032 - Processing text for tab 294538559: hello my name is Mnatavya, my no. is 5645444219 an...
+2025-11-08 19:46:24,009 - Obfuscator initialized
+2025-11-08 19:46:24,024 - PII detected via obfuscator: 3 items
+2025-11-08 19:46:24,024 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "hello my name is {LOCATION_17}, my no. is {PHONE_4} and my mail is {EMAIL_34}", "num_redactions": 3}
+2025-11-08 19:46:24,024 - Response sent successfully
+2025-11-08 19:52:23,246 - ==================================================
+2025-11-08 19:52:23,246 - Native host starting...
+2025-11-08 19:52:23,247 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:52:23,247 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:52:23,870 - ==================================================
+2025-11-08 19:52:23,871 - Native host starting...
+2025-11-08 19:52:23,871 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:52:23,871 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:52:41,369 - ==================================================
+2025-11-08 19:52:41,369 - Native host starting...
+2025-11-08 19:52:41,369 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:52:41,370 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:52:47,986 - ==================================================
+2025-11-08 19:52:47,987 - Native host starting...
+2025-11-08 19:52:47,987 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:52:47,987 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:53:03,286 - Main obfuscator imported successfully
+2025-11-08 19:53:03,286 - Entering main - reading one message...
+2025-11-08 19:53:03,286 - Expecting message of length: 102
+2025-11-08 19:53:03,286 - Received: {"tabId":294538559,"text":"HI, my name us nantavya Mahajn, my phone is 5645444219 and m","context":{}}...
+2025-11-08 19:53:03,286 - Processing message: {'tabId': 294538559, 'text': 'HI, my name us nantavya Mahajn, my phone is 5645444219 and m', 'context': {}}
+2025-11-08 19:53:03,286 - Processing text for tab 294538559: HI, my name us nantavya Mahajn, my phone is 564544...
+2025-11-08 19:53:03,286 - Main obfuscator imported successfully
+2025-11-08 19:53:03,287 - Entering main - reading one message...
+2025-11-08 19:53:03,287 - Main obfuscator imported successfully
+2025-11-08 19:53:03,287 - Expecting message of length: 137
+2025-11-08 19:53:03,287 - Entering main - reading one message...
+2025-11-08 19:53:03,287 - Received: {"tabId":294538559,"text":"HI, my name us nantavya Mahajn, my phone is 5645444219 and my mail is mantavyamahajan@gmail.com","context":{}}...
+2025-11-08 19:53:03,287 - Expecting message of length: 96
+2025-11-08 19:53:03,287 - Processing message: {'tabId': 294538559, 'text': 'HI, my name us nantavya Mahajn, my phone is 5645444219 and my mail is mantavyamahajan@gmail.com', 'context': {}}
+2025-11-08 19:53:03,287 - Received: {"tabId":294538559,"text":"HI, my name us nantavya Mahajn, my phone is 5645444219","context":{}}...
+2025-11-08 19:53:03,287 - Processing text for tab 294538559: HI, my name us nantavya Mahajn, my phone is 564544...
+2025-11-08 19:53:03,287 - Processing message: {'tabId': 294538559, 'text': 'HI, my name us nantavya Mahajn, my phone is 5645444219', 'context': {}}
+2025-11-08 19:53:03,287 - Processing text for tab 294538559: HI, my name us nantavya Mahajn, my phone is 564544...
+2025-11-08 19:53:03,287 - Main obfuscator imported successfully
+2025-11-08 19:53:03,287 - Entering main - reading one message...
+2025-11-08 19:53:03,287 - Expecting message of length: 97
+2025-11-08 19:53:03,287 - Received: {"tabId":294538559,"text":"HI, my name us nantavya Mahajn, my phone is 5645444219 ","context":{}}...
+2025-11-08 19:53:03,287 - Processing message: {'tabId': 294538559, 'text': 'HI, my name us nantavya Mahajn, my phone is 5645444219 ', 'context': {}}
+2025-11-08 19:53:03,287 - Processing text for tab 294538559: HI, my name us nantavya Mahajn, my phone is 564544...
+2025-11-08 19:53:05,247 - Obfuscator initialized
+2025-11-08 19:53:05,248 - Obfuscator initialized
+2025-11-08 19:53:05,248 - Obfuscator initialized
+2025-11-08 19:53:05,262 - PII detected via obfuscator: 3 items
+2025-11-08 19:53:05,262 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "HI, my name us nantavya {PERSON_108}, my phone is {PHONE_4} and my mail is {EMAIL_11}", "num_redactions": 3}
+2025-11-08 19:53:05,262 - Response sent successfully
+2025-11-08 19:53:05,273 - Obfuscator initialized
+E constraint failed: escrow_entries.placeholder_id
+2025-11-08 19:53:05,273 - Sent: {"tabId": 294538559, "action": "allow"}
+2025-11-08 19:53:05,273 - Response sent successfully
+2025-11-08 19:53:05,279 - PII detected via obfuscator: 2 items
+2025-11-08 19:53:05,279 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "HI, my name us nantavya {PERSON_108}, my phone is {PHONE_4} ", "num_redactions": 2}
+2025-11-08 19:53:05,279 - Response sent successfully
+2025-11-08 19:53:05,717 - Obfuscation error: UNIQUE constraint failed: escrow_entries.placeholder_id
+2025-11-08 19:53:05,717 - Sent: {"tabId": 294538559, "action": "allow"}
+2025-11-08 19:53:05,717 - Response sent successfully
+2025-11-08 19:55:07,752 - ==================================================
+2025-11-08 19:55:07,753 - Native host starting...
+2025-11-08 19:55:07,753 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:55:07,753 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:55:13,652 - Main obfuscator imported successfully
+2025-11-08 19:55:13,652 - Entering main - reading one message...
+2025-11-08 19:55:13,652 - Expecting message of length: 100
+2025-11-08 19:55:13,652 - Received: {"tabId":294538559,"text":"Hi, My name is mantavya mahajan and my phone is 5645444219","context":{}}...
+2025-11-08 19:55:13,652 - Processing message: {'tabId': 294538559, 'text': 'Hi, My name is mantavya mahajan and my phone is 5645444219', 'context': {}}
+2025-11-08 19:55:13,652 - Processing text for tab 294538559: Hi, My name is mantavya mahajan and my phone is 56...
+2025-11-08 19:55:14,617 - Obfuscator initialized
+2025-11-08 19:55:14,624 - PII detected via obfuscator: 2 items
+2025-11-08 19:55:14,624 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi, My name is {PERSON_109} and my phone is {PHONE_4}", "num_redactions": 2}
+2025-11-08 19:55:14,625 - Response sent successfully
+2025-11-08 19:55:51,258 - ==================================================
+2025-11-08 19:55:51,258 - Native host starting...
+2025-11-08 19:55:51,258 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:55:51,258 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:55:57,095 - Main obfuscator imported successfully
+2025-11-08 19:55:57,096 - Entering main - reading one message...
+2025-11-08 19:55:57,096 - Expecting message of length: 98
+2025-11-08 19:55:57,096 - Received: {"tabId":294538559,"text":"Hi I am mantavya mahajan, and my phone no. is 5645444219","context":{}}...
+2025-11-08 19:55:57,096 - Processing message: {'tabId': 294538559, 'text': 'Hi I am mantavya mahajan, and my phone no. is 5645444219', 'context': {}}
+2025-11-08 19:55:57,096 - Processing text for tab 294538559: Hi I am mantavya mahajan, and my phone no. is 5645...
+2025-11-08 19:55:58,052 - Obfuscator initialized
+2025-11-08 19:55:58,056 - PII detected via obfuscator: 2 items
+2025-11-08 19:55:58,056 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi I am {PERSON_109}, and my phone no. is {PHONE_4}", "num_redactions": 2}
+2025-11-08 19:55:58,056 - Response sent successfully
+2025-11-08 19:56:18,639 - ==================================================
+2025-11-08 19:56:18,640 - Native host starting...
+2025-11-08 19:56:18,640 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:56:18,640 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:56:24,145 - Main obfuscator imported successfully
+2025-11-08 19:56:24,145 - Entering main - reading one message...
+2025-11-08 19:56:24,146 - Expecting message of length: 89
+2025-11-08 19:56:24,146 - Received: {"tabId":294538559,"text":"Hi My name is Mnatavya and my no. is 5645444219","context":{}}...
+2025-11-08 19:56:24,146 - Processing message: {'tabId': 294538559, 'text': 'Hi My name is Mnatavya and my no. is 5645444219', 'context': {}}
+2025-11-08 19:56:24,146 - Processing text for tab 294538559: Hi My name is Mnatavya and my no. is 5645444219...
+2025-11-08 19:56:25,082 - Obfuscator initialized
+2025-11-08 19:56:25,086 - PII detected via obfuscator: 2 items
+2025-11-08 19:56:25,086 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi My name is {LOCATION_17} and my no. is {PHONE_4}", "num_redactions": 2}
+2025-11-08 19:56:25,086 - Response sent successfully
+2025-11-08 19:57:57,240 - ==================================================
+2025-11-08 19:57:57,240 - Native host starting...
+2025-11-08 19:57:57,241 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:57:57,241 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:58:02,759 - Main obfuscator imported successfully
+2025-11-08 19:58:02,760 - Entering main - reading one message...
+2025-11-08 19:58:02,760 - Expecting message of length: 114
+2025-11-08 19:58:02,760 - Received: {"tabId":294538559,"text":"Hi My name is Mantavya and my no. is 645444219 mantavyamahajan@gmail.com","context":{}}...
+2025-11-08 19:58:02,760 - Processing message: {'tabId': 294538559, 'text': 'Hi My name is Mantavya and my no. is 645444219 mantavyamahajan@gmail.com', 'context': {}}
+2025-11-08 19:58:02,760 - Processing text for tab 294538559: Hi My name is Mantavya and my no. is 645444219 man...
+2025-11-08 19:58:03,657 - Obfuscator initialized
+2025-11-08 19:58:03,660 - PII detected via obfuscator: 1 items
+2025-11-08 19:58:03,661 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi My name is Mantavya and my no. is 645444219 {EMAIL_11}", "num_redactions": 1}
+2025-11-08 19:58:03,661 - Response sent successfully
+2025-11-08 19:58:24,812 - ==================================================
+2025-11-08 19:58:24,812 - Native host starting...
+2025-11-08 19:58:24,813 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:58:24,813 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:58:29,620 - Main obfuscator imported successfully
+2025-11-08 19:58:29,620 - Entering main - reading one message...
+2025-11-08 19:58:29,620 - Expecting message of length: 114
+2025-11-08 19:58:29,620 - Received: {"tabId":294538559,"text":"Hi My name is Mantavya and my no. is 645444219 mantavyamahajan@gmail.com","context":{}}...
+2025-11-08 19:58:29,620 - Processing message: {'tabId': 294538559, 'text': 'Hi My name is Mantavya and my no. is 645444219 mantavyamahajan@gmail.com', 'context': {}}
+2025-11-08 19:58:29,620 - Processing text for tab 294538559: Hi My name is Mantavya and my no. is 645444219 man...
+2025-11-08 19:58:30,639 - Obfuscator initialized
+2025-11-08 19:58:30,643 - PII detected via obfuscator: 1 items
+2025-11-08 19:58:30,643 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi My name is Mantavya and my no. is 645444219 {EMAIL_11}", "num_redactions": 1}
+2025-11-08 19:58:30,643 - Response sent successfully
+2025-11-08 19:59:01,829 - ==================================================
+2025-11-08 19:59:01,829 - Native host starting...
+2025-11-08 19:59:01,830 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:59:01,830 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:59:02,973 - ==================================================
+2025-11-08 19:59:02,973 - Native host starting...
+2025-11-08 19:59:02,974 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:59:02,974 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:59:05,085 - ==================================================
+2025-11-08 19:59:05,085 - Native host starting...
+2025-11-08 19:59:05,086 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:59:05,086 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:59:07,092 - Main obfuscator imported successfully
+2025-11-08 19:59:07,092 - Entering main - reading one message...
+2025-11-08 19:59:07,092 - Expecting message of length: 95
+2025-11-08 19:59:07,092 - Received: {"tabId":294538559,"text":"Hi my name is mantavyamahajan@gmail.com, and my name ","context":{}}...
+2025-11-08 19:59:07,092 - Processing message: {'tabId': 294538559, 'text': 'Hi my name is mantavyamahajan@gmail.com, and my name ', 'context': {}}
+2025-11-08 19:59:07,092 - Processing text for tab 294538559: Hi my name is mantavyamahajan@gmail.com, and my na...
+2025-11-08 19:59:07,507 - ==================================================
+2025-11-08 19:59:07,507 - Native host starting...
+2025-11-08 19:59:07,507 - Project root: D:\Projects\HackPrinceton
+2025-11-08 19:59:07,508 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 19:59:07,589 - Main obfuscator imported successfully
+2025-11-08 19:59:07,589 - Entering main - reading one message...
+2025-11-08 19:59:07,590 - Expecting message of length: 91
+2025-11-08 19:59:07,590 - Received: {"tabId":294538559,"text":"Hi my name is mantavyamahajan@gmail.com, and my n","context":{}}...
+2025-11-08 19:59:07,590 - Processing message: {'tabId': 294538559, 'text': 'Hi my name is mantavyamahajan@gmail.com, and my n', 'context': {}}
+2025-11-08 19:59:07,590 - Processing text for tab 294538559: Hi my name is mantavyamahajan@gmail.com, and my n...
+2025-11-08 19:59:08,267 - Obfuscator initialized
+2025-11-08 19:59:08,270 - PII detected via obfuscator: 1 items
+2025-11-08 19:59:08,270 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi my name is {EMAIL_11}, and my name ", "num_redactions": 1}
+2025-11-08 19:59:08,270 - Response sent successfully
+2025-11-08 19:59:08,732 - Obfuscator initialized
+2025-11-08 19:59:08,736 - PII detected via obfuscator: 1 items
+2025-11-08 19:59:08,736 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi my name is {EMAIL_11}, and my n", "num_redactions": 1}
+2025-11-08 19:59:08,736 - Response sent successfully
+2025-11-08 19:59:09,742 - Main obfuscator imported successfully
+2025-11-08 19:59:09,742 - Entering main - reading one message...
+2025-11-08 19:59:09,742 - Expecting message of length: 100
+2025-11-08 19:59:09,742 - Received: {"tabId":294538559,"text":"Hi my name is mantavyamahajan@gmail.com, and my number is ","context":{}}...
+2025-11-08 19:59:09,742 - Processing message: {'tabId': 294538559, 'text': 'Hi my name is mantavyamahajan@gmail.com, and my number is ', 'context': {}}
+2025-11-08 19:59:09,742 - Processing text for tab 294538559: Hi my name is mantavyamahajan@gmail.com, and my nu...
+2025-11-08 19:59:10,758 - Obfuscator initialized
+2025-11-08 19:59:10,763 - PII detected via obfuscator: 1 items
+2025-11-08 19:59:10,763 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi my name is {EMAIL_11}, and my number is ", "num_redactions": 1}
+2025-11-08 19:59:10,763 - Response sent successfully
+2025-11-08 19:59:12,284 - Main obfuscator imported successfully
+2025-11-08 19:59:12,284 - Entering main - reading one message...
+2025-11-08 19:59:12,284 - Expecting message of length: 111
+2025-11-08 19:59:12,284 - Received: {"tabId":294538559,"text":"Hi my name is mantavyamahajan@gmail.com, and my number is 56454444219","context":{}}...
+2025-11-08 19:59:12,284 - Processing message: {'tabId': 294538559, 'text': 'Hi my name is mantavyamahajan@gmail.com, and my number is 56454444219', 'context': {}}
+2025-11-08 19:59:12,284 - Processing text for tab 294538559: Hi my name is mantavyamahajan@gmail.com, and my nu...
+2025-11-08 19:59:13,194 - Obfuscator initialized
+2025-11-08 19:59:13,209 - PII detected via obfuscator: 2 items
+2025-11-08 19:59:13,209 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "Hi my name is {EMAIL_11}, and my number is {ACCOUNT_NUMBER_1}", "num_redactions": 2}
+2025-11-08 19:59:13,209 - Response sent successfully
+2025-11-08 20:03:50,507 - ==================================================
+2025-11-08 20:03:50,507 - Native host starting...
+2025-11-08 20:03:50,508 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:03:50,508 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:03:56,081 - Main obfuscator imported successfully
+2025-11-08 20:03:56,081 - Entering main - initializing obfuscator...
+2025-11-08 20:03:56,098 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:03:56,371 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:03:56,385 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:03:56,440 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:03:56,534 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:03:56,547 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:03:56,602 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:03:56,750 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:03:56,787 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:03:56,865 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:03:56,901 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:03:56,933 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:03:57,931 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:03:57,944 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:03:58,027 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:03:58,143 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:03:58,155 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:03:59,042 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:03:59,070 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:03:59,073 - Attempting to acquire lock 2368529300688 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\99e11381649bbbc78285891f788391aef796ac7a.lock
+2025-11-08 20:03:59,074 - Lock 2368529300688 acquired on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\99e11381649bbbc78285891f788391aef796ac7a.lock
+2025-11-08 20:03:59,106 - https://huggingface.co:443 "GET /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 29
+2025-11-08 20:03:59,125 - Attempting to release lock 2368529300688 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\99e11381649bbbc78285891f788391aef796ac7a.lock
+2025-11-08 20:03:59,125 - Lock 2368529300688 released on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\99e11381649bbbc78285891f788391aef796ac7a.lock
+2025-11-08 20:03:59,171 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:03:59,196 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:03:59,197 - Attempting to acquire lock 2369126833680 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\db8b75f8086d2f1dbf3d0c1d5a54807acff79ee0.lock
+2025-11-08 20:03:59,198 - Lock 2369126833680 acquired on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\db8b75f8086d2f1dbf3d0c1d5a54807acff79ee0.lock
+2025-11-08 20:03:59,233 - https://huggingface.co:443 "GET /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 None
+2025-11-08 20:03:59,238 - Attempting to release lock 2369126833680 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\db8b75f8086d2f1dbf3d0c1d5a54807acff79ee0.lock
+2025-11-08 20:03:59,238 - Lock 2369126833680 released on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\db8b75f8086d2f1dbf3d0c1d5a54807acff79ee0.lock
+2025-11-08 20:03:59,280 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:03:59,309 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/vocab.txt HTTP/1.1" 307 0
+2025-11-08 20:03:59,362 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/vocab.txt HTTP/1.1" 200 0
+2025-11-08 20:03:59,364 - Attempting to acquire lock 2368534127440 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\9d595d9c20feef7012f174efaaa5eb621910588e.lock
+2025-11-08 20:03:59,365 - Lock 2368534127440 acquired on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\9d595d9c20feef7012f174efaaa5eb621910588e.lock
+2025-11-08 20:03:59,405 - https://huggingface.co:443 "GET /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/vocab.txt HTTP/1.1" 200 None
+2025-11-08 20:03:59,434 - Attempting to release lock 2368534127440 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\9d595d9c20feef7012f174efaaa5eb621910588e.lock
+2025-11-08 20:03:59,435 - Lock 2368534127440 released on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\9d595d9c20feef7012f174efaaa5eb621910588e.lock
+2025-11-08 20:03:59,464 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer.json HTTP/1.1" 404 0
+2025-11-08 20:03:59,492 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/added_tokens.json HTTP/1.1" 404 0
+2025-11-08 20:03:59,568 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/special_tokens_map.json HTTP/1.1" 307 0
+2025-11-08 20:03:59,599 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/special_tokens_map.json HTTP/1.1" 200 0
+2025-11-08 20:03:59,601 - Attempting to acquire lock 2369126837200 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\e7b0375001f109a6b8873d756ad4f7bbb15fbaa5.lock
+2025-11-08 20:03:59,602 - Lock 2369126837200 acquired on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\e7b0375001f109a6b8873d756ad4f7bbb15fbaa5.lock
+2025-11-08 20:03:59,635 - https://huggingface.co:443 "GET /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/special_tokens_map.json HTTP/1.1" 200 112
+2025-11-08 20:03:59,639 - Attempting to release lock 2369126837200 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\e7b0375001f109a6b8873d756ad4f7bbb15fbaa5.lock
+2025-11-08 20:03:59,639 - Lock 2369126837200 released on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\e7b0375001f109a6b8873d756ad4f7bbb15fbaa5.lock
+2025-11-08 20:03:59,671 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/chat_template.jinja HTTP/1.1" 404 0
+2025-11-08 20:03:59,751 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:03:59,772 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:03:59,814 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/model.safetensors HTTP/1.1" 404 0
+2025-11-08 20:03:59,852 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:03:59,884 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:03:59,922 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:03:59,963 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:04:00,012 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:04:00,049 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:04:00,079 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:04:00,083 - Attempting to acquire lock 2368534196304 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\48126d3a1138f7e8fb6cb5cacd79cbd0e49398af60829685533e664a8732bb0c.lock
+2025-11-08 20:04:00,083 - Lock 2368534196304 acquired on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\48126d3a1138f7e8fb6cb5cacd79cbd0e49398af60829685533e664a8732bb0c.lock
+2025-11-08 20:04:00,084 - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-11-08 20:04:00,115 - https://huggingface.co:443 "GET /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 1341
+2025-11-08 20:04:00,117 - Starting new HTTPS connection (1): cas-bridge.xethub.hf.co:443
+2025-11-08 20:04:00,526 - https://cas-bridge.xethub.hf.co:443 "GET /xet-bridge-us/62ab756af4dd06492f159806/20d8b86a540213b869481ab3fa3273dd00daae2c121a9a7c51d82982764cbf79?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cas%2F20251109%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251109T010401Z&X-Amz-Expires=3600&X-Amz-Signature=1cacb71baded198d8380932ea9db564b77effeaeb66e2a4f91d2ba27ef64bb7c&X-Amz-SignedHeaders=host&X-Xet-Cas-Uid=677f1571bb94bf91e956b62b&response-content-disposition=inline%3B+filename*%3DUTF-8%27%27model.safetensors%3B+filename%3D%22model.safetensors%22%3B&x-id=GetObject&Expires=1762653841&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc2MjY1Mzg0MX19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2FzLWJyaWRnZS54ZXRodWIuaGYuY28veGV0LWJyaWRnZS11cy82MmFiNzU2YWY0ZGQwNjQ5MmYxNTk4MDYvMjBkOGI4NmE1NDAyMTNiODY5NDgxYWIzZmEzMjczZGQwMGRhYWUyYzEyMWE5YTdjNTFkODI5ODI3NjRjYmY3OSoifV19&Signature=FptPKVsjrjTFlGylX84ByeL9vTBbnemyjzdhqkfAwoagCXokcMS6pGSnKuYLCZmpkT5BMk51YfymyAKMLIGsXIPMjq6wmG5YhqUDwMqkedp33l~hcnMPcaucJ25saI6Oj4FG2Psh89HFLdlc3iZvQuLiEJtKbW-87QqviaoaCQaPekn-9~~~RrgN9VmIx7pKyp4fTsYrVzJnVMgWVKsg3fyjJRJgSfqFMVIluOA61zBwFn9B8zZI1TKe-JwusnMga1YnGUNfKEMr5KW90kkuG4RKx2j3Ajg2FFvXDMx-TdZAGJrHp9mxhJm~O8qQ22xHcP2aMwLo~tghnUhlzU0wKQ__&Key-Pair-Id=K2L8F4GPSG1IFC HTTP/1.1" 200 437977104
+2025-11-08 20:04:15,802 - Attempting to release lock 2368534196304 on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\48126d3a1138f7e8fb6cb5cacd79cbd0e49398af60829685533e664a8732bb0c.lock
+2025-11-08 20:04:15,802 - Lock 2368534196304 released on C:\Users\manta\.cache\huggingface\hub\.locks\models--StanfordAIMI--stanford-deidentifier-base\48126d3a1138f7e8fb6cb5cacd79cbd0e49398af60829685533e664a8732bb0c.lock
+2025-11-08 20:04:17,212 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:04:17,212 - Regex detector initialized for fallback
+2025-11-08 20:04:17,212 - Entering main - reading one message...
+2025-11-08 20:04:17,212 - No input received (EOF)
+2025-11-08 20:04:17,212 - Failed to read message
+2025-11-08 20:04:17,221 - Error sending message: [Errno 22] Invalid argument
+2025-11-08 20:04:17,221 - Traceback (most recent call last):
+  File "D:\Projects\HackPrinceton\Extension\edge-dlp-ext\native_host.py", line 151, in send_message
+    sys.stdout.buffer.flush()
+OSError: [Errno 22] Invalid argument
+
+2025-11-08 20:06:14,972 - ==================================================
+2025-11-08 20:06:14,972 - Native host starting...
+2025-11-08 20:06:14,972 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:06:14,972 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:06:20,580 - Main obfuscator imported successfully
+2025-11-08 20:06:20,580 - Entering main - reading message first...
+2025-11-08 20:06:20,580 - Expecting message of length: 79
+2025-11-08 20:06:20,580 - Received: {"tabId":294538559,"text":"my email is mantavyamahajna@gmail.com","context":{}}...
+2025-11-08 20:06:20,580 - Message received, now initializing obfuscator...
+2025-11-08 20:06:20,582 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:06:20,837 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:06:20,850 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:06:20,900 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:06:20,988 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:06:21,001 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:06:21,049 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:06:21,087 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:06:21,126 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:06:21,168 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:06:21,193 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:06:21,225 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:06:22,225 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:06:22,239 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:06:22,305 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:06:22,399 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:06:22,411 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:06:23,339 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:06:23,361 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:06:23,410 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:06:23,466 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:06:23,482 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:06:23,532 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:06:23,593 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:06:23,628 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:06:23,683 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:06:23,711 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:06:23,740 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:06:24,956 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:06:24,956 - Regex detector initialized for fallback
+2025-11-08 20:06:24,956 - Processing message: {'tabId': 294538559, 'text': 'my email is mantavyamahajna@gmail.com', 'context': {}}
+2025-11-08 20:06:24,956 - Processing text for tab 294538559: my email is mantavyamahajna@gmail.com...
+2025-11-08 20:06:24,959 - PII detected via obfuscator: 1 items
+2025-11-08 20:06:24,959 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "my email is {EMAIL_9}", "num_redactions": 1}
+2025-11-08 20:06:24,959 - Response sent successfully
+2025-11-08 20:08:15,181 - ==================================================
+2025-11-08 20:08:15,181 - Native host starting...
+2025-11-08 20:08:15,181 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:08:15,181 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:08:21,100 - Main obfuscator imported successfully
+2025-11-08 20:08:21,100 - Entering main - reading message first...
+2025-11-08 20:08:21,100 - Expecting message of length: 65
+2025-11-08 20:08:21,100 - Received: {"tabId":294538559,"text":"my number is 5645444219","context":{}}...
+2025-11-08 20:08:21,100 - Message received, now initializing obfuscator...
+2025-11-08 20:08:21,102 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:08:21,382 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:08:21,396 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:08:21,442 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:08:21,532 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:08:21,546 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:08:21,593 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:08:21,632 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:08:21,678 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:08:21,758 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:08:21,945 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:08:21,978 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:08:22,993 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:08:23,006 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:08:23,106 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:08:23,327 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:08:23,340 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:08:24,261 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:08:24,273 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:08:24,314 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:08:24,370 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:08:24,383 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:08:24,465 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:08:24,519 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:08:24,580 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:08:24,622 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:08:24,691 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:08:24,756 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:08:26,034 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:08:26,034 - Regex detector initialized for fallback
+2025-11-08 20:08:26,034 - Processing message: {'tabId': 294538559, 'text': 'my number is 5645444219', 'context': {}}
+2025-11-08 20:08:26,034 - Processing text for tab 294538559: my number is 5645444219...
+2025-11-08 20:08:26,037 - PII detected via obfuscator: 1 items
+2025-11-08 20:08:26,037 - Sent: {"tabId": 294538559, "action": "replace", "replacement": "my number is {PHONE_4}", "num_redactions": 1}
+2025-11-08 20:08:26,037 - Response sent successfully
+2025-11-08 20:12:39,051 - ==================================================
+2025-11-08 20:12:39,051 - Native host starting...
+2025-11-08 20:12:39,051 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:12:39,051 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:12:43,796 - Main obfuscator imported successfully
+2025-11-08 20:12:43,796 - Entering main - reading message first...
+2025-11-08 20:12:43,796 - Expecting message of length: 62
+2025-11-08 20:12:43,796 - Received: {"tabId":294538559,"text":"number is 5645444219","context":{}}...
+2025-11-08 20:12:43,796 - Message received, now initializing obfuscator...
+2025-11-08 20:12:43,798 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:12:44,047 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:12:44,061 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:12:44,096 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:12:44,186 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:12:44,199 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:12:44,253 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:12:44,322 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:12:44,354 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:12:44,394 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:12:44,424 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:12:44,459 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:12:45,444 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:12:45,457 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:12:45,529 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:12:45,637 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:12:45,649 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:12:46,520 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:12:46,533 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:12:46,571 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:12:46,626 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:12:46,638 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:12:46,691 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:12:46,729 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:12:46,765 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:12:46,831 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:12:46,865 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:12:46,901 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:12:48,077 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:12:48,077 - Regex detector initialized for fallback
+2025-11-08 20:12:48,077 - Processing message: {'tabId': 294538559, 'text': 'number is 5645444219', 'context': {}}
+2025-11-08 20:12:48,077 - Processing text for tab 294538559: number is 5645444219...
+2025-11-08 20:12:48,079 - PII detected via obfuscator: 1 items
+2025-11-08 20:12:48,080 - Attempting to send response...
+2025-11-08 20:12:48,080 - Preparing to send message of length: 100 bytes
+2025-11-08 20:12:48,080 - Message content: {"tabId": 294538559, "action": "replace", "replacement": "number is {PHONE_4}", "num_redactions": 1}...
+2025-11-08 20:12:48,080 - Message sent successfully: {"tabId": 294538559, "action": "replace", "replacement": "number is {PHONE_4}", "num_redactions": 1}
+2025-11-08 20:12:48,080 - Response sent successfully, exiting with code 0
+2025-11-08 20:13:17,201 - ==================================================
+2025-11-08 20:13:17,201 - Native host starting...
+2025-11-08 20:13:17,201 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:13:17,201 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:13:22,645 - Main obfuscator imported successfully
+2025-11-08 20:13:22,645 - Entering main - reading message first...
+2025-11-08 20:13:22,645 - Expecting message of length: 113
+2025-11-08 20:13:22,645 - Received: {"tabId":294538559,"text":"Hello my number is 56454444219 and my mail is mantavyamahajan@gmail.com","context":{}}...
+2025-11-08 20:13:22,645 - Message received, now initializing obfuscator...
+2025-11-08 20:13:22,646 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:13:22,896 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:13:22,910 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:13:22,948 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:13:23,034 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:13:23,048 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:13:23,103 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:13:23,145 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:13:23,189 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:13:23,355 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:13:23,379 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:13:23,410 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:13:23,886 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:13:23,899 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:13:24,002 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:13:24,112 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:13:24,124 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:13:25,015 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:13:25,028 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:13:25,057 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:13:25,119 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:13:25,132 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:13:25,177 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:13:25,221 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:13:25,258 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:13:25,303 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:13:25,331 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:13:25,364 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:13:26,597 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:13:26,597 - Regex detector initialized for fallback
+2025-11-08 20:13:26,597 - Processing message: {'tabId': 294538559, 'text': 'Hello my number is 56454444219 and my mail is mantavyamahajan@gmail.com', 'context': {}}
+2025-11-08 20:13:26,597 - Processing text for tab 294538559: Hello my number is 56454444219 and my mail is mant...
+2025-11-08 20:13:26,600 - PII detected via obfuscator: 2 items
+2025-11-08 20:13:26,600 - Attempting to send response...
+2025-11-08 20:13:26,600 - Preparing to send message of length: 144 bytes
+2025-11-08 20:13:26,600 - Message content: {"tabId": 294538559, "action": "replace", "replacement": "Hello my number is {ACCOUNT_NUMBER_1} and my mail is {EMAIL_11}", "num_redactions": 2}...
+2025-11-08 20:13:26,600 - Message sent successfully: {"tabId": 294538559, "action": "replace", "replacement": "Hello my number is {ACCOUNT_NUMBER_1} and my mail is {EMAIL_11}", "num_redactions": 2}
+2025-11-08 20:13:26,600 - Response sent successfully, exiting with code 0
+2025-11-08 20:23:43,317 - ==================================================
+2025-11-08 20:23:43,318 - Native host starting...
+2025-11-08 20:23:43,318 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:23:43,318 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:23:43,318 - ==================================================
+2025-11-08 20:23:43,318 - Native host starting...
+2025-11-08 20:23:43,318 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:23:43,318 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:23:47,906 - ==================================================
+2025-11-08 20:23:47,906 - Native host starting...
+2025-11-08 20:23:47,906 - Project root: D:\Projects\HackPrinceton
+2025-11-08 20:23:47,906 - Python path: ['D:\\Projects\\HackPrinceton', 'D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext', 'C:\\Users\\manta\\AppData\\Local\\Programs\\Python\\Python311\\python311.zip']
+2025-11-08 20:23:48,326 - Main obfuscator imported successfully
+2025-11-08 20:23:48,326 - Entering main - reading message first...
+2025-11-08 20:23:48,326 - Expecting message of length: 1336
+2025-11-08 20:23:48,326 - Received: {"tabId":294538584,"text":"This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: John Smith\r\nEmail: john.smith@email.com\r\nPhone: (555) 123-4567\r\nSSN: 123-45-6789\r\n...
+2025-11-08 20:23:48,326 - Message received, now initializing obfuscator...
+2025-11-08 20:23:48,329 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:23:48,330 - Main obfuscator imported successfully
+2025-11-08 20:23:48,331 - Entering main - reading message first...
+2025-11-08 20:23:48,331 - Expecting message of length: 1336
+2025-11-08 20:23:48,331 - Received: {"tabId":294538584,"text":"This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: John Smith\r\nEmail: john.smith@email.com\r\nPhone: (555) 123-4567\r\nSSN: 123-45-6789\r\n...
+2025-11-08 20:23:48,331 - Message received, now initializing obfuscator...
+2025-11-08 20:23:48,333 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:23:48,794 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:48,796 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:48,807 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:48,809 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:48,852 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:48,853 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:48,951 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:48,951 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:48,964 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:48,964 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:49,022 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:23:49,032 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:23:49,069 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:23:49,081 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:23:49,121 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:23:49,122 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:23:49,188 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:23:49,190 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:23:49,227 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:23:49,227 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:23:49,257 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:23:49,275 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:23:50,308 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:50,322 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:50,355 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:50,366 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:50,389 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:50,431 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:50,510 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:50,522 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:50,545 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:50,559 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:51,384 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:51,395 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:51,431 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:51,467 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:51,482 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:51,488 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:51,500 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:51,515 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:51,546 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:23:51,568 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:51,582 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:51,589 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:23:51,623 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:23:51,638 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:23:51,659 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:23:51,676 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:23:51,696 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:23:51,703 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:23:51,728 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:23:51,739 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:23:51,756 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:23:51,785 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:23:52,733 - Main obfuscator imported successfully
+2025-11-08 20:23:52,733 - Entering main - reading message first...
+2025-11-08 20:23:52,733 - Expecting message of length: 1336
+2025-11-08 20:23:52,734 - Received: {"tabId":294538584,"text":"This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: John Smith\r\nEmail: john.smith@email.com\r\nPhone: (555) 123-4567\r\nSSN: 123-45-6789\r\n...
+2025-11-08 20:23:52,734 - Message received, now initializing obfuscator...
+2025-11-08 20:23:52,737 - Starting new HTTPS connection (1): huggingface.co:443
+2025-11-08 20:23:52,977 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:52,993 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:53,041 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:53,136 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:53,149 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/lakshyakh93/deberta_finetuned_pii/a038061af92047b0afbbd5ca07d7aa0521789379/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:53,160 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:23:53,160 - Regex detector initialized for fallback
+2025-11-08 20:23:53,160 - Processing message: {'tabId': 294538584, 'text': "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: John Smith\r\nEmail: john.smith@email.com\r\nPhone: (555) 123-4567\r\nSSN: 123-45-6789\r\n\r\nFinancial Information:\r\nCredit Card: 4532-1488-0343-6467\r\nBank Account: 123456789012\r\n\r\nMedical Information:\r\nPatient ID: MED-12345\r\nDiagnosis: Type 2 Diabetes\r\n\r\nContact Details:\r\nAddress: 123 Main Street, Springfield, IL 62701\r\nEmergency Contact: Jane Doe - (555) 987-6543\r\n\r\nAdditional Test Data:\r\nAnother email: test.user@company.org\r\nAnother phone: 1-800-555-0199\r\nIP Address: 192.168.1.1\r\n\r\nSome regular text without PII to see what gets obfuscated and what doesn't. This is a test file for obfuscation testing.  Personal Information: Name: John Smith Email: [REDACTED:EMAIL] Phone: (555) 123-4567 SSN: [REDACTED:SSN]  Financial Information: Credit Card: [REDACTED:CREDIT_CARD] Bank Account: 123456789012  Medical Information: Patient ID: MED-12345 Diagnosis: Type 2 Diabetes  Contact Details: Address: 123 Main Street, Springfield, IL 62701 Emergency Contact: Jane Doe - (555) 987-6543  Additional Test Data: Another email: [REDACTED:EMAIL] Another phone: 1-[REDACTED:PHONE] IP Address: 192.168.1.1  Some regular text without PII to see what gets obfuscated and what doesn't. ", 'context': {}}
+2025-11-08 20:23:53,160 - Processing text for tab 294538584: This is a test file for obfuscation testing.
+
+Pe...
+2025-11-08 20:23:53,163 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:23:53,163 - Regex detector initialized for fallback
+2025-11-08 20:23:53,163 - Processing message: {'tabId': 294538584, 'text': "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: John Smith\r\nEmail: john.smith@email.com\r\nPhone: (555) 123-4567\r\nSSN: 123-45-6789\r\n\r\nFinancial Information:\r\nCredit Card: 4532-1488-0343-6467\r\nBank Account: 123456789012\r\n\r\nMedical Information:\r\nPatient ID: MED-12345\r\nDiagnosis: Type 2 Diabetes\r\n\r\nContact Details:\r\nAddress: 123 Main Street, Springfield, IL 62701\r\nEmergency Contact: Jane Doe - (555) 987-6543\r\n\r\nAdditional Test Data:\r\nAnother email: test.user@company.org\r\nAnother phone: 1-800-555-0199\r\nIP Address: 192.168.1.1\r\n\r\nSome regular text without PII to see what gets obfuscated and what doesn't. This is a test file for obfuscation testing.  Personal Information: Name: John Smith Email: [REDACTED:EMAIL] Phone: (555) 123-4567 SSN: [REDACTED:SSN]  Financial Information: Credit Card: [REDACTED:CREDIT_CARD] Bank Account: 123456789012  Medical Information: Patient ID: MED-12345 Diagnosis: Type 2 Diabetes  Contact Details: Address: 123 Main Street, Springfield, IL 62701 Emergency Contact: Jane Doe - (555) 987-6543  Additional Test Data: Another email: [REDACTED:EMAIL] Another phone: 1-[REDACTED:PHONE] IP Address: 192.168.1.1  Some regular text without PII to see what gets obfuscated and what doesn't. ", 'context': {}}
+2025-11-08 20:23:53,163 - Processing text for tab 294538584: This is a test file for obfuscation testing.
+
+Pe...
+2025-11-08 20:23:53,198 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii HTTP/1.1" 200 2028
+2025-11-08 20:23:53,234 - PII detected via obfuscator: 17 items
+2025-11-08 20:23:53,234 - Attempting to send response...
+2025-11-08 20:23:53,234 - Preparing to send message of length: 1425 bytes
+2025-11-08 20:23:53,234 - Message content: {"tabId": 294538584, "action": "replace", "replacement": "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: {PERSON_1}\r\nEmail: {EMAIL_1}\r\nPhone: ({PHONE_1}\r\n{ORG...
+2025-11-08 20:23:53,234 - Message sent successfully: {"tabId": 294538584, "action": "replace", "replacement": "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: {PERSON_1}\r\nEmail: {EMAIL_1}\r\nPhone: ({PHONE_1}\r\n{ORGANIZATION_1}: {SSN_1}\r\n\r\nFinancial Information:\r\nCredit Card: {DATE_39}\r\nBank Account: {ACCOUNT_NUMBER_2}\r\n\r\nMedical Information:\r\nPatient ID: MED-{ZIP_CODE_6}\r\nDiagnosis: Type 2 Diabetes\r\n\r\nContact Details:\r\nAddress: 123 Main Street, {LOCATION_18}, IL {ZIP_CODE_7}\r\nEmergency Contact: {PERSON_110} ({PHONE_16}\r\n\r\nAdditional Test Data:\r\nAnother email: {EMAIL_37}\r\nAnother phone: {PHONE_17}\r\nIP Address: {IP_ADDRESS_2}\r\n\r\nSome regular text without {ORGANIZATION_9} to see what gets obfuscated and what doesn't. This is a test file for obfuscation testing.  Personal Information: Name: {PERSON_1} Email: [REDACTED:EMAIL] Phone: ({PHONE_1} {ORGANIZATION_1}: [REDACTED:{ORGANIZATION_1}]  Financial Information: Credit Card: [REDACTED:CREDIT_CARD] Bank Account: {ACCOUNT_NUMBER_2}  Medical Information: Patient ID: MED-{ZIP_CODE_6} Diagnosis: Type 2 Diabetes  Contact Details: Address: 123 Main Street, {LOCATION_18}, {ORGANIZATION_96}: {PERSON_110} ({PHONE_16}  Additional Test Data: Another email: [REDACTED:EMAIL] Another phone: 1-[REDACTED:PHONE] IP Address: {IP_ADDRESS_2}  Some regular text without {ORGANIZATION_9} to see what gets obfuscated and what doesn't. ", "num_redactions": 17}
+2025-11-08 20:23:53,234 - Response sent successfully, exiting with code 0
+2025-11-08 20:23:53,245 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/main HTTP/1.1" 200 1726
+2025-11-08 20:23:53,247 - PII detected via obfuscator: 17 items
+2025-11-08 20:23:53,247 - Attempting to send response...
+2025-11-08 20:23:53,247 - Preparing to send message of length: 1425 bytes
+2025-11-08 20:23:53,247 - Message content: {"tabId": 294538584, "action": "replace", "replacement": "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: {PERSON_1}\r\nEmail: {EMAIL_1}\r\nPhone: ({PHONE_1}\r\n{ORG...
+2025-11-08 20:23:53,247 - Message sent successfully: {"tabId": 294538584, "action": "replace", "replacement": "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: {PERSON_1}\r\nEmail: {EMAIL_1}\r\nPhone: ({PHONE_1}\r\n{ORGANIZATION_1}: {SSN_1}\r\n\r\nFinancial Information:\r\nCredit Card: {DATE_39}\r\nBank Account: {ACCOUNT_NUMBER_2}\r\n\r\nMedical Information:\r\nPatient ID: MED-{ZIP_CODE_6}\r\nDiagnosis: Type 2 Diabetes\r\n\r\nContact Details:\r\nAddress: 123 Main Street, {LOCATION_18}, IL {ZIP_CODE_7}\r\nEmergency Contact: {PERSON_110} ({PHONE_16}\r\n\r\nAdditional Test Data:\r\nAnother email: {EMAIL_37}\r\nAnother phone: {PHONE_17}\r\nIP Address: {IP_ADDRESS_2}\r\n\r\nSome regular text without {ORGANIZATION_9} to see what gets obfuscated and what doesn't. This is a test file for obfuscation testing.  Personal Information: Name: {PERSON_1} Email: [REDACTED:EMAIL] Phone: ({PHONE_1} {ORGANIZATION_1}: [REDACTED:{ORGANIZATION_1}]  Financial Information: Credit Card: [REDACTED:CREDIT_CARD] Bank Account: {ACCOUNT_NUMBER_2}  Medical Information: Patient ID: MED-{ZIP_CODE_6} Diagnosis: Type 2 Diabetes  Contact Details: Address: 123 Main Street, {LOCATION_18}, {ORGANIZATION_96}: {PERSON_110} ({PHONE_16}  Additional Test Data: Another email: [REDACTED:EMAIL] Another phone: 1-[REDACTED:PHONE] IP Address: {IP_ADDRESS_2}  Some regular text without {ORGANIZATION_9} to see what gets obfuscated and what doesn't. ", "num_redactions": 17}
+2025-11-08 20:23:53,247 - Response sent successfully, exiting with code 0
+2025-11-08 20:23:53,281 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/discussions?p=0 HTTP/1.1" 200 5755
+2025-11-08 20:23:53,329 - https://huggingface.co:443 "GET /api/models/lakshyakh93/deberta_finetuned_pii/commits/refs%2Fpr%2F5 HTTP/1.1" 200 2691
+2025-11-08 20:23:53,360 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:23:53,392 - https://huggingface.co:443 "HEAD /lakshyakh93/deberta_finetuned_pii/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:23:53,885 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:53,901 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:53,975 - https://huggingface.co:443 "GET /api/models/obi/deid_roberta_i2b2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:54,094 - https://huggingface.co:443 "HEAD /obi/deid_roberta_i2b2/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:54,120 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/obi/deid_roberta_i2b2/78f2152eb93ddd817290ce8dbe46f1a6685e09fc/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:55,011 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-11-08 20:23:55,025 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/tokenizer_config.json HTTP/1.1" 200 0
+2025-11-08 20:23:55,054 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-11-08 20:23:55,112 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/main/config.json HTTP/1.1" 307 0
+2025-11-08 20:23:55,124 - https://huggingface.co:443 "HEAD /api/resolve-cache/models/StanfordAIMI/stanford-deidentifier-base/661b9c1c717d3165512d440abc3700c386aefab6/config.json HTTP/1.1" 200 0
+2025-11-08 20:23:55,171 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base HTTP/1.1" 200 3122
+2025-11-08 20:23:55,209 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/main HTTP/1.1" 200 8676
+2025-11-08 20:23:55,254 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/discussions?p=0 HTTP/1.1" 200 3402
+2025-11-08 20:23:55,297 - https://huggingface.co:443 "GET /api/models/StanfordAIMI/stanford-deidentifier-base/commits/refs%2Fpr%2F5 HTTP/1.1" 200 9641
+2025-11-08 20:23:55,328 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors.index.json HTTP/1.1" 404 0
+2025-11-08 20:23:55,359 - https://huggingface.co:443 "HEAD /StanfordAIMI/stanford-deidentifier-base/resolve/refs%2Fpr%2F5/model.safetensors HTTP/1.1" 302 0
+2025-11-08 20:23:56,636 - Obfuscator initialized eagerly with transformer model
+2025-11-08 20:23:56,636 - Regex detector initialized for fallback
+2025-11-08 20:23:56,636 - Processing message: {'tabId': 294538584, 'text': "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: John Smith\r\nEmail: john.smith@email.com\r\nPhone: (555) 123-4567\r\nSSN: 123-45-6789\r\n\r\nFinancial Information:\r\nCredit Card: 4532-1488-0343-6467\r\nBank Account: 123456789012\r\n\r\nMedical Information:\r\nPatient ID: MED-12345\r\nDiagnosis: Type 2 Diabetes\r\n\r\nContact Details:\r\nAddress: 123 Main Street, Springfield, IL 62701\r\nEmergency Contact: Jane Doe - (555) 987-6543\r\n\r\nAdditional Test Data:\r\nAnother email: test.user@company.org\r\nAnother phone: 1-800-555-0199\r\nIP Address: 192.168.1.1\r\n\r\nSome regular text without PII to see what gets obfuscated and what doesn't. This is a test file for obfuscation testing.  Personal Information: Name: John Smith Email: [REDACTED:EMAIL] Phone: (555) 123-4567 SSN: [REDACTED:SSN]  Financial Information: Credit Card: [REDACTED:CREDIT_CARD] Bank Account: 123456789012  Medical Information: Patient ID: MED-12345 Diagnosis: Type 2 Diabetes  Contact Details: Address: 123 Main Street, Springfield, IL 62701 Emergency Contact: Jane Doe - (555) 987-6543  Additional Test Data: Another email: [REDACTED:EMAIL] Another phone: 1-[REDACTED:PHONE] IP Address: 192.168.1.1  Some regular text without PII to see what gets obfuscated and what doesn't. ", 'context': {}}
+2025-11-08 20:23:56,636 - Processing text for tab 294538584: This is a test file for obfuscation testing.
+
+Pe...
+2025-11-08 20:23:56,671 - PII detected via obfuscator: 17 items
+2025-11-08 20:23:56,671 - Attempting to send response...
+2025-11-08 20:23:56,671 - Preparing to send message of length: 1425 bytes
+2025-11-08 20:23:56,671 - Message content: {"tabId": 294538584, "action": "replace", "replacement": "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: {PERSON_1}\r\nEmail: {EMAIL_1}\r\nPhone: ({PHONE_1}\r\n{ORG...
+2025-11-08 20:23:56,671 - Message sent successfully: {"tabId": 294538584, "action": "replace", "replacement": "This is a test file for obfuscation testing.\r\n\r\nPersonal Information:\r\nName: {PERSON_1}\r\nEmail: {EMAIL_1}\r\nPhone: ({PHONE_1}\r\n{ORGANIZATION_1}: {SSN_1}\r\n\r\nFinancial Information:\r\nCredit Card: {DATE_39}\r\nBank Account: {ACCOUNT_NUMBER_2}\r\n\r\nMedical Information:\r\nPatient ID: MED-{ZIP_CODE_6}\r\nDiagnosis: Type 2 Diabetes\r\n\r\nContact Details:\r\nAddress: 123 Main Street, {LOCATION_18}, IL {ZIP_CODE_7}\r\nEmergency Contact: {PERSON_110} ({PHONE_16}\r\n\r\nAdditional Test Data:\r\nAnother email: {EMAIL_37}\r\nAnother phone: {PHONE_17}\r\nIP Address: {IP_ADDRESS_2}\r\n\r\nSome regular text without {ORGANIZATION_9} to see what gets obfuscated and what doesn't. This is a test file for obfuscation testing.  Personal Information: Name: {PERSON_1} Email: [REDACTED:EMAIL] Phone: ({PHONE_1} {ORGANIZATION_1}: [REDACTED:{ORGANIZATION_1}]  Financial Information: Credit Card: [REDACTED:CREDIT_CARD] Bank Account: {ACCOUNT_NUMBER_2}  Medical Information: Patient ID: MED-{ZIP_CODE_6} Diagnosis: Type 2 Diabetes  Contact Details: Address: 123 Main Street, {LOCATION_18}, {ORGANIZATION_96}: {PERSON_110} ({PHONE_16}  Additional Test Data: Another email: [REDACTED:EMAIL] Another phone: 1-[REDACTED:PHONE] IP Address: {IP_ADDRESS_2}  Some regular text without {ORGANIZATION_9} to see what gets obfuscated and what doesn't. ", "num_redactions": 17}
+2025-11-08 20:23:56,671 - Response sent successfully, exiting with code 0
+2025-11-08 20:30:44,641 - Interrupted by user
+2025-11-08 20:35:24,269 - ==================================================
+2025-11-08 20:35:24,269 - Native host starting...
+2025-11-08 20:35:24,270 - Entering main - reading one message...
+2025-11-08 20:35:24,270 - Expecting message of length: 81
+2025-11-08 20:35:24,270 - Received: {"type":"notify-clipboard-monitor","isRiskyDomain":true,"hostname":"chatgpt.com"}...
+2025-11-08 20:35:24,270 - Processing message: {'type': 'notify-clipboard-monitor', 'isRiskyDomain': True, 'hostname': 'chatgpt.com'}
+2025-11-08 20:35:24,270 - Notified clipboard monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:35:24,270 - Sent: {"status": "ok", "notified": true}
+2025-11-08 20:35:24,271 - Response sent successfully
+2025-11-08 20:36:32,683 - ==================================================
+2025-11-08 20:36:32,683 - Native host starting...
+2025-11-08 20:36:32,683 - Entering main - reading one message...
+2025-11-08 20:36:32,683 - Expecting message of length: 81
+2025-11-08 20:36:32,683 - Received: {"type":"notify-clipboard-monitor","isRiskyDomain":true,"hostname":"chatgpt.com"}...
+2025-11-08 20:36:32,683 - Processing message: {'type': 'notify-clipboard-monitor', 'isRiskyDomain': True, 'hostname': 'chatgpt.com'}
+2025-11-08 20:36:32,684 - Notified clipboard monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:36:32,684 - Sent: {"status": "ok", "notified": true}
+2025-11-08 20:36:32,684 - Response sent successfully
+2025-11-08 20:40:12,909 - ==================================================
+2025-11-08 20:40:12,909 - Native host starting...
+2025-11-08 20:40:12,910 - Entering main - reading one message...
+2025-11-08 20:40:12,910 - Expecting message of length: 81
+2025-11-08 20:40:12,910 - Received: {"type":"notify-clipboard-monitor","isRiskyDomain":true,"hostname":"chatgpt.com"}...
+2025-11-08 20:40:12,910 - Processing message: {'type': 'notify-clipboard-monitor', 'isRiskyDomain': True, 'hostname': 'chatgpt.com'}
+2025-11-08 20:40:12,910 - Handling notify-clipboard-monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:40:12,910 - Notified clipboard monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:40:12,910 - IPC file written to: C:\Users\manta\AppData\Local\EdgeDLP\extension_status.json
+2025-11-08 20:40:12,910 - Response to send: {'status': 'ok', 'notified': True}
+2025-11-08 20:40:12,910 - Sent: {"status": "ok", "notified": true}
+2025-11-08 20:40:12,910 - Response sent successfully
+2025-11-08 20:58:35,520 - ==================================================
+2025-11-08 20:58:35,520 - Native host starting...
+2025-11-08 20:58:35,521 - Entering main - reading one message...
+2025-11-08 20:58:35,521 - Expecting message of length: 81
+2025-11-08 20:58:35,521 - Received: {"type":"notify-clipboard-monitor","isRiskyDomain":true,"hostname":"chatgpt.com"}...
+2025-11-08 20:58:35,521 - Processing message: {'type': 'notify-clipboard-monitor', 'isRiskyDomain': True, 'hostname': 'chatgpt.com'}
+2025-11-08 20:58:35,521 - Handling notify-clipboard-monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:58:35,521 - Notified clipboard monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:58:35,521 - IPC file written to: C:\Users\manta\AppData\Local\EdgeDLP\extension_status.json
+2025-11-08 20:58:35,522 - Response to send: {'status': 'ok', 'notified': True}
+2025-11-08 20:58:35,522 - Sent: {"status": "ok", "notified": true}
+2025-11-08 20:58:35,522 - Response sent successfully
+2025-11-08 20:58:43,717 - ==================================================
+2025-11-08 20:58:43,718 - Native host starting...
+2025-11-08 20:58:43,718 - Entering main - reading one message...
+2025-11-08 20:58:43,718 - Expecting message of length: 86
+2025-11-08 20:58:43,718 - Received: {"type":"notify-clipboard-monitor","isRiskyDomain":false,"hostname":"docs.google.com"}...
+2025-11-08 20:58:43,718 - Processing message: {'type': 'notify-clipboard-monitor', 'isRiskyDomain': False, 'hostname': 'docs.google.com'}
+2025-11-08 20:58:43,718 - Handling notify-clipboard-monitor: risky=False, hostname=docs.google.com
+2025-11-08 20:58:43,719 - Notified clipboard monitor: risky=False, hostname=docs.google.com
+2025-11-08 20:58:43,719 - IPC file written to: C:\Users\manta\AppData\Local\EdgeDLP\extension_status.json
+2025-11-08 20:58:43,719 - Response to send: {'status': 'ok', 'notified': True}
+2025-11-08 20:58:43,719 - Sent: {"status": "ok", "notified": true}
+2025-11-08 20:58:43,719 - Response sent successfully
+2025-11-08 20:59:21,960 - ==================================================
+2025-11-08 20:59:21,960 - Native host starting...
+2025-11-08 20:59:21,960 - Entering main - reading one message...
+2025-11-08 20:59:21,961 - Expecting message of length: 81
+2025-11-08 20:59:21,961 - Received: {"type":"notify-clipboard-monitor","isRiskyDomain":true,"hostname":"chatgpt.com"}...
+2025-11-08 20:59:21,961 - Processing message: {'type': 'notify-clipboard-monitor', 'isRiskyDomain': True, 'hostname': 'chatgpt.com'}
+2025-11-08 20:59:21,961 - Handling notify-clipboard-monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:59:21,961 - Notified clipboard monitor: risky=True, hostname=chatgpt.com
+2025-11-08 20:59:21,961 - IPC file written to: C:\Users\manta\AppData\Local\EdgeDLP\extension_status.json
+2025-11-08 20:59:21,961 - Response to send: {'status': 'ok', 'notified': True}
+2025-11-08 20:59:21,961 - Sent: {"status": "ok", "notified": true}
+2025-11-08 20:59:21,961 - Response sent successfully
+2025-11-08 21:01:08,498 - ==================================================
+2025-11-08 21:01:08,498 - Native host starting...
+2025-11-08 21:01:08,499 - Entering main - reading one message...
+2025-11-08 21:01:08,499 - Expecting message of length: 79
+2025-11-08 21:01:08,499 - Received: {"type":"notify-clipboard-monitor","isRiskyDomain":true,"hostname":"claude.ai"}...
+2025-11-08 21:01:08,499 - Processing message: {'type': 'notify-clipboard-monitor', 'isRiskyDomain': True, 'hostname': 'claude.ai'}
+2025-11-08 21:01:08,499 - Handling notify-clipboard-monitor: risky=True, hostname=claude.ai
+2025-11-08 21:01:08,500 - Notified clipboard monitor: risky=True, hostname=claude.ai
+2025-11-08 21:01:08,500 - IPC file written to: C:\Users\manta\AppData\Local\EdgeDLP\extension_status.json
+2025-11-08 21:01:08,500 - Response to send: {'status': 'ok', 'notified': True}
+2025-11-08 21:01:08,500 - Sent: {"status": "ok", "notified": true}
+2025-11-08 21:01:08,500 - Response sent successfully

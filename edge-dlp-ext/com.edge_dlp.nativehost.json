@@ -1,9 +1,9 @@
-{
-  "name": "com.edge_dlp.nativehost",
-  "description": "Edge DLP native messaging host",
-  "path": "/absolute/path/to/native_host.py",
-  "type": "stdio",
-  "allowed_origins": [
-    "chrome-extension://<YOUR_EXTENSION_ID>/"
-  ]
+﻿{
+    "name":  "com.edge_dlp.nativehost",
+    "description":  "Edge DLP native messaging host",
+    "path":  "D:\\Projects\\HackPrinceton\\Extension\\edge-dlp-ext\\native_host.bat",
+    "type":  "stdio",
+    "allowed_origins":  [
+                            "chrome-extension://gfnmacidakedamgiapgfhchbcoljojlc/"
+                        ]
 }
