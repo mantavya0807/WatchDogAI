@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PII Guard Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .live-dot {
+            animation: pulse 2s infinite;
+        }
+        .neon-green { color: #00ff88; }
+        .bg-neon-green { background-color: #00ff88; }
+        .border-neon-green { border-color: #00ff88; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .nav-item {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-item:hover {
+            border-color: #00ff88;
+        }
+        .nav-item.active {
+            border-color: #00ff88;
+            background-color: rgba(0, 255, 136, 0.1);
+        }
+        .info-icon {
+            cursor: help;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 4px;
+            transition: all 0.2s;
+        }
+        .info-icon:hover {
+            background-color: #00ff88;
+            color: #1F2937;
+            transform: scale(1.1);
+        }
+        .tooltip {
+            position: absolute;
+            background-color: #1F2937;
+            border: 1px solid #00ff88;
+            color: #9CA3AF;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            max-width: 300px;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .tooltip.show {
+            opacity: 1;
+        }
+        .tooltip-title {
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .stat-card {
+            transition: all 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: #00ff88;
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+        }
+        .chart-container {
+            position: relative;
+        }
+        .chart-info {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+        .risk-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .risk-high {
+            background-color: rgba(255, 68, 68, 0.2);
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+        .risk-medium {
+            background-color: rgba(255, 170, 68, 0.2);
+            color: #ffaa44;
+            border: 1px solid #ffaa44;
+        }
+        .risk-low {
+            background-color: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+            border: 1px solid #00ff88;
+        }
+        .trend-up {
+            color: #ff4444;
+        }
+        .trend-down {
+            color: #00ff88;
+        }
+        .trend-neutral {
+            color: #9CA3AF;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Tooltip Container -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <!-- Header -->
+    <header class="bg-gray-800 border-b border-neon-green">
+        <div class="max-w-7xl mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 border-2 border-neon-green rounded flex items-center justify-center">
+                        <svg class="w-6 h-6 neon-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold neon-green">PII Guard Admin</h1>
+                        <p class="text-xs text-gray-400">Enterprise DLP Dashboard</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2 text-sm">
+                        <div class="w-2 h-2 bg-neon-green rounded-full live-dot"></div>
+                        <span class="text-gray-300">Live</span>
+                        <span class="info-icon" data-tooltip="Real-time data updates every 5 seconds. Events are streamed live from all monitored machines.">?</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm">
+                        <span id="data-source" class="px-2 py-1 rounded text-xs font-medium bg-gray-700 text-gray-300">Loading...</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <span id="current-time"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex space-x-1 overflow-x-auto">
+                <div class="nav-item active px-4 py-2 border-b-2 border-neon-green text-sm font-medium neon-green" data-section="overview">Overview</div>
+                <div class="nav-item px-4 py-2 border-b-2 border-transparent text-sm text-gray-400 hover:text-gray-300" data-section="monitoring">Monitoring</div>
+                <div class="nav-item px-4 py-2 border-b-2 border-transparent text-sm text-gray-400 hover:text-gray-300" data-section="threats">Threats</div>
+                <div class="nav-item px-4 py-2 border-b-2 border-transparent text-sm text-gray-400 hover:text-gray-300" data-section="users">Users</div>
+                <div class="nav-item px-4 py-2 border-b-2 border-transparent text-sm text-gray-400 hover:text-gray-300" data-section="compliance">Compliance</div>
+                <div class="nav-item px-4 py-2 border-b-2 border-transparent text-sm text-gray-400 hover:text-gray-300" data-section="incidents">Incidents</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content - Centered -->
+    <main class="max-w-7xl mx-auto px-6 py-6">
+        
+        <!-- EXECUTIVE OVERVIEW -->
+        <div id="overview" class="section active">
+            <!-- Top KPIs -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">Risk Score</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>Risk Score</div>Overall security risk calculated from detection frequency, user behavior, and compliance metrics. Lower is better. Updated hourly.">?</span>
+                    </div>
+                    <div class="flex items-center space-x-2 mb-2">
+                        <p class="text-2xl font-bold neon-green">73</p>
+                        <span class="text-xs trend-up">↓ 5pts</span>
+                    </div>
+                    <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-yellow-500 transition-all duration-500" style="width: 73%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">Target: &lt;50</p>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">Protected Today</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>Protected Today</div>Total number of PII items (emails, SSNs, credit cards, etc.) that were detected and protected from being leaked today. Includes all sources: clipboard, typing, and images.">?</span>
+                    </div>
+                    <p class="text-2xl font-bold neon-green">2,847</p>
+                    <p class="text-xs text-gray-500 mt-1">PII items</p>
+                    <p class="text-xs text-green-400 mt-1">↑ 12% from yesterday</p>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">High-Risk Users</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>High-Risk Users</div>Users with risk score above 70. These users have high detection rates, frequent undo actions, or access risky applications. Requires immediate attention.">?</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <p class="text-2xl font-bold neon-green">12</p>
+                        <span class="text-xs trend-up">↑ 2</span>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">From yesterday</p>
+                    <p class="text-xs text-red-400 mt-1">Action required</p>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">Compliance Score</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>Compliance Score</div>Overall compliance percentage across GDPR, HIPAA, and SOC 2 standards. Based on data protection policies, audit trails, and incident response times.">?</span>
+                    </div>
+                    <p class="text-2xl font-bold neon-green">94%</p>
+                    <p class="text-xs text-green-400 mt-1">✓ Compliant</p>
+                    <p class="text-xs text-gray-500 mt-1">Target: 95%</p>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Risk Trend (30 Days)</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Risk Trend</div>30-day rolling average of overall security risk. Shows long-term trends and helps identify patterns. A downward trend indicates improving security posture.">?</span>
+                    </div>
+                    <div style="height: 200px;">
+                        <canvas id="riskTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Top Risky Applications</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Risky Applications</div>Applications where PII is most frequently detected. Higher numbers indicate more risk. Consider blocking or restricting access to top applications.">?</span>
+                    </div>
+                    <div style="height: 200px;">
+                        <canvas id="riskyAppsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detection Heatmap & Department Risk -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Detection Heatmap</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Detection Heatmap</div>Shows detection frequency by day of week. Helps identify patterns like higher activity on weekdays or specific days with more incidents.">?</span>
+                    </div>
+                    <div style="height: 200px;">
+                        <canvas id="heatmapChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Department Risk Matrix</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Department Risk Matrix</div>Bubble chart showing each department's risk level (Y-axis) vs detection count (X-axis). Larger bubbles indicate more users. Helps identify which departments need training.">?</span>
+                    </div>
+                    <div style="height: 200px;">
+                        <canvas id="deptRiskChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REAL-TIME MONITORING -->
+        <div id="monitoring" class="section">
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold neon-green">Live Event Stream</h2>
+                    <span class="info-icon" data-tooltip="<div class='tooltip-title'>Live Event Stream</div>Real-time feed of all PII detection events across all monitored machines. Events appear within 5 seconds of occurrence. Click on any event to view details.">?</span>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded p-4 space-y-3" id="event-stream" style="max-height: 500px; overflow-y: auto;">
+                    <!-- Events will be added here -->
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4">
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">System Status</h3>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>System Status</div>Overall health of the PII Guard deployment. Shows number of machines online, offline, and with issues. Also displays average detection time and GPU utilization.">?</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Machines Online</span>
+                            <span class="neon-green font-bold">247</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Offline</span>
+                            <span class="text-red-400 font-bold">12</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Issues</span>
+                            <span class="text-yellow-400 font-bold">5</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Avg Detection</span>
+                            <span class="neon-green font-bold">38ms</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">GPU Utilization</span>
+                            <span class="neon-green font-bold">67%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Active Threats</h3>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>Active Threats</div>Currently ongoing security threats. Risky sessions are active user sessions with high detection rates. High-risk domains are external sites where PII is frequently attempted. Ongoing patterns indicate repeated suspicious behavior.">?</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Risky Sessions</span>
+                            <span class="risk-badge risk-high">8</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">High-Risk Domains</span>
+                            <span class="risk-badge risk-medium">3</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Ongoing Patterns</span>
+                            <span class="risk-badge risk-medium">2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Recent Alerts</h3>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>Recent Alerts</div>Critical security alerts requiring immediate attention. Includes data exfiltration attempts, policy violations, and system health issues.">?</span>
+                    </div>
+                    <div class="space-y-2 text-sm" id="alerts-list">
+                        <!-- Alerts will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THREAT INTELLIGENCE -->
+        <div id="threats" class="section">
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold neon-green">Application Risk Leaderboard</h2>
+                    <span class="info-icon" data-tooltip="<div class='tooltip-title'>Application Risk Leaderboard</div>Ranked list of applications by PII detection count. Risk score is calculated from detection frequency, PII sensitivity, and user behavior. Trend shows change from last period.">?</span>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded overflow-hidden">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-gray-300">Rank</th>
+                                <th class="px-4 py-2 text-left text-gray-300">Application</th>
+                                <th class="px-4 py-2 text-right text-gray-300">Detections</th>
+                                <th class="px-4 py-2 text-center text-gray-300">Risk Score</th>
+                                <th class="px-4 py-2 text-center text-gray-300">Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody id="app-leaderboard">
+                            <!-- Will be populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">PII Type Distribution</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>PII Type Distribution</div>Breakdown of detected PII types by percentage. EMAIL is most common (40%), followed by PERSON names (25%). Helps prioritize protection strategies.">?</span>
+                    </div>
+                    <div style="height: 250px;">
+                        <canvas id="piiTypeChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Time-Based Patterns</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Time-Based Patterns</div>Detection frequency by hour of day. Peak hours (2-4pm) often indicate end-of-workday data sharing. Helps schedule monitoring and alerts.">?</span>
+                    </div>
+                    <div style="height: 250px;">
+                        <canvas id="timePatternChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 border border-gray-700 rounded p-4">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-sm font-semibold neon-green">High-Risk Domains</h3>
+                    <span class="info-icon" data-tooltip="<div class='tooltip-title'>High-Risk Domains</div>External domains where PII is frequently attempted. High session-to-detection ratios indicate systematic data exfiltration attempts. Consider blocking these domains.">?</span>
+                </div>
+                <div class="space-y-2 text-sm" id="risky-domains">
+                    <!-- Will be populated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- USER ANALYTICS -->
+        <div id="users" class="section">
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold neon-green">User Risk Leaderboard</h2>
+                    <span class="info-icon" data-tooltip="<div class='tooltip-title'>User Risk Leaderboard</div>Top 10 users by risk score. Risk is calculated from detection count, undo rate, and access to risky applications. High undo rates may indicate false positives or intentional bypass attempts.">?</span>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded overflow-hidden">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-gray-300">Rank</th>
+                                <th class="px-4 py-2 text-left text-gray-300">User</th>
+                                <th class="px-4 py-2 text-right text-gray-300">Detections</th>
+                                <th class="px-4 py-2 text-center text-gray-300">Risk</th>
+                                <th class="px-4 py-2 text-center text-gray-300">Undo Rate</th>
+                                <th class="px-4 py-2 text-left text-gray-300">Department</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-leaderboard">
+                            <!-- Will be populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">User Activity Over Time</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>User Activity Over Time</div>7-day trend of total detections across all users. Helps identify patterns and spikes in activity. Sudden increases may indicate security incidents.">?</span>
+                    </div>
+                    <div style="height: 250px;">
+                        <canvas id="userActivityChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Department Risk Distribution</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Department Risk Distribution</div>Total detections by department. Engineering typically has highest risk due to frequent data sharing. Helps target training and policy adjustments.">?</span>
+                    </div>
+                    <div style="height: 250px;">
+                        <canvas id="deptChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPLIANCE & AUDIT -->
+        <div id="compliance" class="section">
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">GDPR Compliance</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>GDPR Compliance</div>European General Data Protection Regulation compliance score. Based on data protection measures, user consent, right to be forgotten, and breach notification procedures.">?</span>
+                    </div>
+                    <p class="text-2xl font-bold neon-green">96%</p>
+                    <p class="text-xs text-green-400 mt-1">✓ Compliant</p>
+                    <p class="text-xs text-gray-500 mt-1">Target: 95%</p>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">HIPAA Compliance</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>HIPAA Compliance</div>Health Insurance Portability and Accountability Act compliance score. Measures protection of Protected Health Information (PHI), access controls, and audit trails.">?</span>
+                    </div>
+                    <p class="text-2xl font-bold neon-green">94%</p>
+                    <p class="text-xs text-green-400 mt-1">✓ Compliant</p>
+                    <p class="text-xs text-gray-500 mt-1">Target: 95%</p>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">SOC 2 Compliance</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>SOC 2 Compliance</div>Service Organization Control 2 compliance score. Measures security, availability, processing integrity, confidentiality, and privacy controls.">?</span>
+                    </div>
+                    <p class="text-2xl font-bold neon-green">98%</p>
+                    <p class="text-xs text-green-400 mt-1">✓ Compliant</p>
+                    <p class="text-xs text-gray-500 mt-1">Target: 95%</p>
+                </div>
+                <div class="stat-card bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-1">
+                        <p class="text-xs text-gray-400">Protected Records</p>
+                        <span class="info-icon" data-tooltip="<div class='tooltip-title'>Protected Records</div>Total number of PII records protected this quarter. Includes all detected and obfuscated PII items across all sources and users.">?</span>
+                    </div>
+                    <p class="text-2xl font-bold neon-green">2.4M</p>
+                    <p class="text-xs text-gray-500 mt-1">This quarter</p>
+                    <p class="text-xs text-green-400 mt-1">↑ 15% from last quarter</p>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 border border-gray-700 rounded p-4 mb-6">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-sm font-semibold neon-green">Audit Log</h3>
+                    <span class="info-icon" data-tooltip="<div class='tooltip-title'>Audit Log</div>Complete record of all administrative actions, user activities, and system events. Required for compliance and incident investigation. All entries are tamper-proof and timestamped.">?</span>
+                </div>
+                <div class="space-y-2 text-sm" id="audit-log">
+                    <!-- Will be populated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- INCIDENT RESPONSE -->
+        <div id="incidents" class="section">
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold neon-green">Open Incidents</h2>
+                    <span class="info-icon" data-tooltip="<div class='tooltip-title'>Open Incidents</div>Active security incidents requiring investigation or response. Priority levels: HIGH (immediate action), MEDIUM (within 24h), LOW (within 7 days). Age shows time since incident was created.">?</span>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded overflow-hidden">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-gray-300">Priority</th>
+                                <th class="px-4 py-2 text-left text-gray-300">ID</th>
+                                <th class="px-4 py-2 text-left text-gray-300">User</th>
+                                <th class="px-4 py-2 text-left text-gray-300">Type</th>
+                                <th class="px-4 py-2 text-left text-gray-300">Status</th>
+                                <th class="px-4 py-2 text-left text-gray-300">Age</th>
+                            </tr>
+                        </thead>
+                        <tbody id="incidents-table">
+                            <!-- Will be populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Incident Trends</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Incident Trends</div>7-day trend of incident creation. Helps identify if security posture is improving (downward trend) or deteriorating (upward trend).">?</span>
+                    </div>
+                    <div style="height: 250px;">
+                        <canvas id="incidentTrendChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container bg-gray-800 border border-gray-700 rounded p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold neon-green">Resolution Time</h3>
+                        <span class="info-icon chart-info" data-tooltip="<div class='tooltip-title'>Resolution Time</div>Distribution of incident resolution times. Faster resolution indicates better incident response procedures. Target: 80% resolved within 4 hours.">?</span>
+                    </div>
+                    <div style="height: 250px;">
+                        <canvas id="resolutionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        Chart.defaults.color = '#9CA3AF';
+        Chart.defaults.borderColor = '#374151';
+
+        let charts = {};
+        let eventCount = 0;
+        const tooltip = document.getElementById('tooltip');
+
+        // Tooltip functionality
+        function showTooltip(e, text) {
+            tooltip.innerHTML = text;
+            tooltip.classList.add('show');
+            const rect = e.target.getBoundingClientRect();
+            tooltip.style.left = (rect.right + 10) + 'px';
+            tooltip.style.top = (rect.top - 10) + 'px';
+        }
+
+        function hideTooltip() {
+            tooltip.classList.remove('show');
+        }
+
+        document.querySelectorAll('.info-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', (e) => {
+                const tooltipText = e.target.getAttribute('data-tooltip');
+                if (tooltipText) {
+                    showTooltip(e, tooltipText);
+                }
+            });
+            icon.addEventListener('mouseleave', hideTooltip);
+        });
+
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const section = item.dataset.section;
+                document.querySelectorAll('.nav-item').forEach(n => {
+                    n.classList.remove('active');
+                    n.classList.remove('border-neon-green', 'neon-green');
+                    n.classList.add('border-transparent', 'text-gray-400');
+                });
+                item.classList.add('active');
+                item.classList.add('border-neon-green', 'neon-green');
+                item.classList.remove('border-transparent', 'text-gray-400');
+                
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.getElementById(section).classList.add('active');
+                
+                // Initialize charts for the selected section (always, not just if missing)
+                if (section === 'overview') {
+                    initOverviewCharts();
+                }
+                if (section === 'threats') {
+                    initThreatCharts();
+                }
+                if (section === 'users') {
+                    initUserCharts();
+                }
+                if (section === 'incidents') {
+                    initIncidentCharts();
+                }
+            });
+        });
+
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Mock data generators
+        function generateEvent() {
+            const users = ['john.doe', 'alice.wang', 'bob.smith', 'charlie.brown'];
+            const apps = ['ChatGPT', 'gmail.com', 'Slack', 'Teams'];
+            const types = ['EMAIL', 'SSN', 'PHONE', 'PERSON'];
+            const actions = ['Obfuscated', 'Blocked'];
+            
+            const user = users[Math.floor(Math.random() * users.length)];
+            const app = apps[Math.floor(Math.random() * apps.length)];
+            const type = types[Math.floor(Math.random() * types.length)];
+            const action = actions[Math.floor(Math.random() * actions.length)];
+            
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            
+            return {
+                time,
+                user,
+                app,
+                type,
+                action,
+                machine: `machine-${Math.floor(Math.random() * 100)}`
+            };
+        }
+
+        function addEventToStream() {
+            const event = generateEvent();
+            const stream = document.getElementById('event-stream');
+            const div = document.createElement('div');
+            div.className = 'border-l-2 border-neon-green pl-3 py-2 text-sm hover:bg-gray-700 transition-colors cursor-pointer';
+            div.innerHTML = `
+                <div class="flex items-center space-x-2 mb-1">
+                    <span class="text-gray-400">[${event.time}]</span>
+                    <span class="neon-green">${event.user}</span>
+                    <span class="text-gray-500">@</span>
+                    <span class="text-gray-300">${event.machine}</span>
+                    <span class="text-gray-500">→</span>
+                    <span class="text-yellow-400">${event.app}</span>
+                </div>
+                <div class="text-gray-300">
+                    <span class="text-red-400">⚠</span> ${event.type} detected
+                </div>
+                <div class="text-green-400">
+                    ✓ ${event.action} → {${event.type}_1}
+                </div>
+            `;
+            stream.insertBefore(div, stream.firstChild);
+            if (stream.children.length > 20) stream.removeChild(stream.lastChild);
+        }
+
+        function updateUI(data) {
+            console.log('🔄 updateUI called with:', {
+                total: data.total,
+                protected: data.protected,
+                users: data.users,
+                apps: data.apps,
+                hasTime: !!(data.time && data.time.hours),
+                hasEntities: !!data.entities,
+                hasSources: !!data.sources,
+                hasApps: !!data.apps_data
+            });
+            
+            // Update stats cards
+            const totalEl = document.getElementById('total');
+            const protectedEl = document.getElementById('protected');
+            const usersEl = document.getElementById('users');
+            const appsEl = document.getElementById('apps');
+            
+            if (totalEl && data.total !== undefined) {
+                totalEl.textContent = data.total.toLocaleString();
+                console.log('  ✓ Updated total:', data.total);
+            }
+            if (protectedEl && data.protected !== undefined) {
+                protectedEl.textContent = data.protected + '%';
+                console.log('  ✓ Updated protected:', data.protected);
+            }
+            if (usersEl && data.users !== undefined) {
+                usersEl.textContent = data.users;
+                console.log('  ✓ Updated users:', data.users);
+            }
+            if (appsEl && data.apps !== undefined) {
+                appsEl.textContent = data.apps;
+                console.log('  ✓ Updated apps:', data.apps);
+            }
+            
+            // Update charts with real data if available, mix with mock if needed
+            // Risk Trend Chart
+            if (data.risk_trend && data.risk_trend.days && data.risk_trend.scores && data.risk_trend.scores.length > 0) {
+                console.log('  📊 Updating risk trend chart with', data.risk_trend.scores.length, 'data points');
+                updateRiskTrendChart(data.risk_trend);
+            } else if (data.time && data.time.hours && data.time.counts && data.time.counts.length > 0) {
+                console.log('  📊 Updating risk trend chart with time series data');
+                updateRiskTrendChartFromTime(data.time);
+            } else {
+                // Fallback to mock data
+                const mockTrend = {
+                    days: Array.from({length: 30}, (_, i) => `Day ${i+1}`),
+                    scores: Array.from({length: 30}, () => Math.floor(Math.random() * 20) + 65)
+                };
+                updateRiskTrendChart(mockTrend);
+            }
+            
+            // Risky Apps Chart
+            if (data.apps_data && Object.keys(data.apps_data).length > 0) {
+                console.log('  📊 Updating risky apps chart with', Object.keys(data.apps_data).length, 'apps');
+                updateRiskyAppsChart(data.apps_data);
+            } else {
+                // Fallback to mock data
+                updateRiskyAppsChart({
+                    'ChatGPT': 1247, 'Gmail': 892, 'Slack': 445, 'Teams': 234, 'Other': 189
+                });
+            }
+            
+            // Heatmap Chart - always show data (use real if available, otherwise mock)
+            updateHeatmapChart(data);
+            
+            // Department Risk Chart - always show data (use real if available, otherwise mock)
+            updateDeptRiskChart(data);
+            
+            // PII Type Chart (for Threats tab)
+            if (data.entities && Object.keys(data.entities).length > 0) {
+                console.log('  📊 Updating PII type chart with', Object.keys(data.entities).length, 'entities');
+                updatePiiTypeChart(data.entities);
+            } else {
+                // Fallback to mock data
+                updatePiiTypeChart({
+                    'EMAIL': 40, 'PERSON': 25, 'PHONE': 15, 'SSN': 10, 'CC': 5, 'API_KEYS': 5
+                });
+            }
+            
+            // Source Chart
+            if (data.sources && Object.keys(data.sources).length > 0) {
+                console.log('  📊 Updating source chart with', Object.keys(data.sources).length, 'sources');
+                updateSourceChart(data.sources);
+            } else {
+                // Fallback to mock data
+                updateSourceChart({
+                    'clipboard': 20, 'typing': 12, 'image': 4
+                });
+            }
+            
+            // Time Pattern Chart (for Threats tab)
+            updateTimePatternChart(data);
+        }
+        
+        function updateHeatmapChart(data) {
+            // Use real data if available, otherwise use mock
+            const total = data.total || 0;
+            const baseValue = total > 0 ? Math.floor(total / 7) : 40;
+            const heatmapData = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(() => {
+                return baseValue + Math.floor(Math.random() * 20) - 10;
+            });
+            
+            updateChart('heatmapChart', {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Detections',
+                        data: heatmapData,
+                        backgroundColor: '#00ff88',
+                        borderColor: '#00ff88',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+        }
+        
+        function updateDeptRiskChart(data) {
+            // Use real data if available, otherwise use mock
+            const users_data = data.users_data || {};
+            const total = data.total || 0;
+            
+            let deptData = [];
+            if (Object.keys(users_data).length > 0) {
+                // Generate department data from user data
+                const userList = Object.entries(users_data);
+                const depts = ['Eng', 'Sales', 'Finance', 'HR'];
+                userList.slice(0, 4).forEach(([user, count], idx) => {
+                    const dept = depts[idx % depts.length];
+                    const risk = Math.min(100, 50 + (count * 2));
+                    deptData.push({x: count, y: risk, label: dept});
+                });
+            } else {
+                // Mock data
+                deptData = [
+                    {x: 45, y: 85, label: 'Eng'},
+                    {x: 32, y: 65, label: 'Sales'},
+                    {x: 28, y: 55, label: 'Finance'},
+                    {x: 18, y: 40, label: 'HR'}
+                ];
+            }
+            
+            updateChart('deptRiskChart', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Departments',
+                        data: deptData,
+                        backgroundColor: '#00ff88',
+                        borderColor: '#00ff88',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw.label + ': ' + context.parsed.x + ' detections, ' + context.parsed.y + ' risk';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, title: { display: true, text: 'Risk Score', color: '#9CA3AF' }, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { beginAtZero: true, max: 50, title: { display: true, text: 'Detections', color: '#9CA3AF' }, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } }
+                    }
+                }
+            });
+        }
+        
+        function updateTimePatternChart(data) {
+            // Use real time data if available, otherwise use mock
+            const timeData = data.time || {};
+            const hours = timeData.hours || ['00', '02', '04', '06', '08', '10', '12', '14', '16', '18', '20', '22'];
+            const counts = timeData.counts || [2, 1, 0, 1, 5, 12, 18, 25, 22, 15, 8, 3];
+            
+            updateChart('timePatternChart', {
+                type: 'bar',
+                data: {
+                    labels: hours,
+                    datasets: [{
+                        label: 'Detections',
+                        data: counts,
+                        backgroundColor: '#00ff88',
+                        borderColor: '#00ff88',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+        }
+        
+        function updateRiskTrendChart(data) {
+            // Update risk trend chart with 30-day data
+            updateChart('riskTrendChart', {
+                type: 'line',
+                data: {
+                    labels: data.days,
+                    datasets: [{
+                        label: 'Risk Score',
+                        data: data.scores,
+                        borderColor: '#00ff88',
+                        backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 2,
+                        pointHoverRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: false, min: 50, max: 100, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 10 }, maxTicksLimit: 10 }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+        }
+        
+        function updateRiskTrendChartFromTime(data) {
+            // Fallback: Update risk trend chart with time series data (6 hours)
+            updateChart('riskTrendChart', {
+                type: 'line',
+                data: {
+                    labels: data.hours,
+                    datasets: [{
+                        data: data.counts,
+                        borderColor: '#00ff88',
+                        backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        pointHoverRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+        }
+        
+        function updatePiiTypeChart(data) {
+            updateChart('piiTypeChart', {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(data),
+                    datasets: [{
+                        data: Object.values(data),
+                        backgroundColor: ['#00ff88', '#00cc6a', '#00994d', '#ff4444', '#ff8844', '#ffaa44'],
+                        borderColor: '#1F2937',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { labels: { color: '#9CA3AF', font: { size: 11 } }, position: 'right' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateSourceChart(data) {
+            updateChart('sourceChart', {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(data),
+                    datasets: [{
+                        data: Object.values(data),
+                        backgroundColor: ['#00ff88', '#00cc6a', '#00994d'],
+                        borderColor: '#1F2937',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { color: '#9CA3AF', font: { size: 11 } }, position: 'bottom' } }
+                }
+            });
+        }
+        
+        function updateRiskyAppsChart(data) {
+            // Convert apps_data to chart format
+            const labels = Object.keys(data);
+            const values = Object.values(data);
+            
+            updateChart('riskyAppsChart', {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: ['#ff4444', '#ff8844', '#ffaa44', '#ffcc44', '#00ff88'],
+                        borderColor: '#1F2937',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        y: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+        }
+
+        function updateAlerts() {
+            const alerts = [
+                { text: 'Critical: Data exfiltration attempt', priority: 'high' },
+                { text: 'Machine offline: LAPTOP-42', priority: 'medium' },
+                { text: 'Policy violation: john.doe', priority: 'medium' }
+            ];
+            const list = document.getElementById('alerts-list');
+            list.innerHTML = alerts.map(a => `
+                <div class="flex items-center space-x-2 py-1 hover:bg-gray-700 rounded px-2 transition-colors">
+                    <span class="w-2 h-2 rounded-full ${a.priority === 'high' ? 'bg-red-400' : 'bg-yellow-400'}"></span>
+                    <span class="text-gray-300 text-xs">${a.text}</span>
+                </div>
+            `).join('');
+        }
+
+        // Global data storage for leaderboards
+        let currentData = null;
+        
+        function updateLeaderboards() {
+            // Use real data if available, otherwise use mock data
+            const apps_data = currentData?.apps_data || {
+                'ChatGPT': 1247, 'Gmail': 892, 'Slack': 445, 'Teams': 234, 'Personal Email': 189
+            };
+            const users_data = currentData?.users_data || {
+                'john.doe': 247, 'alice.wang': 189, 'bob.smith': 156, 'charlie.brown': 134, 'diana.prince': 98
+            };
+            
+            // App leaderboard - use real data (only update if element exists)
+            const appLeaderboardEl = document.getElementById('app-leaderboard');
+            if (appLeaderboardEl) {
+                const apps = Object.entries(apps_data)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5)
+                    .map(([name, detections], idx) => {
+                        let risk = 'LOW';
+                        if (detections > 500) risk = 'HIGH';
+                        else if (detections > 200) risk = 'MEDIUM';
+                        return { rank: idx + 1, name, detections, risk, trend: '+0%' };
+                    });
+                
+                appLeaderboardEl.innerHTML = apps.map(a => `
+                    <tr class="border-t border-gray-700 hover:bg-gray-700 transition-colors">
+                        <td class="px-4 py-2">${a.rank}</td>
+                        <td class="px-4 py-2 font-medium">${a.name}</td>
+                        <td class="px-4 py-2 text-right neon-green">${a.detections.toLocaleString()}</td>
+                        <td class="px-4 py-2 text-center">
+                            <span class="risk-badge ${a.risk === 'HIGH' ? 'risk-high' : a.risk === 'MEDIUM' ? 'risk-medium' : 'risk-low'}">${a.risk}</span>
+                        </td>
+                        <td class="px-4 py-2 text-center ${a.trend.startsWith('+') ? 'trend-up' : a.trend.startsWith('-') ? 'trend-down' : 'trend-neutral'}">${a.trend}</td>
+                    </tr>
+                `).join('');
+            }
+
+            // User leaderboard - use real data (only update if element exists)
+            const userLeaderboardEl = document.getElementById('user-leaderboard');
+            if (userLeaderboardEl) {
+                const users = Object.entries(users_data)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5)
+                    .map(([name, detections], idx) => {
+                        let risk = 'LOW';
+                        if (detections > 200) risk = 'HIGH';
+                        else if (detections > 100) risk = 'MEDIUM';
+                        const undo = Math.floor(Math.random() * 30) + '%';
+                        const depts = ['Eng', 'Sales', 'Finance', 'HR', 'IT'];
+                        return { rank: idx + 1, name, detections, risk, undo, dept: depts[idx % depts.length] };
+                    });
+                
+                if (users.length > 0) {
+                    userLeaderboardEl.innerHTML = users.map(u => `
+                        <tr class="border-t border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer">
+                            <td class="px-4 py-2">${u.rank}</td>
+                            <td class="px-4 py-2 font-medium neon-green">${u.name}</td>
+                            <td class="px-4 py-2 text-right neon-green">${u.detections}</td>
+                            <td class="px-4 py-2 text-center">
+                                <span class="risk-badge ${u.risk === 'HIGH' ? 'risk-high' : u.risk === 'MEDIUM' ? 'risk-medium' : 'risk-low'}">${u.risk}</span>
+                            </td>
+                            <td class="px-4 py-2 text-center ${parseFloat(u.undo) > 20 ? 'text-red-400' : 'text-gray-400'}">${u.undo}</td>
+                            <td class="px-4 py-2 text-gray-400">${u.dept}</td>
+                        </tr>
+                    `).join('');
+                } else {
+                    userLeaderboardEl.innerHTML = '<tr><td colspan="6" class="px-4 py-2 text-center text-gray-400">No user data available</td></tr>';
+                }
+            }
+
+            // Risky domains
+            const domains = [
+                { domain: 'chatgpt.com', sessions: 847, detections: 423 },
+                { domain: 'personal-gmail.com', sessions: 234, detections: 189 },
+                { domain: 'pastebin.com', sessions: 45, detections: 67, new: true }
+            ];
+            document.getElementById('risky-domains').innerHTML = domains.map(d => `
+                <div class="flex justify-between items-center py-2 border-b border-gray-700 hover:bg-gray-700 rounded px-2 transition-colors">
+                    <div>
+                        <span class="font-medium">${d.domain}</span>
+                        ${d.new ? '<span class="ml-2 text-xs bg-red-500 text-white px-2 py-0.5 rounded">NEW</span>' : ''}
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        ${d.sessions} sessions, ${d.detections} detections
+                    </div>
+                </div>
+            `).join('');
+
+            // Audit log
+            const audit = [
+                { time: '14:23', user: 'admin.user', action: 'Viewed user report', details: 'john.doe' },
+                { time: '14:15', user: 'john.doe', action: 'Undo detection', details: 'EMAIL_1234' },
+                { time: '14:10', user: 'alice.wang', action: 'Whitelist added', details: 'excel.exe' },
+                { time: '14:05', user: 'system', action: 'Policy updated', details: 'Consensus mode enabled' }
+            ];
+            document.getElementById('audit-log').innerHTML = audit.map(a => `
+                <div class="flex justify-between py-2 border-b border-gray-700 text-sm hover:bg-gray-700 rounded px-2 transition-colors">
+                    <div>
+                        <span class="text-gray-400">${a.time}</span>
+                        <span class="neon-green ml-2">${a.user}</span>
+                        <span class="text-gray-300 ml-2">${a.action}</span>
+                        <span class="text-gray-500 ml-2">${a.details}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Incidents
+            const incidents = [
+                { priority: 'HIGH', id: '#1234', user: 'john.doe', type: 'Data Leak', status: 'Investigating', age: '2h' },
+                { priority: 'MED', id: '#1233', user: 'alice.w', type: 'Policy Viol', status: 'Assigned', age: '1d' },
+                { priority: 'MED', id: '#1232', user: 'bob.s', type: 'Anomaly', status: 'New', age: '3h' }
+            ];
+            document.getElementById('incidents-table').innerHTML = incidents.map(i => `
+                <tr class="border-t border-gray-700 hover:bg-gray-700 transition-colors cursor-pointer">
+                    <td class="px-4 py-2">
+                        <span class="risk-badge ${i.priority === 'HIGH' ? 'risk-high' : 'risk-medium'}">${i.priority}</span>
+                    </td>
+                    <td class="px-4 py-2 neon-green">${i.id}</td>
+                    <td class="px-4 py-2">${i.user}</td>
+                    <td class="px-4 py-2">${i.type}</td>
+                    <td class="px-4 py-2">${i.status}</td>
+                    <td class="px-4 py-2 text-gray-400">${i.age}</td>
+                </tr>
+            `).join('');
+        }
+
+        function initOverviewCharts() {
+            // Risk Trend
+            updateChart('riskTrendChart', {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 30}, (_, i) => `Day ${i+1}`),
+                    datasets: [{
+                        label: 'Risk Score',
+                        data: Array.from({length: 30}, () => Math.floor(Math.random() * 20) + 65),
+                        borderColor: '#00ff88',
+                        backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 2,
+                        pointHoverRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: false, min: 50, max: 100, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 10 }, maxTicksLimit: 10 }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+
+            // Risky Apps - use real data if available
+            const apps_data = currentData?.apps_data || {
+                'ChatGPT': 1247, 'Gmail': 892, 'Slack': 445, 'Teams': 234, 'Other': 189
+            };
+            
+            if (Object.keys(apps_data).length > 0) {
+                updateRiskyAppsChart(apps_data);
+            } else {
+                updateChart('riskyAppsChart', {
+                    type: 'bar',
+                    data: {
+                        labels: ['ChatGPT', 'Gmail', 'Slack', 'Teams', 'Other'],
+                        datasets: [{
+                            data: [1247, 892, 445, 234, 189],
+                            backgroundColor: ['#ff4444', '#ff8844', '#ffaa44', '#ffcc44', '#00ff88'],
+                            borderColor: '#1F2937',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                            y: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                        }
+                    }
+                });
+            }
+
+            // Heatmap (simplified as bar chart)
+            updateChart('heatmapChart', {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Detections',
+                        data: [45, 52, 38, 61, 55, 12, 8],
+                        backgroundColor: '#00ff88',
+                        borderColor: '#00ff88',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+
+            // Department Risk
+            updateChart('deptRiskChart', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Departments',
+                        data: [
+                            {x: 45, y: 85, label: 'Eng'},
+                            {x: 32, y: 65, label: 'Sales'},
+                            {x: 28, y: 55, label: 'Finance'},
+                            {x: 18, y: 40, label: 'HR'}
+                        ],
+                        backgroundColor: '#00ff88',
+                        borderColor: '#00ff88',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const depts = ['Eng', 'Sales', 'Finance', 'HR'];
+                                    return depts[context.dataIndex] + ': ' + context.parsed.x + ' detections, ' + context.parsed.y + ' risk';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, title: { display: true, text: 'Risk Score', color: '#9CA3AF' }, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { beginAtZero: true, max: 50, title: { display: true, text: 'Detections', color: '#9CA3AF' }, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } }
+                    }
+                }
+            });
+        }
+
+        function initThreatCharts() {
+            // Use currentData if available, otherwise use mock
+            if (currentData) {
+                // PII Type Chart
+                if (currentData.entities && Object.keys(currentData.entities).length > 0) {
+                    updatePiiTypeChart(currentData.entities);
+                } else {
+                    updatePiiTypeChart({
+                        'EMAIL': 40, 'PERSON': 25, 'PHONE': 15, 'SSN': 10, 'CC': 5, 'API_KEYS': 5
+                    });
+                }
+                // Time Pattern Chart
+                updateTimePatternChart(currentData);
+            } else {
+                // Use mock data
+                updatePiiTypeChart({
+                    'EMAIL': 40, 'PERSON': 25, 'PHONE': 15, 'SSN': 10, 'CC': 5, 'API_KEYS': 5
+                });
+                updateTimePatternChart({});
+            }
+        }
+
+        function initUserCharts() {
+            // Use currentData if available, otherwise use mock
+            const users_data = currentData?.users_data || {};
+            const total = currentData?.total || 0;
+            
+            // Generate 7-day trend from user data
+            const days = Array.from({length: 7}, (_, i) => `Day ${i+1}`);
+            const dayData = days.map(() => {
+                if (total > 0) {
+                    return Math.max(0, Math.floor(total / 7) + Math.floor(Math.random() * 10) - 5);
+                }
+                return Math.floor(Math.random() * 20) + 30;
+            });
+            
+            updateChart('userActivityChart', {
+                type: 'line',
+                data: {
+                    labels: days,
+                    datasets: [{
+                        label: 'Detections',
+                        data: dayData,
+                        borderColor: '#00ff88',
+                        backgroundColor: 'rgba(0, 255, 136, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        pointHoverRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+
+            // Department Distribution - use real data if available
+            const deptData = {
+                'Engineering': 0,
+                'Sales': 0,
+                'Finance': 0,
+                'HR': 0,
+                'Other': 0
+            };
+            
+            // Distribute user data across departments
+            if (Object.keys(users_data).length > 0) {
+                const userList = Object.entries(users_data);
+                userList.forEach(([user, count], idx) => {
+                    const depts = ['Engineering', 'Sales', 'Finance', 'HR', 'Other'];
+                    const dept = depts[idx % depts.length];
+                    deptData[dept] += count;
+                });
+            } else {
+                // Mock data
+                deptData['Engineering'] = 45;
+                deptData['Sales'] = 32;
+                deptData['Finance'] = 28;
+                deptData['HR'] = 18;
+                deptData['Other'] = 15;
+            }
+            
+            updateChart('deptChart', {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(deptData),
+                    datasets: [{
+                        data: Object.values(deptData),
+                        backgroundColor: '#00ff88',
+                        borderColor: '#00ff88',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 10 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+        }
+
+        function initIncidentCharts() {
+            // Incident Trends
+            updateChart('incidentTrendChart', {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 7}, (_, i) => `Day ${i+1}`),
+                    datasets: [{
+                        label: 'Incidents',
+                        data: [3, 5, 2, 4, 6, 3, 2],
+                        borderColor: '#ff4444',
+                        backgroundColor: 'rgba(255, 68, 68, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 3,
+                        pointHoverRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+
+            // Resolution Time
+            updateChart('resolutionChart', {
+                type: 'bar',
+                data: {
+                    labels: ['<1h', '1-4h', '4-8h', '8-24h', '>24h'],
+                    datasets: [{
+                        data: [8, 12, 5, 3, 1],
+                        backgroundColor: ['#00ff88', '#00cc6a', '#ffaa44', '#ff8844', '#ff4444'],
+                        borderColor: '#1F2937',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151' } },
+                        x: { ticks: { color: '#9CA3AF', font: { size: 11 } }, grid: { color: '#374151', display: false } }
+                    }
+                }
+            });
+        }
+
+        function updateChart(id, config) {
+            const canvas = document.getElementById(id);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (charts[id]) charts[id].destroy();
+            charts[id] = new Chart(ctx, config);
+        }
+
+        // Load data from API
+        async function loadData() {
+            try {
+                console.log('📡 Fetching data from /api/stats...');
+                const res = await fetch('/api/stats');
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}`);
+                }
+                const data = await res.json();
+                console.log('✓ Received data:', data);
+                console.log('  Data source:', data.data_source);
+                console.log('  Event count:', data.event_count);
+                console.log('  Total detections:', data.total);
+                console.log('  Protection rate:', data.protected);
+                
+                // Update data source indicator
+                const sourceEl = document.getElementById('data-source');
+                if (data.data_source === 'amplitude' && data.event_count > 0) {
+                    sourceEl.textContent = `✓ Amplitude (${data.event_count} events)`;
+                    sourceEl.className = 'px-2 py-1 rounded text-xs font-medium bg-green-900 text-green-300 border border-green-500';
+                    console.log('✓ Using Amplitude data - updating dashboard');
+                } else {
+                    sourceEl.textContent = '⚠ Mock Data';
+                    sourceEl.className = 'px-2 py-1 rounded text-xs font-medium bg-yellow-900 text-yellow-300 border border-yellow-500';
+                    console.log('⚠ Using mock data');
+                }
+                
+                // Store data globally for leaderboards
+                currentData = data;
+                
+                // Update UI with real data
+                console.log('📊 Updating UI with data...');
+                updateUI(data);
+                updateLeaderboards(); // Update leaderboards with real data
+                console.log('✓ UI updated');
+            } catch (e) {
+                console.error('❌ Error loading data:', e);
+                const sourceEl = document.getElementById('data-source');
+                if (sourceEl) {
+                    sourceEl.textContent = '❌ Error';
+                    sourceEl.className = 'px-2 py-1 rounded text-xs font-medium bg-red-900 text-red-300 border border-red-500';
+                }
+                // Use mock data as fallback
+                const mockData = {
+                    total: 100,
+                    protected: 95,
+                    users: 5,
+                    apps: 3,
+                    risk_trend: {
+                        days: Array.from({length: 30}, (_, i) => `Day ${i+1}`),
+                        scores: Array.from({length: 30}, () => Math.floor(Math.random() * 20) + 65)
+                    },
+                    entities: { 'EMAIL': 40, 'PERSON': 25, 'PHONE': 15, 'SSN': 10 },
+                    sources: { 'clipboard': 20, 'typing': 12, 'image': 4 },
+                    apps_data: { 'slack.exe': 12, 'teams.exe': 8, 'chrome.exe': 6 },
+                    users_data: { 'user1': 20, 'user2': 15, 'user3': 10 },
+                    time: {
+                        hours: ['00', '02', '04', '06', '08', '10', '12', '14', '16', '18', '20', '22'],
+                        counts: [2, 1, 0, 1, 5, 12, 18, 25, 22, 15, 8, 3]
+                    }
+                };
+                updateUI(mockData);
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            // Load data from API first - this will update all charts
+            loadData().then(() => {
+                // Initialize charts with default data if API data not available
+                if (!charts['riskTrendChart']) {
+                    initOverviewCharts();
+                }
+            });
+            
+            updateLeaderboards();
+            updateAlerts();
+            
+            // Add events to stream
+            setInterval(addEventToStream, 5000);
+            addEventToStream();
+            
+            // Update data every 30 seconds
+            setInterval(() => {
+                loadData();
+                updateLeaderboards();
+                updateAlerts();
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

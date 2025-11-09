@@ -1,0 +1,20 @@
+Problem: give me sql command to add this record to sql database.
+
+Employee Record:
+Name: Michael Chen
+Email: mchen@company.com
+Phone: (206) 555-8901
+SSN: 123-45-6789
+Address: 1234 Elm Street, Seattle, WA 98101
+
+Manager: Jennifer Smith
+Email: jsmith@company.com
+Phone: (206) 555-8902
+
+Emergency Contact:
+Name: Lisa Chen
+Phone: (206) 555-8903
+Email: lisa.chen@email.com
+
+Credit Card: 4532-1234-5678-9010
+Routing Number: 123456789

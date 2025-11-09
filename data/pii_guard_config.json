@@ -1,0 +1,41 @@
+{
+  "detectors": {
+    "regex": false,
+    "spacy": false,
+    "transformer": true
+  },
+  "sources": {
+    "clipboard": true,
+    "typing": true
+  },
+  "entity_types": {
+    "EMAIL": true,
+    "PHONE": true,
+    "SSN": true,
+    "CREDIT_CARD": true,
+    "PERSON": true,
+    "LOCATION": true,
+    "ORGANIZATION": true,
+    "DATE": false,
+    "IP_ADDRESS": false,
+    "URL": false,
+    "ID_NUMBER": true
+  },
+  "whitelist": {
+    "apps": [],
+    "domains": []
+  },
+  "notifications": {
+    "enabled": true,
+    "auto_dismiss_seconds": 5,
+    "show_preview": true
+  },
+  "advanced": {
+    "confidence_threshold": 0.5,
+    "min_text_length": 10,
+    "spacy_model": "en_core_web_sm",
+    "transformer_model": "lakshyakh93/deberta_finetuned_pii",
+    "use_consensus": false,
+    "consensus_mode": "any_two"
+  }
+}

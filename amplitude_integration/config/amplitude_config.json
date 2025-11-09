@@ -1,0 +1,17 @@
+{
+  "api_key": "e711f5efc9a39e176d09072fa88aa14e",
+  "secret_key": "b29c19d0b0349429afc628b2eed8558e",
+  "device_id": "7c825d5e-939e-46e2-9a57-ddd806be6c56",
+  "user_id": "",
+  "enabled": true,
+  "use_mock_data": true,
+  "mock_data_interval_seconds": 5,
+  "embed_url": "https://app.amplitude.com/analytics/share/embed/4a8e85bd-6d38-42ca-9a62-8acc90505ed9",
+  "batch_size": 10,
+  "flush_interval_seconds": 30,
+  "max_queue_size": 1000,
+  "retry_attempts": 3,
+  "rate_limit_events_per_second": 30,
+  "use_amplitude_data": true,
+  "data_cache_duration_seconds": 60
+}
