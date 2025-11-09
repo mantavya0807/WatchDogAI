@@ -83,7 +83,7 @@ class RegexPatternDetector:
                 re.IGNORECASE
             ),
             'API_KEY': re.compile(
-                r'\b[A-Za-z0-9_-]{32,}\b'  # Generic API key pattern
+                r'\b(?:sk|pk|rk|ak|api_key|secret_key|access_key|private_key)[_-]?[A-Za-z0-9_-]{16,}\b|\b[A-Za-z0-9_-]{32,}\b'  # API keys with common prefixes or 32+ chars
             ),
             'ID_NUMBER': re.compile(
                 r'\b(?:EMP|ID|EMPID|EMPLOYEE)-?[0-9]{4,10}\b',

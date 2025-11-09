@@ -19,11 +19,11 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Import all detectors
-from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
-from detectors.spacy_detector import SpacyDetector, Detection as SpacyDetection
+from src.detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+from src.detectors.spacy_detector import SpacyDetector, Detection as SpacyDetection
 
 try:
-    from detectors.transformer_detector import TransformerDetector, Detection as TransDetection
+    from src.detectors.transformer_detector import TransformerDetector, Detection as TransDetection
     TRANSFORMER_AVAILABLE = True
 except Exception as e:
     print(f"Warning: Transformer detector not available: {e}")

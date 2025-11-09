@@ -53,7 +53,9 @@ class PreferencesManager:
             'confidence_threshold': 0.5,
             'min_text_length': 10,
             'spacy_model': 'en_core_web_sm',
-            'transformer_model': 'lakshyakh93/deberta_finetuned_pii'
+            'transformer_model': 'lakshyakh93/deberta_finetuned_pii',
+            'use_consensus': False,
+            'consensus_mode': 'any_two'
         }
     }
     

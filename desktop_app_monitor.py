@@ -233,10 +233,13 @@ class DesktopAppMonitorV2:
                 spacy_model = self.prefs_manager.get('advanced.spacy_model', 'en_core_web_sm')
                 transformer_model = self.prefs_manager.get('advanced.transformer_model', 'lakshyakh93/deberta_finetuned_pii')
                 confidence_threshold = self.prefs_manager.get('advanced.confidence_threshold', 0.85)  # Higher threshold to avoid false positives
+                use_consensus = self.prefs_manager.get('advanced.use_consensus', False)
+                consensus_mode = self.prefs_manager.get('advanced.consensus_mode', 'any_two')
                 
                 print(f"  Regex: {'✓' if use_regex else '✗'}")
                 print(f"  spaCy: {'✓' if use_spacy else '✗'}")
                 print(f"  Transformer: {'✓' if use_transformer else '✗'}")
+                print(f"  Consensus Mode: {'✓' if use_consensus else '✗'} ({consensus_mode if use_consensus else 'N/A'})")
                 if use_transformer:
                     print(f"  Model: {transformer_model}")
                 
@@ -246,7 +249,9 @@ class DesktopAppMonitorV2:
                     use_transformer=use_transformer,
                     transformer_model=transformer_model,
                     spacy_model=spacy_model,
-                    confidence_threshold=confidence_threshold
+                    confidence_threshold=confidence_threshold,
+                    use_consensus=use_consensus,
+                    consensus_mode=consensus_mode,
                 )
                 self.obfuscator_initialized = True
                 print("✓ Ready\n")
