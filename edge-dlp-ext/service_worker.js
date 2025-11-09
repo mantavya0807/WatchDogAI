@@ -118,7 +118,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }
 });
 
-// Listen for messages from content scripts
+  // Listen for messages from content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('Received message:', message.type);
   
@@ -126,6 +126,30 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message && message.type === 'get-tab-id') {
     sendResponse({tabId: sender.tab ? sender.tab.id : null});
     return true;
+  }
+  
+  // Handle file obfuscation
+  if (message && message.type === 'obfuscate-file') {
+    console.log('[ServiceWorker] Obfuscating file:', message.fileName, message.fileType);
+    
+    const payload = {
+      type: 'obfuscate-file',
+      content: message.content || '',
+      fileType: message.fileType || '',
+      fileName: message.fileName || 'file'
+    };
+    
+    chrome.runtime.sendNativeMessage(NATIVE_HOST, payload, (response) => {
+      if (chrome.runtime.lastError) {
+        console.error('[ServiceWorker] Error obfuscating file:', chrome.runtime.lastError);
+        sendResponse({obfuscated: null, success: false, error: chrome.runtime.lastError.message});
+      } else {
+        console.log('[ServiceWorker] File obfuscated:', response);
+        sendResponse(response || {obfuscated: null, success: false});
+      }
+    });
+    
+    return true; // Will respond asynchronously
   }
   
   // Handle clipboard monitor notification

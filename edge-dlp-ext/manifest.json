@@ -9,13 +9,14 @@
     "default_popup": "popup.html",
     "default_title": "EdgeDLP"
   },
+  "options_page": "options.html",
   "background": {
     "service_worker": "service_worker.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content_script.js"],
+      "js": ["notification.js", "file_obfuscator.js", "content_script.js"],
       "run_at": "document_idle"
     }
   ],

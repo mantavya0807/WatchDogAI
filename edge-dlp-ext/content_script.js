@@ -1,6 +1,9 @@
 // content_script.js
 // Real-time PII protection for risky websites
 // Only activates on high-risk domains (ChatGPT, etc.)
+// Version: 2.0 - Always sends to native host after debounce (like desktop_app_monitor)
+
+console.log('[EdgeDLP] Content script v2.0 loaded - typing detection enabled');
 
 let isRiskyDomain = false;
 let riskyDomains = [];
@@ -69,35 +72,68 @@ function notifySystemMonitor(isRisky, hostname) {
   });
 }
 
-// Real-time typing detection with debounce
+// Real-time typing detection with debounce (like desktop_app_monitor)
 function handleTyping(editor) {
   if (!isRiskyDomain) return;
   
   clearTimeout(typingTimeout);
   
   typingTimeout = setTimeout(async () => {
+    console.log('[EdgeDLP] Debounce timeout fired - checking text...');
     const text = getText(editor);
-    if (text === lastTypedText) return;
+    console.log('[EdgeDLP] Text length:', text.length, 'chars');
+    
+    if (text === lastTypedText) {
+      console.log('[EdgeDLP] Text unchanged, skipping');
+      return;
+    }
     lastTypedText = text;
     
-    if (text.length < 10) return; // Skip short text
-    
-    // Quick regex check first
-    const quickFindings = detectRegex(text);
-    console.log('[EdgeDLP] Quick regex check found:', quickFindings.length, 'findings');
-    if (quickFindings.length > 0) {
-      console.log('[EdgeDLP] Escalating to native host...');
-      // Escalate to native for full obfuscation
-      const response = await escalateToNative(text);
-      console.log('[EdgeDLP] Native response:', response);
-      if (response && response.action === 'replace' && response.replacement) {
-        console.log('[EdgeDLP] Replacing text with obfuscated version');
-        replaceTextRealTime(editor, text, response.replacement);
-      } else {
-        console.log('[EdgeDLP] No replacement from native host');
-      }
+    if (text.length < 10) {
+      console.log('[EdgeDLP] Text too short, skipping');
+      return; // Skip short text
     }
-  }, 500); // 500ms debounce
+    
+    console.log('[EdgeDLP] Sending to native host for full detection (like desktop_app_monitor)...');
+    // Always send to native host for full obfuscation (regex + spaCy + transformer)
+    // Don't do quick regex check - let native host do full detection
+    const response = await escalateToNative(text);
+    console.log('[EdgeDLP] Native response:', response);
+    
+    if (response && response.action === 'replace' && response.replacement) {
+      console.log('[EdgeDLP] Replacing text with obfuscated version');
+      
+      // Skip file inputs - they can't have their value set programmatically
+      if (editor.tagName === 'INPUT' && editor.type === 'file') {
+        console.log('[EdgeDLP] Skipping file input - cannot set value programmatically');
+        return;
+      }
+      
+      // Store original text for undo
+      const originalText = text;
+      const obfuscatedText = response.replacement;
+      
+      replaceTextRealTime(editor, text, response.replacement);
+      
+      // Show notification
+      const findings = response.findings || [];
+      const numItems = findings.length || response.num_redactions || 0;
+      const preview = _getFindingsPreview(findings, text);
+      
+      showPIINotification(
+        numItems,
+        preview,
+        'typing',
+        () => {
+          // Undo callback - restore original text
+          console.log('[EdgeDLP] Undo clicked - restoring original text');
+          replaceTextRealTime(editor, obfuscatedText, originalText);
+        }
+      );
+    } else {
+      console.log('[EdgeDLP] No PII detected or no replacement from native host');
+    }
+  }, 1500); // 1.5s debounce (like desktop_app_monitor pause_threshold)
 }
 
 // Real-time text replacement (preserves cursor position)
@@ -203,6 +239,23 @@ function showInlineNotice(editor, text) {
   setTimeout(() => n.remove(), 3000);
 }
 
+// Helper function to create preview from findings
+function _getFindingsPreview(findings, originalText) {
+  if (!findings || findings.length === 0) {
+    return '';
+  }
+  
+  // Extract preview text from findings (first few items)
+  const previewItems = findings.slice(0, 3).map(f => {
+    const start = f.start || f.index || 0;
+    const end = f.end || (start + (f.length || 0));
+    const text = originalText.substring(start, end);
+    return text.length > 30 ? text.substring(0, 30) + '...' : text;
+  });
+  
+  return previewItems.join(', ');
+}
+
 function attachEditor(editor) {
   if (!editor || editor.__edgeAttached) return;
   editor.__edgeAttached = true;
@@ -229,15 +282,46 @@ function attachEditor(editor) {
       const response = await escalateToNative(text);
       if (response && response.action === 'replace' && response.replacement) {
         e.preventDefault();
+        const originalText = text;
+        const obfuscatedText = response.replacement;
+        
         const setText = (t) => { 
           if (editor.isContentEditable) editor.innerText = t; 
           else editor.value = t; 
         };
         setText(response.replacement);
         showInlineNotice(editor, 'Content obfuscated before sending');
+        
+        // Show notification
+        const findings = response.findings || [];
+        const numItems = findings.length || 0;
+        const preview = _getFindingsPreview(findings, text);
+        
+        showPIINotification(
+          numItems,
+          preview,
+          'typing',
+          () => {
+            // Undo callback - restore original text
+            console.log('[EdgeDLP] Undo clicked - restoring original text');
+            setText(originalText);
+          }
+        );
       } else if (response && response.action === 'block') {
         e.preventDefault();
         showInlineNotice(editor, 'Send blocked - sensitive data detected');
+        
+        // Show notification for blocked content
+        const findings = response.findings || [];
+        const numItems = findings.length || 0;
+        const preview = _getFindingsPreview(findings, text);
+        
+        showPIINotification(
+          numItems,
+          preview,
+          'typing (blocked)',
+          null // No undo for blocked content
+        );
       }
     }
   });
@@ -412,3 +496,27 @@ new MutationObserver(() => {
 
 // Notify on initial load
 checkCurrentDomain();
+
+// Intercept file uploads when on risky domain
+if (isRiskyDomain) {
+  setTimeout(() => {
+    if (typeof window.edgeFileObfuscator !== 'undefined') {
+      window.edgeFileObfuscator.interceptFileUploads();
+      window.edgeFileObfuscator.interceptDragAndDrop();
+    }
+  }, 1000);
+}
+
+// Re-intercept file uploads when domain changes
+const originalCheckDomain = checkCurrentDomain;
+checkCurrentDomain = function() {
+  originalCheckDomain();
+  if (isRiskyDomain) {
+    setTimeout(() => {
+      if (typeof window.edgeFileObfuscator !== 'undefined') {
+        window.edgeFileObfuscator.interceptFileUploads();
+        window.edgeFileObfuscator.interceptDragAndDrop();
+      }
+    }, 1000);
+  }
+};

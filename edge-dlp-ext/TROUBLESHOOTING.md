@@ -86,3 +86,4 @@ This error means the browser cannot find the native messaging host in the Window
    - Ensure the batch file and Python script are readable
    - Ensure the registry key is accessible
 
+

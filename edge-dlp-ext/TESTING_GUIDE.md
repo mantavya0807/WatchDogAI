@@ -199,3 +199,4 @@ python test_native_host_standalone.py
 ✅ No timeout errors  
 ✅ Logs show successful detection  
 
+

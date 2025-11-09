@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeDLP - Options</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .section h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .description {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+            margin-bottom: 10px;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .status {
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .domain-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .domain-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .domain-item input {
+            flex: 1;
+            margin: 0;
+        }
+        
+        .btn-remove {
+            background: #dc3545;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .btn-add {
+            background: #28a745;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+        }
+        
+        .slider-value {
+            min-width: 50px;
+            text-align: right;
+            font-weight: 500;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ EdgeDLP Options</h1>
+            <p>Configure PII protection settings</p>
+        </div>
+        
+        <div class="content">
+            <div id="status" class="status"></div>
+            
+            <!-- Detection Settings -->
+            <div class="section">
+                <h2>
+                    <span class="section-icon">🔍</span>
+                    Detection Settings
+                </h2>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="enableObfuscation">
+                        <label for="enableObfuscation">Enable PII Obfuscation</label>
+                    </div>
+                    <div class="description">Automatically obfuscate PII when typing or uploading files</div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="useConsensus">
+                        <label for="useConsensus">Use Consensus Mode (Ultra-Accurate)</label>
+                    </div>
+                    <div class="description">Requires multiple detectors to agree before marking PII. Higher accuracy, slower performance.</div>
+                </div>
+                
+                <div class="form-group" id="consensusModeGroup" style="display: none;">
+                    <label for="consensusMode">Consensus Mode:</label>
+                    <select id="consensusMode">
+                        <option value="any_two">Any Two (Recommended)</option>
+                        <option value="majority">Majority</option>
+                        <option value="unanimous_structured">Unanimous for Structured Data</option>
+                        <option value="strict">Strict (All Must Agree)</option>
+                    </select>
+                    <div class="description">How many detectors must agree to mark something as PII</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confidenceThreshold">Confidence Threshold:</label>
+                    <div class="slider-group">
+                        <input type="range" id="confidenceThreshold" min="0" max="100" value="50" step="5">
+                        <span class="slider-value" id="confidenceValue">50%</span>
+                    </div>
+                    <div class="description">Minimum confidence level for PII detection (higher = fewer false positives)</div>
+                </div>
+            </div>
+            
+            <!-- Risky Domains -->
+            <div class="section">
+                <h2>
+                    <span class="section-icon">🌐</span>
+                    Risky Domains
+                </h2>
+                
+                <div class="form-group">
+                    <label>Domains where PII protection is active:</label>
+                    <div class="description">Files uploaded to these domains will be automatically obfuscated</div>
+                    <div id="domainList" class="domain-list"></div>
+                    <button type="button" class="btn-add" id="addDomain">+ Add Domain</button>
+                </div>
+            </div>
+            
+            <!-- File Types -->
+            <div class="section">
+                <h2>
+                    <span class="section-icon">📄</span>
+                    File Types
+                </h2>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="protectCode">
+                        <label for="protectCode">Protect Code Files (.py, .js, .java, etc.)</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="protectPDF">
+                        <label for="protectPDF">Protect PDF Files</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="protectDOCX">
+                        <label for="protectDOCX">Protect Word Documents (.docx)</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="protectText">
+                        <label for="protectText">Protect Text Files (.txt, .md, etc.)</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifications -->
+            <div class="section">
+                <h2>
+                    <span class="section-icon">🔔</span>
+                    Notifications
+                </h2>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="enableNotifications">
+                        <label for="enableNotifications">Show Notifications</label>
+                    </div>
+                    <div class="description">Display notifications when PII is detected and obfuscated</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notificationTimeout">Notification Timeout (seconds):</label>
+                    <div class="slider-group">
+                        <input type="range" id="notificationTimeout" min="1" max="10" value="5" step="1">
+                        <span class="slider-value" id="timeoutValue">5s</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Actions -->
+            <div class="button-group">
+                <button class="btn-primary" id="saveBtn">💾 Save Settings</button>
+                <button class="btn-secondary" id="resetBtn">🔄 Reset to Defaults</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="options.js"></script>
+</body>
+</html>
+
