@@ -11,10 +11,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
-from detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
-from detectors.spacy_detector import SpacyDetector, Detection as SpacyDetection
+from src.detectors.regex_detector import RegexPatternDetector, Detection as RegexDetection
+from src.detectors.spacy_detector import SpacyDetector, Detection as SpacyDetection
 try:
-    from detectors.transformer_detector import TransformerDetector, Detection as TransDetection
+    from src.detectors.transformer_detector import TransformerDetector, Detection as TransDetection
     TRANSFORMER_AVAILABLE = True
 except Exception as e:
     print(f"Warning: Transformer detector not available: {e}")
@@ -22,13 +22,13 @@ except Exception as e:
 
 # NEW: Consensus detector for multi-model ensemble
 try:
-    from detectors.consensus_detector import ConsensusDetector, ConsensusDetection
+    from src.detectors.consensus_detector import ConsensusDetector, ConsensusDetection
     CONSENSUS_AVAILABLE = True
 except Exception as e:
     print(f"Warning: Consensus detector not available: {e}")
     CONSENSUS_AVAILABLE = False
 
-from escrow_db import EscrowDatabase
+from src.escrow_db import EscrowDatabase
 
 @dataclass
 class ObfuscationResult:
@@ -91,7 +91,7 @@ class PIIObfuscator:
         self.use_consensus = use_consensus
         
         if use_consensus and CONSENSUS_AVAILABLE:
-            print("🎯 CONSENSUS MODE - Multi-Model Ensemble with Voting")
+            print("CONSENSUS MODE - Multi-Model Ensemble with Voting")
             print("=" * 60)
             print(f"Consensus threshold: {consensus_mode.upper()}")
             print("This mode runs multiple models and requires agreement")
@@ -114,7 +114,7 @@ class PIIObfuscator:
             self.detectors = []
             
         else:
-            print("🚀 MULTI-LAYER DETECTION MODE")
+            print("MULTI-LAYER DETECTION MODE")
             print("=" * 60)
             print("Sequential detection with validation")
             print("-" * 60)
@@ -126,16 +126,16 @@ class PIIObfuscator:
             # Layer 1: TRANSFORMER (most accurate, context-aware)
             if use_transformer:
                 if TRANSFORMER_AVAILABLE:
-                    print(f"✓ Loading transformer detector: {transformer_model}")
+                    print(f"[OK] Loading transformer detector: {transformer_model}")
                     try:
                         self.transformer_detector = TransformerDetector(
                             model_name=transformer_model,
                             use_gpu=True
                         )
                         self.detectors.append(('transformer', self.transformer_detector))
-                        print("✓ Transformer detector loaded successfully!")
+                        print("[OK] Transformer detector loaded successfully!")
                     except Exception as e:
-                        print(f"⚠ Failed to load {transformer_model}: {e}")
+                        print(f"[WARN] Failed to load {transformer_model}: {e}")
                         print("  Trying alternative models...")
                         
                         # Fallback models
@@ -152,39 +152,39 @@ class PIIObfuscator:
                                     use_gpu=True
                                 )
                                 self.detectors.append(('transformer', self.transformer_detector))
-                                print(f"✓ Fallback model loaded: {fallback_model}")
+                                print(f"[OK] Fallback model loaded: {fallback_model}")
                                 break
                             except Exception as fe:
-                                print(f"  ✗ Failed: {fe}")
+                                print(f"  [ERROR] Failed: {fe}")
                                 continue
                 else:
-                    print("⚠ Transformer detector not available - check installation")
+                    print("[WARN] Transformer detector not available - check installation")
                     print("  Run: pip install transformers torch")
             
             # Layer 2: SPACY (validation and fallback)
             if use_spacy:
-                print(f"✓ Loading spaCy detector: {spacy_model}")
+                print(f"[OK] Loading spaCy detector: {spacy_model}")
                 self.spacy_detector = SpacyDetector(model_name=spacy_model)
                 self.detectors.append(('spacy', self.spacy_detector))
-                print("✓ spaCy detector loaded!")
+                print("[OK] spaCy detector loaded!")
             
             # Layer 3: REGEX (structured data backup)
             if use_regex:
-                print("✓ Loading regex detector")
+                print("[OK] Loading regex detector")
                 self.regex_detector = RegexPatternDetector()
                 self.detectors.append(('regex', self.regex_detector))
-                print("✓ Regex detector loaded!")
+                print("[OK] Regex detector loaded!")
             
             # Ensure at least one detector is loaded
             if len(self.detectors) == 0:
                 raise RuntimeError("No detectors available! Cannot initialize obfuscator.")
         
         # Initialize escrow database (common for both modes)
-        print(f"✓ Loading escrow database: {escrow_db_path}")
+        print(f"[OK] Loading escrow database: {escrow_db_path}")
         self.escrow_db = EscrowDatabase(escrow_db_path)
         
         print("=" * 60)
-        print(f"✓ Obfuscator initialized with {len(self.detectors)} detector(s)")
+        print(f"[OK] Obfuscator initialized with {len(self.detectors)} detector(s)")
         print("Detection order:")
         for i, (detector_name, _) in enumerate(self.detectors, 1):
             print(f"  {i}. {detector_name}")

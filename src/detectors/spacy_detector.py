@@ -1,4 +1,4 @@
-"""
+﻿"""
 spaCy NER Detector
 Fast CPU-based Named Entity Recognition for PERSON, LOCATION, ORGANIZATION
 Uses spaCy's pre-trained models (~30-50ms latency)
@@ -51,7 +51,7 @@ class SpacyDetector:
         print(f"Loading spaCy model: {model_name}...")
         try:
             self.nlp = spacy.load(model_name)
-            print("✓ spaCy model loaded successfully")
+            print("[OK] spaCy model loaded successfully")
         except OSError:
             print(f"✗ Model '{model_name}' not found. Downloading...")
             import subprocess

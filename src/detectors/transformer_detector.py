@@ -1,4 +1,4 @@
-"""
+﻿"""
 Transformer PII Detector
 GPU-accelerated accurate PII detection using transformer models.
 Uses pre-trained models fine-tuned specifically for PII detection.

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Regex Pattern Detector
 Fast pattern matching for structured PII like emails, SSNs, credit cards, etc.
 """

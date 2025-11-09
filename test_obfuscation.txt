@@ -1,0 +1,26 @@
+This is a test file for obfuscation testing.
+
+Personal Information:
+Name: John Smith
+Email: john.smith@email.com
+Phone: (555) 123-4567
+SSN: 123-45-6789
+
+Financial Information:
+Credit Card: 4532-1488-0343-6467
+Bank Account: 123456789012
+
+Medical Information:
+Patient ID: MED-12345
+Diagnosis: Type 2 Diabetes
+
+Contact Details:
+Address: 123 Main Street, Springfield, IL 62701
+Emergency Contact: Jane Doe - (555) 987-6543
+
+Additional Test Data:
+Another email: test.user@company.org
+Another phone: 1-800-555-0199
+IP Address: 192.168.1.1
+
+Some regular text without PII to see what gets obfuscated and what doesn't.
