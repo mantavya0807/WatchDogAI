@@ -394,6 +394,15 @@ class FocusBasedClipboardMonitor:
     def _process_text_clipboard(self, text):
         """Process text clipboard content"""
         try:
+            # CRITICAL: Check if text contains placeholders FIRST
+            # If it does, let the restoration monitor handle it (don't process it here)
+            import re
+            placeholder_pattern = re.compile(r'\{([A-Z_]+_\d+)\}')
+            if placeholder_pattern.search(text):
+                # Text has placeholders - let restoration monitor handle it
+                print(f"[DEBUG] Detected placeholders in clipboard - skipping obfuscation (restoration monitor will handle)")
+                return
+            
             # Check if this matches our cached obfuscated text (user copied obfuscated version)
             was_obfuscated_copy = False
             cached_obfuscated = self.clipboard_cache.get('obfuscated', '')

@@ -140,14 +140,26 @@ class PlaceholderRestorationMonitor:
         restored_count = 0
         missing_placeholders = []
         
+        if not self.escrow_db:
+            print(f"    ✗ Escrow DB not initialized!")
+            return text, {
+                'method': 'escrow_db',
+                'total_placeholders': len(placeholders),
+                'restored_count': 0,
+                'missing_count': len(placeholders),
+                'missing_placeholders': [p[1] for p in placeholders],
+            }
+        
         for full_match, placeholder_id in placeholders:
             # Use correct method name 'retrieve'
             original = self.escrow_db.retrieve(placeholder_id)
             if original:
                 restored = restored.replace(full_match, original)
                 restored_count += 1
+                print(f"    ✓ Restored {full_match} → {original[:50]}...")
             else:
                 missing_placeholders.append(placeholder_id)
+                print(f"    ✗ Placeholder {full_match} not found in escrow DB")
         
         metadata = {
             'method': 'escrow_db',
@@ -217,13 +229,14 @@ class PlaceholderRestorationMonitor:
         
         try:
             # Strategy 1: Use transformer to detect similar PII in context
-            result = self.transformer.detect(context)
+            # Note: transformer.detect() returns a List[Detection], not an object with .entities
+            detections = self.transformer.detect(context)
             
-            if result and result.entities:
+            if detections and len(detections) > 0:
                 # Find entities matching the placeholder type
                 matching_entities = [
-                    e for e in result.entities 
-                    if e.entity_type == placeholder_type
+                    d for d in detections 
+                    if d.entity_type == placeholder_type
                 ]
                 
                 if matching_entities:
@@ -231,7 +244,7 @@ class PlaceholderRestorationMonitor:
                     placeholder_pos = context.find(placeholder)
                     closest_entity = min(
                         matching_entities,
-                        key=lambda e: abs(e.start - placeholder_pos)
+                        key=lambda d: abs(d.start - placeholder_pos)
                     )
                     return closest_entity.text
             
@@ -330,27 +343,40 @@ class PlaceholderRestorationMonitor:
                 print(f"\n⚠️  LOOP DETECTED - Skipping restoration to prevent infinite loop")
                 return
             
-            # Check if we're in debounce period
+            # Check if we're in debounce period (but allow if enough time has passed)
             now = time.time()
             if now - self.last_restoration_time < self.DEBOUNCE_TIME:
+                print(f"[DEBUG] Restoration: Still in debounce period ({now - self.last_restoration_time:.2f}s < {self.DEBOUNCE_TIME}s)")
                 return
             
             # Check if text has placeholders
-            if not self.PLACEHOLDER_PATTERN.search(text):
+            placeholder_matches = list(self.PLACEHOLDER_PATTERN.finditer(text))
+            if not placeholder_matches:
                 # No placeholders - existing obfuscation logic will handle this
                 return
             
             # Text has placeholders - THIS IS OUR JOB
             print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 🔄 RESTORATION TRIGGERED")
             print(f"  Clipboard length: {len(text)} chars")
+            print(f"  Found {len(placeholder_matches)} placeholder(s)")
+            print(f"  Text preview: {text[:100]}...")
+            print(f"  Placeholders found: {[m.group(0) for m in placeholder_matches[:5]]}")
             
             # Restore placeholders
             restored_text, metadata = self._restore_placeholders(text)
             
-            if metadata.get('has_placeholders') and metadata.get('fully_restored'):
-                print(f"  ✅ RESTORED: {metadata['escrow_restored']} from DB + {metadata['transformer_restored']} from AI")
+            if metadata.get('has_placeholders'):
+                total_restored = metadata.get('escrow_restored', 0) + metadata.get('transformer_restored', 0)
+                total_placeholders = metadata.get('total_placeholders', 0)
                 
-                # Update clipboard with restored text
+                if metadata.get('fully_restored'):
+                    print(f"  ✅ FULLY RESTORED: {total_restored} from DB + {metadata.get('transformer_restored', 0)} from AI")
+                else:
+                    print(f"  ⚠️  PARTIAL: Restored {total_restored}/{total_placeholders}")
+                    print(f"  → Some placeholders could not be restored, but updating clipboard with restored values")
+                
+                # Update clipboard with restored text (even if partially restored)
+                # This ensures the user gets the restored values, even if some are missing
                 if self._set_clipboard_text(restored_text):
                     # Update state
                     self.last_clipboard_hash = self._compute_hash(restored_text)
@@ -358,13 +384,12 @@ class PlaceholderRestorationMonitor:
                     self._update_history(text_hash)
                     self._update_history(self.last_clipboard_hash)
                     
-                    print(f"  ✓ Clipboard updated with restored values")
+                    if metadata.get('fully_restored'):
+                        print(f"  ✓ Clipboard updated with fully restored values")
+                    else:
+                        print(f"  ✓ Clipboard updated with partially restored values ({total_restored}/{total_placeholders})")
                 else:
                     print(f"  ✗ Failed to update clipboard")
-            
-            elif metadata.get('has_placeholders'):
-                print(f"  ⚠️  PARTIAL: Restored {metadata['escrow_restored'] + metadata['transformer_restored']}/{metadata['total_placeholders']}")
-                print(f"  → Some placeholders could not be restored")
         
         except Exception as e:
             print(f"✗ Error processing clipboard: {e}")
@@ -406,6 +431,8 @@ class PlaceholderRestorationMonitor:
                 
                 if current_seq != self.last_clipboard_seq:
                     self.last_clipboard_seq = current_seq
+                    # Small delay to let clipboard monitor finish if it's processing
+                    time.sleep(0.05)
                     self._process_clipboard()
                 
                 # Check every 100ms

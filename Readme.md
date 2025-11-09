@@ -13,12 +13,15 @@ Automatically detects and obfuscates personally identifiable information (PII) b
 ### Key Features
 - ✅ **Real-time clipboard monitoring** - Automatically protects copied data
 - ✅ **Desktop app monitoring** - Protects text as you type in applications
-- ✅ **Multi-layer AI detection** - Regex + spaCy NER + optional Transformer models
+- ✅ **Browser extension** - Protects file uploads and typing on risky domains (ChatGPT, Claude, etc.)
+- ✅ **Placeholder restoration** - Automatically restores PII when copying from safe apps
+- ✅ **Multi-layer AI detection** - Regex + spaCy NER + Transformer models + Consensus mode
 - ✅ **GPU-accelerated** - Fast detection (30-50ms) using CUDA
 - ✅ **Reversible obfuscation** - Original data stored locally in escrow database
 - ✅ **Smart notifications** - Undo button to restore original text (5-second window)
 - ✅ **Image processing** - OCR and blur/pixelate/redact PII in images
-- ✅ **Configurable** - Full preferences GUI with whitelist support
+- ✅ **File format support** - Code files (.py, .js, etc.), PDFs, DOCX, and text files
+- ✅ **Configurable** - Full preferences GUI and browser extension options page
 - ✅ **Local-first** - No internet required, all data stays on your machine
 
 ### How It Works
@@ -35,6 +38,7 @@ Replaces clipboard: "Contact {PERSON_1} at {EMAIL_1} or {PHONE_1}"
 Shows notification with Undo button
      ↓
 User pastes to ChatGPT → Protected!
+User pastes to Excel → Automatically restored to original
 ```
 
 ---
@@ -57,6 +61,7 @@ cd HackPrinceton
 2. **Install dependencies**
 ```bash
 pip install -r requirements.txt
+pip install -r mcp_servers/requirements.txt
 ```
 
 3. **Download spaCy model**
@@ -66,20 +71,39 @@ python -m spacy download en_core_web_sm
 
 4. **Verify installation**
 ```bash
-python verify_installation.py
+python tests/verify_installation.py
 ```
 
 ### Running the System
 
-**Option 1: Quick Test (Clipboard Only)**
+**Option 1: Start All Monitors (Recommended)**
 ```bash
-python clipboard_monitor_paste_based.py
+# Windows Command Prompt
+start_all.bat
+
+# PowerShell
+.\start_all.ps1
+
+# Or directly with Python
+python start_all.py
 ```
 
-**Option 2: Full System (Clipboard + Desktop Apps)**
-```powershell
-# Run in PowerShell
-.\start_combined.ps1
+This starts:
+- Clipboard Monitor (copy/paste protection)
+- Desktop App Monitor (typing protection)
+- Placeholder Restoration Monitor (automatic restoration)
+- Notifications (built-in)
+
+**Option 2: Individual Monitors**
+```bash
+# Clipboard only
+python clipboard_monitor_paste_based.py
+
+# Desktop apps only
+python desktop_app_monitor.py
+
+# Placeholder restoration only
+python placeholder_restoration_monitor.py
 ```
 
 **Option 3: Configure First**
@@ -87,45 +111,83 @@ python clipboard_monitor_paste_based.py
 python preference_gui.py
 ```
 
+### Browser Extension Setup
+
+1. **Load the extension**
+   - Open Edge/Chrome: `edge://extensions` or `chrome://extensions`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select `Extension/edge-dlp-ext` folder
+
+2. **Register native host**
+   ```powershell
+   cd Extension/edge-dlp-ext
+   .\register_native_host.ps1
+   ```
+
+3. **Configure extension**
+   - Right-click extension icon → "Options"
+   - Configure risky domains, file types, consensus mode, etc.
+
 ---
 
 ## 📁 Project Structure
 
 ```
-PII Guard/
+HackPrinceton/
 │
 ├── Core Detection Engines
-│   ├── obfuscator.py              # Main obfuscation engine (orchestrates all detectors)
-│   ├── regex_detector.py          # Pattern-based detection (emails, SSNs, phones, etc.)
-│   ├── spacy_detector.py          # Named entity recognition (names, locations, orgs)
-│   ├── transformer_detector.py   # Context-aware AI detection (optional)
-│   └── consensus_detector.py     # Multi-model voting for ultra-high accuracy
+│   ├── src/obfuscator.py              # Main obfuscation engine
+│   ├── src/detectors/
+│   │   ├── regex_detector.py          # Pattern-based detection
+│   │   ├── spacy_detector.py          # Named entity recognition
+│   │   ├── transformer_detector.py    # Context-aware AI detection
+│   │   └── consensus_detector.py     # Multi-model voting
+│   ├── src/escrow_db.py              # SQLite database for originals
+│   └── src/image_obfuscator.py       # Image PII detection
 │
 ├── System Integration
-│   ├── clipboard_monitor_paste_based.py  # Clipboard monitoring with paste detection
-│   ├── desktop_app_monitor.py            # Keystroke monitoring for desktop apps
-│   ├── notification_system.py            # Toast notifications with undo
-│   └── preference_gui.py                 # Configuration GUI (5 tabs)
+│   ├── clipboard_monitor_paste_based.py  # Clipboard monitoring
+│   ├── desktop_app_monitor.py            # Desktop app monitoring
+│   ├── placeholder_restoration_monitor.py # Placeholder restoration
+│   ├── notification_system.py            # Toast notifications
+│   └── preference_gui.py                 # Configuration GUI
 │
-├── Supporting Infrastructure
-│   ├── escrow_db.py              # SQLite database for original values
-│   ├── image_obfuscator.py       # Image PII detection and obfuscation
-│   └── cli.py                    # Command-line interface
+├── Browser Extension
+│   └── Extension/edge-dlp-ext/
+│       ├── manifest.json              # Extension manifest
+│       ├── content_script.js          # Content script (typing protection)
+│       ├── file_obfuscator.js         # File upload interception
+│       ├── service_worker.js          # Background service
+│       ├── native_host.py             # Native host (Python bridge)
+│       ├── options.html/js            # Options page
+│       └── risky_domains.json        # Risky domain list
+│
+├── MCP Servers (File Format Handlers)
+│   └── mcp_servers/
+│       ├── unified_server.py          # Unified file router
+│       ├── code_server.py             # Code file handler (Tree-sitter)
+│       ├── pdf_server.py              # PDF handler (PyMuPDF)
+│       ├── docx_server.py              # DOCX handler (python-docx)
+│       └── test_files/                # Test files
 │
 ├── Configuration
-│   └── pii_guard_config.json     # User preferences (auto-created)
+│   └── data/
+│       ├── pii_guard_config.json      # User preferences
+│       └── escrow/                    # Escrow database directory
 │
-├── Testing & Demo
-│   ├── test_integration.py       # Full integration test
-│   ├── test_consensus.py         # Test consensus mode
-│   └── verify_installation.py    # Verify setup
+├── Testing
+│   └── tests/
+│       ├── test_integration.py        # Full integration test
+│       ├── test_consensus.py          # Consensus mode test
+│       └── verify_installation.py     # Installation verification
 │
-├── Launchers
-│   ├── start_combined.ps1        # Start both monitors (PowerShell)
-│   └── start_keystroke_monitor.bat  # Legacy launcher
+├── Startup Scripts
+│   ├── start_all.py                   # Unified startup (all monitors)
+│   ├── start_all.bat                  # Windows batch launcher
+│   └── start_all.ps1                   # PowerShell launcher
 │
-└── Documentation
-    └── README.md                 # This file
+└── README.md                          # This file
 ```
 
 ---
@@ -140,29 +202,23 @@ python preference_gui.py
 ```
 
 **5 Configuration Tabs:**
-
-1. **Detectors** - Enable/disable detection methods
-   - Regex (structured patterns)
-   - spaCy (named entities)
-   - Transformer (AI context-aware)
-
-2. **Sources** - Choose what to monitor
-   - Clipboard
-   - Desktop applications
-   - Images
-
-3. **Entity Types** - Select what PII to detect
-   - PERSON, EMAIL, PHONE, SSN, CREDIT_CARD
-   - ORGANIZATION, LOCATION, DATE, IP, URL
-
+1. **Detectors** - Enable/disable detection methods (Regex, spaCy, Transformer)
+2. **Sources** - Choose what to monitor (Clipboard, Desktop apps, Images)
+3. **Entity Types** - Select what PII to detect (EMAIL, PHONE, SSN, etc.)
 4. **Whitelist** - Trusted apps/domains that skip protection
-   - Application whitelist (e.g., `code.exe`, `excel.exe`)
-   - Domain whitelist (e.g., `mycompany.com`)
+5. **Notifications** - Customize alerts and timeouts
 
-5. **Notifications** - Customize alerts
-   - Enable/disable notifications
-   - Timeout duration (seconds)
-   - Confidence threshold
+### Browser Extension Options
+
+Access via: Right-click extension icon → "Options"
+
+**Settings:**
+- Enable/disable obfuscation
+- Consensus mode (ultra-accurate detection)
+- Confidence threshold
+- Risky domains list
+- File type protection (code, PDF, DOCX, text)
+- Notification preferences
 
 ### Manual Configuration
 
@@ -172,19 +228,18 @@ Edit `data/pii_guard_config.json`:
   "detectors": {
     "regex": true,
     "spacy": true,
-    "transformer": false
+    "transformer": true
   },
   "sources": {
     "clipboard": true,
-    "desktop": true,
-    "images": true
+    "typing": true
   },
   "entity_types": {
-    "PERSON": true,
     "EMAIL": true,
     "PHONE": true,
     "SSN": true,
-    "CREDIT_CARD": true
+    "CREDIT_CARD": true,
+    "PERSON": true
   },
   "whitelist": {
     "apps": ["code.exe", "excel.exe"],
@@ -192,7 +247,12 @@ Edit `data/pii_guard_config.json`:
   },
   "notifications": {
     "enabled": true,
-    "timeout": 5
+    "auto_dismiss_seconds": 5
+  },
+  "advanced": {
+    "confidence_threshold": 0.5,
+    "use_consensus": false,
+    "consensus_mode": "any_two"
   }
 }
 ```
@@ -204,18 +264,10 @@ Edit `data/pii_guard_config.json`:
 ### Standard Mode (Default)
 Fast, balanced detection using available detectors sequentially.
 
-```bash
-python cli.py text --file document.txt --output protected.txt
-```
-
 **Performance:** 30-100ms per text block
 
 ### Consensus Mode (Ultra-Accurate)
 Requires multiple models to agree before marking PII.
-
-```bash
-python cli.py text --file document.txt --output protected.txt --consensus --consensus-mode any_two
-```
 
 **Consensus Strategies:**
 - `any_two` - Requires ≥2 detectors to agree (recommended)
@@ -226,12 +278,10 @@ python cli.py text --file document.txt --output protected.txt --consensus --cons
 **Performance:** 200-400ms per text block  
 **Accuracy:** <1% false positive rate
 
-### Regex Priority Mode
-Ensures structured data (SSN, credit cards, emails) is ALWAYS caught.
-
-```bash
-python cli.py text --file document.txt --output protected.txt --regex-priority
-```
+Enable via:
+- Preferences GUI → Advanced tab
+- Browser extension options page
+- Config file: `"use_consensus": true`
 
 ---
 
@@ -239,37 +289,38 @@ python cli.py text --file document.txt --output protected.txt --regex-priority
 
 ### Run Full Integration Test
 ```bash
-python test_integration.py
+python tests/test_integration.py
 ```
-
-Tests:
-- Preferences loading
-- Clipboard monitoring
-- Desktop app monitoring
-- Notification system
-- Whitelist functionality
 
 ### Test Consensus Mode
 ```bash
-python test_consensus.py
+python tests/test_consensus.py
 ```
 
 ### Manual Testing
 
 **Test Clipboard Protection:**
-1. Run: `python clipboard_monitor_paste_based.py`
+1. Run: `python start_all.py`
 2. Copy text with PII: `Contact Alice at alice@email.com`
 3. See notification popup
 4. Click "Undo" to restore original
-5. Paste anywhere - protected!
+5. Paste to ChatGPT → Protected!
+6. Paste to Excel → Automatically restored!
 
 **Test Desktop App Protection:**
-1. Run: `python desktop_app_monitor.py`
+1. Run: `python start_all.py`
 2. Open Slack or Teams
 3. Type message with PII
 4. Pause typing for 1.5 seconds
 5. See notification popup
 6. Click "Undo" to restore
+
+**Test Browser Extension:**
+1. Load extension in Edge/Chrome
+2. Visit ChatGPT or Claude
+3. Upload a file with PII → Automatically obfuscated
+4. Type PII in chat → Automatically obfuscated
+5. Copy obfuscated text → Automatically restored
 
 ---
 
@@ -307,17 +358,15 @@ python test_consensus.py
 - ✅ **User control** - Full access to delete/export data
 
 ### Data Storage
-- **Escrow database:** `data/escrow.db` (SQLite)
+- **Escrow database:** `data/escrow/pii_escrow.db` (SQLite)
 - **Configuration:** `data/pii_guard_config.json`
 - **Logs:** Console only (not persisted by default)
 
 ### Audit Trail
-- All detections timestamped
-- Source tracking (clipboard, desktop app, image)
-- Can review all stored mappings via CLI:
-  ```bash
-  python cli.py export --output audit.json
-  ```
+All detections are timestamped and source-tracked. Export audit log:
+```bash
+python cli.py export --output audit.json
+```
 
 ---
 
@@ -348,11 +397,6 @@ python test_consensus.py
 3. **Context understanding** - May occasionally flag non-PII (false positives)
 4. **Multi-language** - Currently optimized for English text only
 
-### Known Issues
-1. **UIAutomation threading warnings** - Desktop monitor shows COM initialization warnings (harmless)
-2. **Some apps block UI Automation** - Security software may prevent access
-3. **GPU not detected** - Transformer falls back to CPU (slower but functional)
-
 ### Troubleshooting
 
 **Notifications not showing:**
@@ -371,15 +415,18 @@ python test_consensus.py
 - Verify CUDA installation: `python -c "import torch; print(torch.cuda.is_available())"`
 - Install PyTorch with CUDA support
 
+**Extension not working:**
+- Check native host registration: `Extension/edge-dlp-ext/register_native_host.ps1`
+- Check browser console for errors
+- Verify native host path in registry matches actual path
+
 ---
 
 ## 🛣️ Roadmap / Future Enhancements
 
 ### Planned Features
-- [ ] **Chrome Extension** - Browser integration for web forms
 - [ ] **System Tray App** - Easy enable/disable via tray icon
 - [ ] **Multi-language support** - Models for Spanish, French, etc.
-- [ ] **Cloud sync (optional)** - Encrypted config sync across devices
 - [ ] **Statistics dashboard** - Visual analytics of protections
 - [ ] **Custom patterns** - User-defined regex for domain-specific PII
 - [ ] **macOS/Linux support** - Cross-platform compatibility
@@ -398,8 +445,8 @@ This is a HackPrinceton project. Contributions welcome!
 ### Development Setup
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature-name`
-3. Install dev dependencies: `pip install -r requirements-dev.txt`
-4. Run tests: `python test_integration.py`
+3. Install dev dependencies: `pip install -r requirements.txt`
+4. Run tests: `python tests/test_integration.py`
 5. Submit a pull request
 
 ### Code Style
@@ -430,6 +477,8 @@ Mantavya - Lead Developer
 - **PyTorch** - Deep learning framework
 - **Tesseract OCR** - Open-source OCR engine
 - **pywin32** - Windows API bindings
+- **Tree-sitter** - Incremental parsing for code analysis
+- **PyMuPDF** - PDF processing library
 
 ---
 
@@ -437,7 +486,7 @@ Mantavya - Lead Developer
 
 For issues or questions:
 1. Check the troubleshooting section above
-2. Run `python test_integration.py` to diagnose issues
+2. Run `python tests/test_integration.py` to diagnose issues
 3. Review console output for error messages
 4. Check `data/pii_guard_config.json` for configuration issues
 
@@ -456,7 +505,7 @@ For issues or questions:
    - Explain: "This goes straight to OpenAI's servers"
 
 2. **Activate PII Guard** (30s)
-   - Run: `python clipboard_monitor_paste_based.py`
+   - Run: `python start_all.py`
    - Show it running in background
 
 3. **Demo clipboard protection** (2m)
@@ -466,14 +515,15 @@ For issues or questions:
    - Paste to ChatGPT → Protected version appears
    - Show clipboard still has original
 
-4. **Show configuration** (1m)
-   - Open preferences GUI
-   - Show 5 tabs
-   - Demonstrate whitelist feature
+4. **Show browser extension** (1m)
+   - Upload file to ChatGPT → Automatically obfuscated
+   - Type PII → Automatically obfuscated
+   - Copy obfuscated text → Automatically restored
 
 5. **Technical highlights** (1m)
    - GPU acceleration (30-50ms detection)
    - Multi-layer detection (regex + spaCy + transformers)
+   - Consensus mode (ultra-accurate)
    - Local-first (no cloud)
    - Reversible obfuscation with undo
 
@@ -484,6 +534,7 @@ For issues or questions:
 - ✅ **Smart** - Only protects when needed (whitelist support)
 - ✅ **Fast** - GPU-accelerated, <50ms overhead
 - ✅ **Extensible** - Modular architecture, easy to add detectors
+- ✅ **Complete** - Clipboard, desktop apps, browser extension, file uploads
 
 ---
 

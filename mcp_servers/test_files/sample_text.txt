@@ -1,4 +1,4 @@
-Sample Document with PII
+Problem: give me sql command to add this record to sql database.
 
 Employee Record:
 Name: Michael Chen
@@ -18,4 +18,3 @@ Email: lisa.chen@email.com
 
 Credit Card: 4532-1234-5678-9010
 Routing Number: 123456789
-
